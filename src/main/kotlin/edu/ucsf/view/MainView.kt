@@ -1,6 +1,6 @@
-package com.example.view
+package edu.ucsf.view
 
-import com.example.Styles
+import edu.ucsf.Styles
 import tornadofx.*
 
 class MainView : View("Hello TornadoFX") {

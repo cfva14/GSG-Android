@@ -1,33 +1,42 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version "1.4.0"
-    id 'application'
+    kotlin("jvm") version "1.4.0"
+    application
+    id("org.openjfx.javafxplugin") version "0.0.9"
 }
-group = 'com.test'
-version = '1.0-SNAPSHOT'
+
+application { mainClassName = "edu.ucsf.MainKt" }
 
 repositories {
     mavenCentral()
     jcenter()
-}
-
-javafx {
-    version = "11.0.2"
-    modules = ['javafx.controls', 'javafx.fxml']
-}
-
-application {
-    mainClassName = "edu.ucsf.MainKt"
+    maven("https://plugins.gradle.org/m2/")
+    maven("https://dl.bintray.com/kotlin/kotlin-eap")
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    implementation "no.tornado:tornadofx:$tornadofx_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
+    // Kotlin standard library
+    implementation(kotlin("stdlib-jdk8"))
+
+    // TornadoFX dependency
+    implementation("no.tornado:tornadofx:1.7.20")
+
+    // JUnit 5 for testing
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 }
 
-compileKotlin {
+// JavaFX module to include
+javafx { modules("javafx.controls", "javafx.fxml", "javafx.graphics") }
+
+// Set Kotlin/JVM target versions
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
+    kotlinOptions.languageVersion = "1.4"
 }
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "11"
-}
+
+// Use JUnit
+tasks.test { useJUnitPlatform() }
+
+// Be sure to use latest Gradle version
+tasks.named<Wrapper>("wrapper") { gradleVersion = "6.7.1" }
+
