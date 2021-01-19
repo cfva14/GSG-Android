@@ -1,4 +1,4 @@
-package edu.ucsf
+package org.b12x.gfe
 
 import tornadofx.launch
 

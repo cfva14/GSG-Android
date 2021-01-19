@@ -1,6 +1,6 @@
-package edu.ucsf
+package org.b12x.gfe
 
-import edu.ucsf.view.MainView
+import org.b12x.gfe.view.MainView
 import tornadofx.App
 
 class MyApp: App(MainView::class, Styles::class)

@@ -1,4 +1,4 @@
-package edu.ucsf
+package org.b12x.gfe
 
 import javafx.scene.text.FontWeight
 import tornadofx.Stylesheet
