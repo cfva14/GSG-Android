@@ -1,13 +1,11 @@
-package org.b12x.gfe.view
+package org.b12x.gfe.core.view
 
-import org.b12x.gfe.view.gfeSearch.GfeSearchView
-import javafx.beans.property.SimpleStringProperty
-import javafx.collections.FXCollections
+import org.b12x.gfe.plugins.gfesearch.view.GfeSearchView
 import tornadofx.*
 
 class MainView : View("Hello TornadoFX") {
 
-    val gfeSearchView = find(GfeSearchView::class)
+    private val gfeSearchView = find(GfeSearchView::class)
 
     override val root = tabpane {
 //        label(title) {
@@ -21,6 +19,9 @@ class MainView : View("Hello TornadoFX") {
         }
         tab("Allele Calling Tool") {
 //            add(alleleCallView::class)
+        }
+        tab("Options") {
+//            add(optionsView::class)
         }
         tab("Help") {
             vbox() {
