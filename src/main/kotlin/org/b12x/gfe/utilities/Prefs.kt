@@ -16,10 +16,10 @@ class Prefs {
     var currentTab: Int by Delegates.observable(PrefsManager.getPrefInt(::currentTab.name.camelToSnakeCase())) {
             _, old, new ->
         PrefsManager.setPrefInt(::currentTab.name.camelToSnakeCase(), new)
-        println("currentTab: $old -> $new")
+//        println("currentTab: $old -> $new")
     }
 
     var currentGfeLoci: Int by Delegates.observable(PrefsManager.getCurrentGfeLoci()) { _, old, new ->
-        println("$old -> $new")
+//        println("$old -> $new")
     }
 }
