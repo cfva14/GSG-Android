@@ -2,29 +2,41 @@ package org.b12x.gfe.core.view.debugtab
 
 import javafx.beans.property.SimpleStringProperty
 import javafx.collections.FXCollections
+import org.b12x.gfe.MyApp
+import org.b12x.gfe.Styles
 import tornadofx.*
+import tornadofx.Stylesheet.Companion.root
 import kotlin.system.exitProcess
 
 class DebugView : View("Debug") {
 
     private val calcOptions = FXCollections.observableArrayList("Enumerated", "Sealed")
     private val selectedCalc = SimpleStringProperty(calcOptions.get(0))
+    private val debuggerTextArea = textarea() {
 
-    override val root = borderpane {
+    }
 
-        top = combobox<String>(selectedCalc, calcOptions)
+    override val root = stackpane {
+        borderpane {
 
-        center = vbox {
-            textarea () { //textarea (documentViewModel.text)
-                this.prefWidthProperty().bind(this@borderpane.widthProperty());
-                this.prefHeightProperty().bind(this@borderpane.heightProperty());
+            top = combobox<String>(selectedCalc, calcOptions)
+
+            center = vbox {
+                add(debuggerTextArea)
+            }
+
+            bottom = hbox {
+                add(button("Exit") {
+                    setOnAction { exitProcess(0) }
+                })
+                add(button("Do Something") {
+                    setOnAction {
+                        debuggerTextArea.appendText("Do Something!\n")
+                        println("Do Something!")
+                    }
+                })
             }
         }
-
-        bottom = vbox {
-            add(button("Exit") {
-                setOnAction { exitProcess(0) }
-            })
-        }
+        addClass(Styles.textAreas)
     }
 }
