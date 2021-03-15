@@ -1,11 +1,13 @@
 package org.b12x.gfe.core.view
 
+import org.b12x.gfe.core.view.debugtab.DebugView
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchView
 import tornadofx.*
 
 class MainView : View("Hello TornadoFX") {
 
     private val gfeSearchView = find(GfeSearchView::class)
+    private val debugView = find(DebugView::class)
 
     override val root = tabpane {
 //        label(title) {
@@ -28,6 +30,9 @@ class MainView : View("Hello TornadoFX") {
                 button("Button 1")
                 button("Button 2")
             }
+        }
+        tab("Debug") {
+            add(debugView::class)
         }
     }
 }

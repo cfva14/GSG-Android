@@ -6,7 +6,7 @@ import org.b12x.gfe.utilities.PrefsManager
 import tornadofx.launch
 
 fun main() {
-//    launch<MyApp>()
+    launch<MyApp>()
 
     val prefs = Prefs()
     prefs.currentTab = 0

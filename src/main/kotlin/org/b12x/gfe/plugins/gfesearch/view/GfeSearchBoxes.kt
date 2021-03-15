@@ -7,12 +7,14 @@ class GfeSearchBoxes : View("Gfe Search Boxes"){
 
     override val root = hbox {
 //        for (i in 0..9) {
-//            add(searchBox)
+//            val i = searchBox.root
+//            this += i
+                add(searchBox.root)
 //        }
     }
 }
 
-class SearchBox : Fragment() {
+class SearchBox : View() {
     override val root = borderpane {
         top = checkbox {  }
         center = textfield {  }
