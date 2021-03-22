@@ -21,14 +21,18 @@ dependencies {
     // TornadoFX dependency
     implementation("no.tornado:tornadofx:1.7.20")
 
+    // API tools
+    implementation("com.squareup.okhttp3:okhttp:4.2.1")
+
     // JUnit 5 for testing
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 
     // Mockito
-    testImplementation("io.mockk:mockk:1.10.6")
-//    testImplementation("org.mockito:mockito-core:3.8.0")
-//    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+//    testImplementation("io.mockk:mockk:1.10.6")
+//    testImplementation("org.mockito:mockito-kotlin:2.2.0")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.0")
 }
 
 // JavaFX module to include
