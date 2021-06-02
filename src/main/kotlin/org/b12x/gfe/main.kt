@@ -8,6 +8,8 @@ import tornadofx.launch
 fun main() {
     launch<MyApp>()
 
+
+
 //    val prefs = Prefs()
 //    prefs.currentTab = 0
 //    println("Current tab: " + prefs.currentTab)

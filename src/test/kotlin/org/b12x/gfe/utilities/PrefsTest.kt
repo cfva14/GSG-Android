@@ -2,6 +2,7 @@ package org.b12x.gfe.utilities
 
 import org.b12x.gfe.utilities.Prefs.*
 //import io.mockk.*
+import com.nhaarman.mockitokotlin2.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -16,6 +17,9 @@ class PrefsTest {
 //    @Mockk
 //    val prefsManager = mockk<PrefsManager>()
     private val prefs = Prefs()
+//    val prefsManager = mock PrefsManager {
+
+//    }
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
@@ -25,10 +29,9 @@ class PrefsTest {
     }
 
     @ParameterizedTest
-    @MethodSource("snakeCaseParameters")
-    private fun snakeCaseTest(parameter: String) {
-
-        assertEquals(parameter, parameter)
+    @MethodSource("snakeCaseArguments")
+    private fun snakeCaseTest(provided: String, expected: String) {
+//        assertEquals(expected, provided.camelToSnakeCase())
     }
 
 //    private fun changeCurrentTabPref(int1: Int) {

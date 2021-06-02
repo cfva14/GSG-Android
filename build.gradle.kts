@@ -23,6 +23,10 @@ dependencies {
 
     // API tools
     implementation("com.squareup.okhttp3:okhttp:4.2.1")
+    implementation("com.squareup.okio:okio:2.10.0")
+
+    // JSON parsing
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.3")
 
     // JUnit 5 for testing
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
