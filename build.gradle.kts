@@ -26,9 +26,9 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 
     // Mockito
-    testImplementation("io.mockk:mockk:1.10.6")
-//    testImplementation("org.mockito:mockito-core:3.8.0")
-//    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+//    testImplementation("io.mockk:mockk:1.10.6")
+    testImplementation("org.mockito:mockito-core:3.8.0")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 }
 
 // JavaFX module to include

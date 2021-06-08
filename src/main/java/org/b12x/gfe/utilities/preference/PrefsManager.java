@@ -1,6 +1,5 @@
-package org.b12x.gfe.utilities;
+package org.b12x.gfe.utilities.preference;
 
-import java.util.Locale;
 import java.util.prefs.Preferences;
 
 public class PrefsManager {

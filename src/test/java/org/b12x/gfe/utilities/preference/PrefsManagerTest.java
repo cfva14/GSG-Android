@@ -1,4 +1,4 @@
-package org.b12x.gfe.utilities;
+package org.b12x.gfe.utilities.preference;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

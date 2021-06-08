@@ -1,7 +1,7 @@
 package org.b12x.gfe
 
-import org.b12x.gfe.utilities.Prefs
-import org.b12x.gfe.utilities.PrefsManager
+import org.b12x.gfe.utilities.preferences.Prefs
+import org.b12x.gfe.utilities.preference.PrefsManager
 
 import tornadofx.launch
 
