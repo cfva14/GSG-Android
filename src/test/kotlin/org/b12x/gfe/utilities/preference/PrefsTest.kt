@@ -1,14 +1,11 @@
 package org.b12x.gfe.utilities.preference
 
-import org.mockito.*
-//import org.
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import org.mockito.Mockito.mock
 import java.util.stream.Stream
 
 class PrefsTest {
@@ -32,7 +29,7 @@ class PrefsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["A", "B", "cd", ""])
+    @ValueSource(strings = ["Air", "BETA", "cdef", ""])
     fun setGetStringTest(word: String) {
         prefs.testingString = word
         assertEquals(word, prefs.testingString)
