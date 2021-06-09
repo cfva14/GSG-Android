@@ -26,6 +26,13 @@ class PrefsTest {
         assertEquals(word, prefs.testingString)
     }
 
+    @ParameterizedTest
+    @ValueSource(booleans = [true, false])
+    fun setGetBooleanTest(boolean: Boolean) {
+        prefs.testingBoolean = boolean
+        assertEquals(boolean, prefs.testingBoolean)
+    }
+
 //    @ParameterizedTest
 //    @MethodSource("snakeCaseArguments")
 //    private fun snakeCaseTest(parameter: String) {
