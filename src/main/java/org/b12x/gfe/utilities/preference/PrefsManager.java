@@ -9,30 +9,65 @@ public class PrefsManager {
     private PrefsManager() { }
 
     /**
-     * Gets the index of which loci was last selected on the GFE tab.
-     * Used by the GFE Loci dropdown
+     * Sets the integer value of the named preference.
+     *
+     * @param name the name of the preference to be set
+     * @param newInt the integer value to be set
      */
-    public static int getCurrentGfeLoci() {
-        return preferences.getInt("GFE_LOCI", 0);
-    }
-
-    /* set any int pref */
     public static void setPrefInt(String name, int newInt) {
         preferences.putInt(name, newInt);
     }
 
-    /* get any int pref */
+    /**
+     * Gets the integer value of the named preference.
+     * Returns zero by default.
+     *
+     * @param name the name of the preference to be set
+     * @return the stored integer
+     */
     public static int getPrefInt(String name) {
         return preferences.getInt(name, 0);
     }
 
-    /* set any string pref */
+    /**
+     * Sets the string value of the named preference.
+     *
+     * @param name the name of the preference to be set
+     * @param newString the string value to be set
+     */
     public static void setPrefString(String name, String newString) {
         preferences.put(name, newString);
     }
 
-    /* get any string pref */
+    /**
+     * Gets the string value of the named preference.
+     * Returns an empty string by default.
+     *
+     * @param name the name of the preference to be set
+     * @return the stored string
+     */
     public static String getPrefString(String name) {
         return preferences.get(name, "");
+    }
+
+    /**
+     * Sets the boolean value of the named preference.
+     *
+     * @param name the name of the preference to be set
+     * @param newBoolean the boolean value to be set
+     */
+    public static void setPrefBoolean(String name, Boolean newBoolean) {
+        preferences.putBoolean(name, newBoolean);
+    }
+
+    /**
+     * Gets the boolean value of the named preference.
+     * Returns false by default.
+     *
+     * @param name the name of the preference to be set
+     * @return the stored boolean
+     */
+    public static Boolean getPrefBoolean(String name) {
+        return preferences.getBoolean(name, false);
     }
 }
