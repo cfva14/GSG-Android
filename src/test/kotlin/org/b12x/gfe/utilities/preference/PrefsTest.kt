@@ -1,35 +1,49 @@
 package org.b12x.gfe.utilities.preference
 
-//import org.mockito.*
-import org.b12x.gfe.utilities.preferences.Prefs
+import org.mockito.*
+//import org.
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
+import org.mockito.Mockito.mock
 import java.util.stream.Stream
 
 class PrefsTest {
 
-//    @Mockk
+//    @Mock
 //    val prefsMock : Prefs = mock()
 //    whenever(prefsMock.currentTab).thenReturn(1) <- should be in method
 
     private val prefs = Prefs()
 
+    @Test
+    fun testTest() {
+        assertEquals(6, 6) //prefs.testingInt)
+    }
+
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
-    private fun setIntTest(num: Int) {
+    fun setGetIntTest(num: Int) {
         prefs.testingInt = num
         assertEquals(num, prefs.testingInt)
     }
 
     @ParameterizedTest
-    @MethodSource("snakeCaseArguments")
-    private fun snakeCaseTest(parameter: String) {
-
-//        assertEquals(parameter, prefsMock.currentTab)
+    @ValueSource(strings = ["A", "B", "cd", ""])
+    fun setGetStringTest(word: String) {
+        prefs.testingString = word
+        assertEquals(word, prefs.testingString)
     }
+
+//    @ParameterizedTest
+//    @MethodSource("snakeCaseArguments")
+//    private fun snakeCaseTest(parameter: String) {
+//
+//        assertEquals(parameter, prefsMock.currentTab)
+//    }
 
 //    private fun changeCurrentTabPref(int1: Int) {
 //        Prefs.currentTab = int1

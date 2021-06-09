@@ -23,8 +23,16 @@ public class PrefsManager {
 
     /* get any int pref */
     public static int getPrefInt(String name) {
-        System.out.println("Get " + name + ": what int are we storing? "
-                + preferences.getInt(name, 0));
         return preferences.getInt(name, 0);
+    }
+
+    /* set any string pref */
+    public static void setPrefString(String name, String newString) {
+        preferences.put(name, newString);
+    }
+
+    /* get any string pref */
+    public static String getPrefString(String name) {
+        return preferences.get(name, "");
     }
 }

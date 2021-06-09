@@ -23,10 +23,10 @@ dependencies {
 
     // JUnit 5 for testing
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.0")
 
     // Mockito
-//    testImplementation("io.mockk:mockk:1.10.6")
     testImplementation("org.mockito:mockito-core:3.8.0")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 }
