@@ -10,16 +10,7 @@ import java.util.stream.Stream
 
 class PrefsTest {
 
-//    @Mock
-//    val prefsMock : Prefs = mock()
-//    whenever(prefsMock.currentTab).thenReturn(1) <- should be in method
-
     private val prefs = Prefs()
-
-    @Test
-    fun testTest() {
-        assertEquals(6, 6) //prefs.testingInt)
-    }
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
