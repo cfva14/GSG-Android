@@ -22,7 +22,7 @@ public class PrefsManager {
      * Gets the integer value of the named preference.
      * Returns zero by default.
      *
-     * @param name the name of the preference to be set
+     * @param name the name of the preference to be retrieved
      * @return the stored integer
      */
     public static int getPrefInt(String name) {
@@ -43,7 +43,7 @@ public class PrefsManager {
      * Gets the string value of the named preference.
      * Returns an empty string by default.
      *
-     * @param name the name of the preference to be set
+     * @param name the name of the preference to be retrieved
      * @return the stored string
      */
     public static String getPrefString(String name) {
@@ -64,7 +64,7 @@ public class PrefsManager {
      * Gets the boolean value of the named preference.
      * Returns false by default.
      *
-     * @param name the name of the preference to be set
+     * @param name the name of the preference to be retrieved
      * @return the stored boolean
      */
     public static Boolean getPrefBoolean(String name) {
