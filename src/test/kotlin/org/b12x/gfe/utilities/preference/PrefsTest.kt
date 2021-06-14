@@ -1,38 +1,45 @@
-package org.b12x.gfe.utilities
+package org.b12x.gfe.utilities.preference
 
-import org.b12x.gfe.utilities.Prefs.*
-//import io.mockk.*
 import com.nhaarman.mockitokotlin2.*
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
 import java.util.stream.Stream
 
 class PrefsTest {
 
-//    @Mockk
-//    val prefsManager = mockk<PrefsManager>()
     private val prefs = Prefs()
-//    val prefsManager = mock PrefsManager {
-
-//    }
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
-    private fun setIntTest(num: Int) {
-        prefs.currentTab = num
-        assertEquals(num, prefs.currentTab)
+    fun setGetIntTest(num: Int) {
+        prefs.testingInt = num
+        assertEquals(num, prefs.testingInt)
     }
 
     @ParameterizedTest
-    @MethodSource("snakeCaseArguments")
-    private fun snakeCaseTest(provided: String, expected: String) {
-//        assertEquals(expected, provided.camelToSnakeCase())
+    @ValueSource(strings = ["Air", "BETA", "cdef", ""])
+    fun setGetStringTest(word: String) {
+        prefs.testingString = word
+        assertEquals(word, prefs.testingString)
     }
+
+    @ParameterizedTest
+    @ValueSource(booleans = [true, false])
+    fun setGetBooleanTest(boolean: Boolean) {
+        prefs.testingBoolean = boolean
+        assertEquals(boolean, prefs.testingBoolean)
+    }
+
+//    @ParameterizedTest
+//    @MethodSource("snakeCaseArguments")
+//    private fun snakeCaseTest(parameter: String) {
+//
+//        assertEquals(parameter, prefsMock.currentTab)
+//    }
 
 //    private fun changeCurrentTabPref(int1: Int) {
 //        Prefs.currentTab = int1
