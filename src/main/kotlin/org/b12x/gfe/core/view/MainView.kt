@@ -4,7 +4,7 @@ import org.b12x.gfe.core.view.debugtab.DebugView
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchView
 import tornadofx.*
 
-class MainView : View("Hello TornadoFX") {
+class MainView : View("GFE Search Generator") {
 
     private val gfeSearchView = find(GfeSearchView::class)
     private val debugView = find(DebugView::class)

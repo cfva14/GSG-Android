@@ -24,6 +24,10 @@ class Styles : Stylesheet() {
             prefHeight = 300.px
         }
 
+        textField {
+            prefWidth = 25.px
+        }
+
         label and heading {
             padding = box(10.px)
             fontSize = 20.px

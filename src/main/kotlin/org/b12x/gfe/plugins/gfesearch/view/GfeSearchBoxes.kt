@@ -1,5 +1,6 @@
 package org.b12x.gfe.plugins.gfesearch.view
 
+import javafx.geometry.Pos
 import tornadofx.*
 
 class GfeSearchBoxes : View("Gfe Search Boxes"){
@@ -15,13 +16,16 @@ class GfeSearchBoxes : View("Gfe Search Boxes"){
 }
 
 class SearchBox : View() {
-    override val root = borderpane {
-        top = checkbox {  }
-        center = textfield {  }
-        bottom = label("Intron 1") {
+    override val root = vbox {
+        checkbox {  }
+        textfield {  }
+        label("Intron 1") {
             style {
                 rotate = 90.deg
             }
+        }
+        style {
+            alignment = Pos.CENTER
         }
     }
 }

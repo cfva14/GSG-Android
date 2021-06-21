@@ -7,13 +7,13 @@ import kotlin.system.exitProcess
 
 class GfeSearchView : View("GFE SEARCH") {
 
-    private val calcOptions = FXCollections.observableArrayList("Enumerated", "Sealed")
+    private val lociOptions = FXCollections.observableArrayList("HLA", "KIR")
     private val gfeSearchBoxes: GfeSearchBoxes by inject()
-    private val selectedCalc = SimpleStringProperty(calcOptions.get(0))
+    private val selectedCalc = SimpleStringProperty(lociOptions[0])
     private val gfeSearchSubmitButton: GfeSearchSubmitButton by inject()
 
     override val root = borderpane {
-        top = combobox<String> (selectedCalc, calcOptions)
+        top = combobox<String> (selectedCalc, lociOptions)
 
         center = vbox {
             add(gfeSearchBoxes.root)

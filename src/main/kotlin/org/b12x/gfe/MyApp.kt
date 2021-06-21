@@ -10,7 +10,5 @@ class MyApp: App(MainView::class, Styles::class) {
         super.start(stage)
         stage.width = 800.0
         stage.height = 600.0
-
-//        label("GFE Search Generator")
     }
  }
