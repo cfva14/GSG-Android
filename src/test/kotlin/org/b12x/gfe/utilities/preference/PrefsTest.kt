@@ -3,6 +3,7 @@ package org.b12x.gfe.utilities.preference
 import com.nhaarman.mockitokotlin2.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -12,6 +13,21 @@ import java.util.stream.Stream
 class PrefsTest {
 
     private val prefs = Prefs()
+
+    @Test
+    fun getIntDefault() {
+        assertEquals(0, prefs.testingInt)
+    }
+
+    @Test
+    fun getStringDefault() {
+        assertEquals("", prefs.testingString)
+    }
+
+    @Test
+    fun getBooleanDefault() {
+        assertEquals(false, prefs.testingBoolean)
+    }
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
@@ -52,6 +68,15 @@ class PrefsTest {
 //    }
 
     companion object ArgumentsParameters {
+
+        @BeforeAll
+        @JvmStatic
+        internal fun setup() {
+            PrefsManager.wipePref("TESTING_INT");
+            PrefsManager.wipePref("TESTING_STRING");
+            PrefsManager.wipePref("TESTING_BOOLEAN");
+        }
+
         @JvmStatic
         fun snakeCaseArguments(): Stream<Arguments> =
             Stream.of(
