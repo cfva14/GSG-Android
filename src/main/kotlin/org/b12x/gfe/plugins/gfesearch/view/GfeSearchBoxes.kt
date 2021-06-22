@@ -10,7 +10,8 @@ class GfeSearchBoxes : View("Gfe Search Boxes"){
 //        for (i in 0..9) {
 //            val i = searchBox.root
 //            this += i
-                add(searchBox.root)
+        add(searchBox.root)
+        add(searchBox.set2)
 //        }
     }
 }
@@ -22,10 +23,32 @@ class SearchBox : View() {
         label("Intron 1") {
             style {
                 rotate = 90.deg
+                paddingLeft = 40
             }
         }
         style {
             alignment = Pos.CENTER
         }
     }
+
+    val set2 = vbox {
+        checkbox {  }
+        textfield {
+            style {
+                padding = box(0.px, 0.px, 0.px, 0.px)
+            }
+        }
+        label("Exon 1") {
+            style {
+                rotate = 90.deg
+                padding = box(0.px, 0.px, 0.px, 40.px)
+            }
+        }
+        style {
+            alignment = Pos.CENTER
+        }
+    }
+
+
+
 }

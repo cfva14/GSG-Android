@@ -1,10 +1,7 @@
 package org.b12x.gfe
 
 import javafx.scene.text.FontWeight
-import tornadofx.Stylesheet
-import tornadofx.box
-import tornadofx.cssclass
-import tornadofx.px
+import tornadofx.*
 
 class Styles : Stylesheet() {
     companion object {
@@ -26,10 +23,11 @@ class Styles : Stylesheet() {
 
         textField {
             prefWidth = 25.px
+//            borderWidth += box(30.px, 30.px, 30.px, 30.px)
         }
 
         label and heading {
-            padding = box(10.px)
+//            padding = box(100.px)
             fontSize = 20.px
             fontWeight = FontWeight.BOLD
         }

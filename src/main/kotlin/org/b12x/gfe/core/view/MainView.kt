@@ -1,5 +1,6 @@
 package org.b12x.gfe.core.view
 
+import org.b12x.gfe.Styles
 import org.b12x.gfe.core.view.debugtab.DebugView
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchView
 import tornadofx.*
