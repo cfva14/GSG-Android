@@ -1,5 +1,7 @@
 package org.b12x.gfe
 
+import javafx.scene.text.Font
+import javafx.scene.text.Font.font
 import javafx.scene.text.FontWeight
 import tornadofx.*
 
@@ -10,9 +12,11 @@ class Styles : Stylesheet() {
     }
 
     init {
+
         root {
             prefHeight = 600.px
             prefWidth = 800.px
+            fontFamily = "sansserif"
         }
 
         textAreas {
