@@ -28,6 +28,9 @@ dependencies {
     // JSON parsing
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.3")
 
+    // RxJava for Kotlin
+    implementation("io.reactivex.rxjava3:rxkotlin:3.x.y")
+
     // JUnit 5 for testing
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.0")
@@ -36,6 +39,8 @@ dependencies {
     // Mockito
     testImplementation("org.mockito:mockito-core:3.8.0")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+
+
 }
 
 // JavaFX module to include

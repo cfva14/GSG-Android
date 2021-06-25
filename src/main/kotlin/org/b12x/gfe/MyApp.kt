@@ -11,4 +11,4 @@ class MyApp: App(MainView::class, Styles::class) {
         stage.width = 800.0
         stage.height = 600.0
     }
- }
+}
