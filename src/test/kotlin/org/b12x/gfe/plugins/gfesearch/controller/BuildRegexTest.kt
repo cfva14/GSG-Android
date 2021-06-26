@@ -1,9 +1,13 @@
 package org.b12x.gfe.plugins.gfesearch.controller
 
-import com.sun.tools.javac.util.List.from
+import io.reactivex.rxjava3.kotlin.*
 import javafx.beans.Observable
+import org.b12x.gfe.MyApp
+import org.b12x.gfe.plugins.gfesearch.view.TestApp
 import org.b12x.gfe.plugins.gfesearch.view.TestLayout
 import org.b12x.gfe.utilities.preference.PrefsManager
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
@@ -13,17 +17,19 @@ import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
 import java.util.stream.Stream
 import tornadofx.*
+import kotlin.system.exitProcess
 
 
 class BuildRegexTest {
 
+//    val testApp = TestApp()
     val testLayout = TestLayout()
     val textFields = testLayout.textFields
     val checkBoxes = testLayout.checkBoxes
 
     @Test
     fun getIntDefault() {
-        assertEquals(0, 0)
+        assertEquals(textFields.size, checkBoxes.size)
     }
 
     companion object ArgumentsParameters {
@@ -32,11 +38,19 @@ class BuildRegexTest {
         @JvmStatic
         internal fun setup() {
 
-//            Observable.
-//            for (textFields)
-            PrefsManager.wipePref("TESTING_INT");
-            PrefsManager.wipePref("TESTING_STRING");
-            PrefsManager.wipePref("TESTING_BOOLEAN");
+            launch<TestApp>()
+//            textFields.forEach {
+//
+//            }
+//            PrefsManager.wipePref("TESTING_INT");
+//            PrefsManager.wipePref("TESTING_STRING");
+//            PrefsManager.wipePref("TESTING_BOOLEAN");
+        }
+
+        @AfterAll
+        @JvmStatic
+        internal fun after() {
+            exitProcess(0) //<TestApp>()
         }
 
         @JvmStatic

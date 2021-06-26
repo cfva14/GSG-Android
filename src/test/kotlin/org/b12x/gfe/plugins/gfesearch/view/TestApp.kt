@@ -1,7 +1,23 @@
 package org.b12x.gfe.plugins.gfesearch.view
 
+import io.reactivex.rxjava3.kotlin.*
+import javafx.collections.FXCollections
+import javafx.scene.control.CheckBox
+import javafx.scene.control.TextField
+import javafx.stage.Stage
+import org.b12x.gfe.Styles
+import org.b12x.gfe.core.view.MainView
 import org.b12x.gfe.plugins.gfesearch.view.SearchBox
 import tornadofx.*
+import java.util.Collections.list
+
+class TestApp: App(TestLayout::class, Styles::class) {
+    override fun start(stage: Stage) {
+        super.start(stage)
+        stage.width = 400.0
+        stage.height = 300.0
+    }
+}
 
 class TestLayout : View("My View") {
     private val testSearchBox: TestSearchBox by inject()
@@ -19,12 +35,12 @@ class TestLayout : View("My View") {
 
 class TestSearchBox : View() {
 
-    var checkBoxes = observableListOf(checkbox())
-    var textFields = observableListOf(textfield())
+    var textFields = ArrayList<TextField>()
+    var checkBoxes = ArrayList<CheckBox>()
 
     override val root = vbox {
-        var check1 = checkbox { }
-        var text1 = textfield { }
+        val check1 = checkbox { }
+        val text1 = textfield { }
 
         checkBoxes.add(check1)
         textFields.add(text1)

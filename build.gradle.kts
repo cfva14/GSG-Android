@@ -29,7 +29,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.3")
 
     // RxJava for Kotlin
-    implementation("io.reactivex.rxjava3:rxkotlin:3.x.y")
+    implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
 
     // JUnit 5 for testing
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
