@@ -37,8 +37,9 @@ class BuildRegexTest {
         @BeforeAll
         @JvmStatic
         internal fun setup() {
-
-            launch<TestApp>()
+//            runAsync {
+                launch<TestApp>()
+//            }
 //            textFields.forEach {
 //
 //            }
@@ -50,7 +51,8 @@ class BuildRegexTest {
         @AfterAll
         @JvmStatic
         internal fun after() {
-            exitProcess(0) //<TestApp>()
+//            TestApp.parentStage.hide()
+//            exitProcess(0) //<TestApp>()
         }
 
         @JvmStatic
