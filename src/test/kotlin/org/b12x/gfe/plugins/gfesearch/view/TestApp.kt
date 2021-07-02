@@ -55,32 +55,33 @@ class TestSearchBox : View() {
     }
 
     val set2 = vbox {
-        var check2 = checkbox { }
-        var text2 = textfield {"4"}
+        val check2 = checkbox()
+        val text2 = textfield("4")
 
         checkBoxes.add(check2)
         textFields.add(text2)
     }
 
     val set3 = vbox {
-        var check3 = checkbox { }
-        var text3 = textfield { }
+        val check3 = checkbox()
+        check3.setSelected(true)
+        val text3 = textfield { }
 
         checkBoxes.add(check3)
         textFields.add(text3)
     }
 
     val set4 = vbox {
-        var check4 = checkbox { }
-        var text4 = textfield { }
+        val check4 = checkbox { }
+        val text4 = textfield { }
 
         checkBoxes.add(check4)
         textFields.add(text4)
     }
 
     val set5 = vbox {
-        var check5 = checkbox { }
-        var text5 = textfield { }
+        val check5 = checkbox { }
+        val text5 = textfield { }
 
         checkBoxes.add(check5)
         textFields.add(text5)
