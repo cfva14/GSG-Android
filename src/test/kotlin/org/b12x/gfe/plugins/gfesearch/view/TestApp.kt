@@ -7,7 +7,6 @@ import javafx.scene.control.TextField
 import javafx.stage.Stage
 import org.b12x.gfe.Styles
 import org.b12x.gfe.core.view.MainView
-import org.b12x.gfe.plugins.gfesearch.view.SearchBox
 import tornadofx.*
 import java.util.Collections.list
 
