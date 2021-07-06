@@ -1,6 +1,8 @@
 package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.geometry.Pos
+import javafx.scene.layout.HBox
+import javafx.scene.layout.VBox
 import tornadofx.*
 
 class GfeSearchBoxes : View("Gfe Search Boxes"){
@@ -29,6 +31,19 @@ class SearchBox : View() {
         style {
             alignment = Pos.CENTER
         }
+    }
+
+
+    fun completedSearchBoxGenerator(): HBox {
+        val completedSearchBox =  hbox { }
+
+        return completedSearchBox
+    }
+
+    fun individualSearchBoxAssembler(): VBox {
+        val searchBoxComponent = vbox { }
+
+        return searchBoxComponent
     }
 
     val set2 = vbox {
