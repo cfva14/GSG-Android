@@ -5,6 +5,7 @@ import javafx.scene.control.TextField
 import org.b12x.gfe.plugins.gfesearch.view.TestApp
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeAll
 
 class GfeDataTest {
@@ -18,6 +19,8 @@ class GfeDataTest {
         assertEquals("", emptyGfeData.regex)
         assertEquals("CSV", emptyGfeData.textFormat)
         assertEquals(false, emptyGfeData.writeToFile)
+        assertTrue(emptyGfeData.checkArray.isEmpty())
+        assertTrue(emptyGfeData.textArray.isEmpty())
     }
 
 //    @Test
