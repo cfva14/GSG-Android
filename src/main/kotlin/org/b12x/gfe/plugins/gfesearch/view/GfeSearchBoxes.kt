@@ -26,7 +26,7 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
 //    val searchBox: SearchBox by inject()
 
     val currentSearchData = GfeData()
-    val numberOfSearchBoxes = 3
+    val numberOfSearchBoxes = 5
     val completedSearchBox = completedSearchBoxGenerator(numberOfSearchBoxes)
 //    val searchBoxes = completedSearchBox by inject()
 
@@ -49,10 +49,15 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
 
     fun completedSearchBoxGenerator(numberOfBoxes: Int): HBox {
         val completedSearchBox = hbox { }
-        for (i in 0..numberOfBoxes) {
+        completedSearchBox.add(individualSearchBoxAssembler("Workshop Status"))
+        completedSearchBox.add(individualSearchBoxAssembler("5' UTR"))
 
-            completedSearchBox.add(individualSearchBoxAssembler(labelGenerator(i)))
+        for (i in 1 until numberOfBoxes) {
+            completedSearchBox.add(individualSearchBoxAssembler("Exon $i"))
+            completedSearchBox.add(individualSearchBoxAssembler("Intron $i"))
         }
+        completedSearchBox.add(individualSearchBoxAssembler("Exon $numberOfBoxes"))
+        completedSearchBox.add(individualSearchBoxAssembler("3' UTR"))
 
         return completedSearchBox
     }
@@ -64,14 +69,14 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
             currentCheckBox = checkbox { }
             currentTextField = textfield {
                 style {
-
+                    size = 40.px
                 }
             }
             label(labelName) {
                 style {
                     rotate = 90.deg
-                    padding = box(0.px, 0.px, 0.px, 40.px)
-                    alignment = Pos.CENTER_LEFT
+//                    padding = box(0.px, 0.px, 0.px, 40.px)
+//                    alignment = Pos.BOTTOM_RIGHT
 //                    textAlignment = TextAlignment.LEFT
                 }
             }
@@ -85,23 +90,6 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         return searchBoxComponent
     }
 
-    fun labelGenerator(i: Int): String {
-        return when (i) {
-            0 -> "Workshop Status"
-            1 -> "5' UTR"
-            2 -> "Exon 1"
-            3 -> "Intron 1"
-            4 -> "Exon 2"
-            5 -> "Intron 2"
-            6 -> "Exon 3"
-            7 -> "Intron 4"
-            8 -> "Exon 5"
-            9 -> "3' UTR"
-            else -> {
-                "Empty"
-            }
-        }
-    }
 
 //    val set2 = vbox {
 //        checkbox { }
