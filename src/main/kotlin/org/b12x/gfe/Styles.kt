@@ -3,6 +3,7 @@ package org.b12x.gfe
 import javafx.scene.text.Font
 import javafx.scene.text.Font.font
 import javafx.scene.text.FontWeight
+import javafx.scene.text.TextAlignment
 import tornadofx.*
 
 class Styles : Stylesheet() {
@@ -15,7 +16,7 @@ class Styles : Stylesheet() {
 
         root {
             prefHeight = 600.px
-            prefWidth = 800.px
+            prefWidth = 1000.px
             fontFamily = "sansserif"
         }
 
@@ -27,6 +28,7 @@ class Styles : Stylesheet() {
 
         textField {
             prefWidth = 25.px
+            textAlignment = TextAlignment.CENTER
 //            borderWidth += box(30.px, 30.px, 30.px, 30.px)
         }
 
