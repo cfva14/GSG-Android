@@ -8,7 +8,7 @@ import tornadofx.Stylesheet.Companion.label
 class MyApp: App(MainView::class, Styles::class) {
     override fun start(stage: Stage) {
         super.start(stage)
-        stage.width = 1000.0
-        stage.height = 600.0
+        stage.width = 1100.0
+        stage.height = 800.0
     }
 }

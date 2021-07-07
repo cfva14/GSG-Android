@@ -16,6 +16,8 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
     // TODO - is this where I want to instantiate the data class?
 
     val numberOfSearchBoxes = 8
+    // TODO - link # of search boxes to locus
+
     val completedSearchBox = completedSearchBoxGenerator(numberOfSearchBoxes)
 
     override val root = hbox {
@@ -54,13 +56,17 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         }
 
         val searchBoxComponent = vbox {
-            currentCheckBox = checkbox { }
+            currentCheckBox = checkbox {
+                style {
+                    padding = box(10.px)
+                }
+            }
             currentTextField = textfield {
                 style {
                     prefWidth = 40.px
-//                    maxHeight = 30.px
-                    padding = box(0.px, 5.px, 10.px, 5.px)
-//                    padding = box(0.px, 0.px, 0.px, 0.px)
+                    prefHeight = 25.px
+                    padding = box(0.px, 5.px, 0.px, 5.px)
+                    textAlignment = TextAlignment.CENTER
                 }
             }
 
@@ -77,25 +83,4 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
 
         return searchBoxComponent
     }
-
-
-//    val set2 = vbox {
-//        checkbox { }
-//        textfield {
-//            style {
-//                padding = box(0.px, 0.px, 0.px, 0.px)
-//            }
-//        }
-//        label("Exon 1") {
-//            style {
-//                rotate = 90.deg
-//                padding = box(0.px, 0.px, 0.px, 40.px)
-//            }
-//        }
-//        style {
-//            alignment = Pos.CENTER
-//        }
-//    }
-
-
 }
