@@ -49,8 +49,9 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
 
     fun completedSearchBoxGenerator(numberOfBoxes: Int): HBox {
         val completedSearchBox = hbox { }
-        for(i in 1..numberOfBoxes) {
-            completedSearchBox.add(individualSearchBoxAssembler(i.toString()))
+        for (i in 0..numberOfBoxes) {
+
+            completedSearchBox.add(individualSearchBoxAssembler(labelGenerator(i)))
         }
 
         return completedSearchBox
@@ -70,7 +71,8 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
                 style {
                     rotate = 90.deg
                     padding = box(0.px, 0.px, 0.px, 40.px)
-                    textAlignment = TextAlignment.LEFT
+                    alignment = Pos.CENTER_LEFT
+//                    textAlignment = TextAlignment.LEFT
                 }
             }
             style {
@@ -81,6 +83,24 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         currentSearchData.textArray.add(currentTextField)
 
         return searchBoxComponent
+    }
+
+    fun labelGenerator(i: Int): String {
+        return when (i) {
+            0 -> "Workshop Status"
+            1 -> "5' UTR"
+            2 -> "Exon 1"
+            3 -> "Intron 1"
+            4 -> "Exon 2"
+            5 -> "Intron 2"
+            6 -> "Exon 3"
+            7 -> "Intron 4"
+            8 -> "Exon 5"
+            9 -> "3' UTR"
+            else -> {
+                "Empty"
+            }
+        }
     }
 
 //    val set2 = vbox {
