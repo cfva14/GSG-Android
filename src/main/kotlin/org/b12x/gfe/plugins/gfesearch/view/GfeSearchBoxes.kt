@@ -12,23 +12,33 @@ import tornadofx.*
 
 class GfeSearchBoxes : View("Gfe Search Boxes") {
 
-    val currentSearchData = GfeData()
-    // TODO - is this where I want to instantiate the data class?
-
+    val selectAllCheckBox = checkbox { style { padding = box(10.px) } }
+    val currentLayoutData = GfeLayoutData.getInstance(selectAllCheckBox)
     val numberOfSearchBoxes = 8
     // TODO - link # of search boxes to locus
 
     val completedSearchBox = completedSearchBoxGenerator(numberOfSearchBoxes)
 
-    override val root = hbox {
-        add(completedSearchBox)
+    override val root = vbox {
+        label {
+            text = "Check all"
+            style {
+                fontSize = 14.px
+            }
+        }
+        add(Group(completedSearchBox))
         style {
-            padding = box(25.px)
+            padding = box(10.px, 25.px)
         }
     }
 
     private fun completedSearchBoxGenerator(numberOfBoxes: Int): HBox {
-        val completedSearchBox = hbox { }
+        val completedSearchBox = hbox {
+            style {
+                padding = box(0.px, 0.px, 0.px, 0.px)
+            }
+        }
+        completedSearchBox.add(Group(selectAllBoxAssembler()))
 
         completedSearchBox.add(Group(individualSearchBoxAssembler("Workshop Status")))
         completedSearchBox.add(Group(individualSearchBoxAssembler("5' UTR")))
@@ -44,6 +54,26 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         return completedSearchBox
     }
 
+    private fun selectAllBoxAssembler(): VBox {
+        val selectAllBox = vbox {
+            style {
+                prefWidth = 60.px
+                padding = box(10.px, 0.px, 0.px, 0.px)
+                alignment = Pos.CENTER
+            }
+        }
+        selectAllBox.add(currentLayoutData.checkAllBox)
+        selectAllBox.add(label(currentLayoutData.locusName) {
+            style {
+                padding = box(12.px, 0.px)
+                fontSize = 16.px
+            }
+        })
+
+        return selectAllBox
+
+    }
+
     private fun individualSearchBoxAssembler(labelName: String): VBox {
         lateinit var currentCheckBox: CheckBox
         lateinit var currentTextField: TextField
@@ -52,6 +82,7 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
             style {
                 rotate = 90.deg
                 padding = box(0.px, 0.px, 0.px, 10.px)
+                fontSize = 14.px
             }
         }
 
@@ -78,8 +109,8 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         }
         searchBoxComponent.add(Group(rotatedLabel))
 
-        currentSearchData.checkArray.add(currentCheckBox)
-        currentSearchData.textArray.add(currentTextField)
+        currentLayoutData.checkArray.add(currentCheckBox)
+        currentLayoutData.textArray.add(currentTextField)
 
         return searchBoxComponent
     }

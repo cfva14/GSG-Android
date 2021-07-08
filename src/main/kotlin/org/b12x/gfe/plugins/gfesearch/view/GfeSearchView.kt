@@ -30,6 +30,9 @@ class GfeSearchView : View("GFE SEARCH") {
                 setOnAction { exitProcess(0) }
             })
         }
+        style {
+            padding = box(20.px, 20.px, 20.px, 20.px)
+        }
     }
 
 //    override val root = vbox {

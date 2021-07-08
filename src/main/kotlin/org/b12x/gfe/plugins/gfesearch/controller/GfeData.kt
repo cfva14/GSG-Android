@@ -7,4 +7,4 @@ data class GfeData (var checkArray: ArrayList<CheckBox> = ArrayList(),
                     var textArray: ArrayList<TextField> = ArrayList(),
                     var regex: String = "",
                     var textFormat: String = "CSV",
-                    val writeToFile: Boolean = false){ }
+                    val writeToFile: Boolean = false)

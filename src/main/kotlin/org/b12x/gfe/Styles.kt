@@ -28,7 +28,6 @@ class Styles : Stylesheet() {
 
         textField {
             prefWidth = 25.px
-            textAlignment = TextAlignment.CENTER
 //            borderWidth += box(30.px, 30.px, 30.px, 30.px)
         }
 
