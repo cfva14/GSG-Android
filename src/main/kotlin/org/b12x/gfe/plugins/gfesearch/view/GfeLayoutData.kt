@@ -6,7 +6,7 @@ import javafx.scene.control.TextField
 data class GfeLayoutData(var checkArray: ArrayList<CheckBox> = ArrayList(),
                          var textArray: ArrayList<TextField> = ArrayList(),
                          var checkAllBox: CheckBox = CheckBox(),
-                         val locusName: String = "HLA-A") {
+                         val locusName: String = "HLA-DRB1") {
     companion object {
         @Volatile
         @JvmStatic

@@ -23,7 +23,8 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         label {
             text = "Check all"
             style {
-                fontSize = 14.px
+                padding = box(0.px, 0.px, 0.px, 10.px)
+                fontSize = 13.px
             }
         }
         add(Group(completedSearchBox))
@@ -57,7 +58,7 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
     private fun selectAllBoxAssembler(): VBox {
         val selectAllBox = vbox {
             style {
-                prefWidth = 60.px
+                prefWidth = 80.px
                 padding = box(10.px, 0.px, 0.px, 0.px)
                 alignment = Pos.CENTER
             }
@@ -66,7 +67,7 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         selectAllBox.add(label(currentLayoutData.locusName) {
             style {
                 padding = box(12.px, 0.px)
-                fontSize = 16.px
+                fontSize = 15.px
             }
         })
 
