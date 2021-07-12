@@ -7,13 +7,21 @@ import javafx.scene.control.TextField
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import javafx.scene.text.TextAlignment
-import org.b12x.gfe.plugins.gfesearch.controller.GfeData
 import tornadofx.*
 
 class GfeSearchBoxes : View("Gfe Search Boxes") {
 
-    val selectAllCheckBox = checkbox { style { padding = box(10.px) } }
-    val currentLayoutData = GfeLayoutData.getInstance(selectAllCheckBox)
+    val selectAllCheckBox = checkbox {
+        style { padding = box(10.px) }
+        action {
+            if (isSelected) {
+                currentLayoutData.checkArray.forEach { it.isSelected = true }
+            } else {
+                currentLayoutData.checkArray.forEach { it.isSelected = false }
+            }
+        }
+    }
+    val currentLayoutData = GfeLayoutData.getInstance() //selectAllCheckBox)
     val numberOfSearchBoxes = 8
     // TODO - link # of search boxes to locus
 
@@ -59,11 +67,11 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         val selectAllBox = vbox {
             style {
                 prefWidth = 80.px
-                padding = box(10.px, 0.px, 0.px, 0.px)
+//                padding = box(10.px, 0.px, 0.px, 0.px)
                 alignment = Pos.CENTER
             }
         }
-        selectAllBox.add(currentLayoutData.checkAllBox)
+        selectAllBox.add(selectAllCheckBox)
         selectAllBox.add(label(currentLayoutData.locusName) {
             style {
                 padding = box(12.px, 0.px)

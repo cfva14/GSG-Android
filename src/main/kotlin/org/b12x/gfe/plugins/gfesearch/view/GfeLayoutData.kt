@@ -5,7 +5,7 @@ import javafx.scene.control.TextField
 
 data class GfeLayoutData(var checkArray: ArrayList<CheckBox> = ArrayList(),
                          var textArray: ArrayList<TextField> = ArrayList(),
-                         var checkAllBox: CheckBox = CheckBox(),
+                         var checkAllBoxStatus: Boolean = false,
                          val locusName: String = "HLA-DRB1") {
     companion object {
         @Volatile
@@ -14,8 +14,8 @@ data class GfeLayoutData(var checkArray: ArrayList<CheckBox> = ArrayList(),
 
         @JvmStatic
         @JvmOverloads
-        fun getInstance(checkAllBox: CheckBox): GfeLayoutData = INSTANCE ?: synchronized(this) {
-            INSTANCE ?: GfeLayoutData(checkAllBox = CheckBox()).also { INSTANCE = it }
+        fun getInstance(): GfeLayoutData = INSTANCE ?: synchronized(this) {
+            INSTANCE ?: GfeLayoutData().also { INSTANCE = it }
         }
     }
 }
