@@ -37,7 +37,7 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         }
         add(Group(completedSearchBox))
         style {
-            padding = box(10.px, 25.px)
+            padding = box(25.px, 0.px)
         }
     }
 

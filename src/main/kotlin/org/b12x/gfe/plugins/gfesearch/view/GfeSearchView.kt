@@ -31,7 +31,7 @@ class GfeSearchView : View("GFE SEARCH") {
             })
         }
         style {
-            padding = box(20.px, 20.px, 20.px, 20.px)
+            padding = box(25.px)
         }
     }
 
