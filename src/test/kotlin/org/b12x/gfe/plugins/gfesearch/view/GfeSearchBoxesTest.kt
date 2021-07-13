@@ -17,7 +17,7 @@ import tornadofx.*
 
 class GfeSearchBoxesTest {
     val gfeSearchBoxes = GfeSearchBoxes()
-    val dataClass = gfeSearchBoxes.currentSearchData
+//    val dataClass = gfeSearchBoxes.currentSearchData
     val numberOfSearchBoxes = 3
 
     @Test
@@ -42,11 +42,11 @@ class GfeSearchBoxesTest {
 
     companion object ArgumentsParameters {
 
-        @BeforeAll
-        @JvmStatic
-        internal fun setup() {
-            launch<MyApp>()
-        }
+//        @BeforeAll
+//        @JvmStatic
+//        internal fun setup() {
+//            launch<MyApp>()
+//        }
 
         @JvmStatic
         fun intronExonLabelArguments(): Stream<Arguments> =

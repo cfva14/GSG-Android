@@ -50,23 +50,6 @@ class PrefsTest {
         assertEquals(boolean, prefs.testingBoolean)
     }
 
-//    @ParameterizedTest
-//    @MethodSource("snakeCaseArguments")
-//    private fun snakeCaseTest(parameter: String) {
-//
-//        assertEquals(parameter, prefsMock.currentTab)
-//    }
-
-//    private fun changeCurrentTabPref(int1: Int) {
-//        Prefs.currentTab = int1
-//    }
-
-//    @ParameterizedTest
-//    @MethodSource("multiplyArguments")
-//    fun multiplyEnumTest(int1: Int, int2: Int, expected: Int) {
-//        assertEquals(expected, Prefs.currentTab)
-//    }
-
     companion object ArgumentsParameters {
 
         @BeforeAll
@@ -76,22 +59,5 @@ class PrefsTest {
             PrefsManager.wipePref("TESTING_STRING");
             PrefsManager.wipePref("TESTING_BOOLEAN");
         }
-
-        @JvmStatic
-        fun snakeCaseArguments(): Stream<Arguments> =
-            Stream.of(
-                Arguments.of("addUp", "ADD_UP"),
-                Arguments.of("SlowDown", "SLOW_DOWN"),
-                Arguments.of("word", "WORD"),
-                Arguments.of("TEST_ME", "TEST_ME")
-            )
-
-        @JvmStatic
-        fun intArguments(): Stream<Arguments> =
-            Stream.of(
-                Arguments.of(2, 2, 4),
-                Arguments.of(3, 3, 9),
-                Arguments.of(2, 3, 6)
-            )
     }
 }
