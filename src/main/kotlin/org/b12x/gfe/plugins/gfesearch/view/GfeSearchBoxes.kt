@@ -12,7 +12,7 @@ import tornadofx.*
 class GfeSearchBoxes : View("Gfe Search Boxes") {
 
     val selectAllCheckBox = checkbox {
-        style { padding = box(10.px) }
+        style { padding = box(10.px, 10.px, 0.px, 10.px) }
         action {
             if (isSelected) {
                 currentLayoutData.checkArray.forEach { it.isSelected = true }
@@ -74,7 +74,7 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         selectAllBox.add(selectAllCheckBox)
         selectAllBox.add(label(currentLayoutData.locusName) {
             style {
-                padding = box(12.px, 0.px)
+                padding = box(15.px, 0.px)
                 fontSize = 15.px
             }
         })
