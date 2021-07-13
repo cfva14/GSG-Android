@@ -22,6 +22,10 @@ class Prefs {
         PrefsManager.setPrefInt(::currentTab.name.camelToSnakeCase(), new)
     }
 
+    var currentLocus: String by Delegates.observable(PrefsManager.getPrefString(::currentTab.name.camelToSnakeCase())) { _, old, new ->
+        PrefsManager.setPrefString(::currentTab.name.camelToSnakeCase(), new)
+    }
+
     // testing variables
     var testingInt: Int by Delegates.observable(PrefsManager.getPrefInt(::testingInt.name.camelToSnakeCase())) { _, old, new ->
         PrefsManager.setPrefInt(::testingInt.name.camelToSnakeCase(), new)

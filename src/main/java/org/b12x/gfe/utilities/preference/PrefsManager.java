@@ -49,7 +49,7 @@ public class PrefsManager {
      * @return the stored string
      */
     public static String getPrefString(String name) {
-        return preferences.get(name, "");
+        return preferences.get(name, "HLA-A");
     }
 
     /**

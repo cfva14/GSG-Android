@@ -2,18 +2,27 @@ package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.beans.property.SimpleStringProperty
 import javafx.collections.FXCollections
+import org.b12x.gfe.core.view.LocusComboBox
+import org.b12x.gfe.plugins.gfesearch.controller.HlaLoci
+import org.b12x.gfe.utilities.preference.Prefs
 import tornadofx.*
 import kotlin.system.exitProcess
 
 class GfeSearchView : View("GFE SEARCH") {
 
-    private val lociOptions = FXCollections.observableArrayList("HLA", "KIR")
+//    private val lociOptions = FXCollections.observableArrayList("HLA", "KIR")
+    val prefs = Prefs()
+    private var lociOptions = ArrayList<String>()
+    private val lociRaw = HlaLoci.values().forEach { lociOptions.add(it.fullName) } //.associateBy(HlaLoci::fullName)
+
+    private val locusComboBox = LocusComboBox()
     private val gfeSearchBoxes: GfeSearchBoxes by inject()
-    private val selectedCalc = SimpleStringProperty(lociOptions[0])
+//    private val selectedCalc = SimpleStringProperty(lociOptions[0])
     private val gfeSearchSubmitButton: GfeSearchSubmitButton by inject()
 
     override val root = borderpane {
-        top = combobox<String> (selectedCalc, lociOptions)
+//        top = combobox<String> (null, lociOptions)
+        top = locusComboBox.root
 
         center = vbox {
             add(gfeSearchBoxes.root)
@@ -52,6 +61,6 @@ class GfeSearchView : View("GFE SEARCH") {
 //        })
 //    }
     init {
-        selectedCalc.onChange { println("Calculator changed to: $it") }
+//        selectedCalc.onChange { println("Calculator changed to: $it") }
     }
 }
