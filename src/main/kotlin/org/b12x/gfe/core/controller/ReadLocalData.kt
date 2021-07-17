@@ -9,21 +9,23 @@ class ReadLocalData(loci: String) {
     var DATA_FOLDERS = ArrayList<File>()
 
     fun setLoci(lociGroup: String): String {
-        val newFolder = when (lociGroup) {
+        GSG_FOLDER = when (lociGroup) {
             "HLA" -> "/Documents/GSG/GSGData/HLA/"
             "KIR" -> "/Documents/GSG/GSGData/KIR/"
             "ABO" -> "/Documents/GSG/GSGData/ABO/"
             "TEST" -> "/Documents/GSG/GSGData/TEST/"
             else -> {
-                "/Documents/GSG/GSGData"
+                "/Documents/GSG/GSGData/"
             }
         }
-        return newFolder
+        return GSG_FOLDER
+//        newFolder
     }
 
     fun getSubFolders(): List<File> {
         print(USER_DIRECTORY)
-        val tempArray = File(USER_DIRECTORY + GSG_FOLDER)//.listFiles(File(".DS_Store"))
+//        DATA_FOLDERS= File(USER_DIRECTORY + GSG_FOLDER).listFiles().toList()
+//        val tempArray = File(USER_DIRECTORY + GSG_FOLDER).listFiles().toList()
 //        tempArray.forEach { DATA_FOLDERS.add(File(it.name)) }
         DATA_FOLDERS.add(File("Test"))
 
