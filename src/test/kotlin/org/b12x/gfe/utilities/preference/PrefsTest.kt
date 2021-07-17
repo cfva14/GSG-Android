@@ -16,12 +16,12 @@ class PrefsTest {
 
     @Test
     fun getIntDefault() {
-        assertEquals(0, prefs.testingInt)
+        assertEquals(1, prefs.testingInt)
     }
 
     @Test
     fun getStringDefault() {
-        assertEquals("", prefs.testingString)
+        assertEquals("HLA-A", prefs.testingString)
     }
 
     @Test

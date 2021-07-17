@@ -28,7 +28,7 @@ public class PrefsManager {
      * @return the stored integer
      */
     public static int getPrefInt(String name) {
-        return preferences.getInt(name, 0);
+        return preferences.getInt(name, 1);
     }
 
     /**

@@ -1,16 +1,21 @@
 package org.b12x.gfe.core.view
 
+import javafx.scene.control.TabPane
 import org.b12x.gfe.Styles
 import org.b12x.gfe.core.view.debugtab.DebugView
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchView
+import org.b12x.gfe.plugins.optionstab.view.OptionsView
 import tornadofx.*
 
 class MainView : View("GFE Search Generator") {
 
     private val gfeSearchView = find(GfeSearchView::class)
+    private val optionsView = find(OptionsView::class)
     private val debugView = find(DebugView::class)
 
     override val root = tabpane {
+
+        tabClosingPolicy = TabPane.TabClosingPolicy.UNAVAILABLE
 //        label(title) {
 //            addClass(Styles.heading)
 //        }
@@ -24,7 +29,7 @@ class MainView : View("GFE Search Generator") {
 //            add(alleleCallView::class)
         }
         tab("Options") {
-//            add(optionsView::class)
+            add(optionsView::class)
         }
         tab("Help") {
             vbox() {
@@ -35,5 +40,6 @@ class MainView : View("GFE Search Generator") {
         tab("Debug") {
             add(debugView::class)
         }
+
     }
 }
