@@ -43,7 +43,7 @@ public class PrefsManager {
 
     /**
      * Gets the string value of the named preference.
-     * Returns an empty string by default.
+     * Returns the string "HLA-A" by default.
      *
      * @param name the preference to be retrieved
      * @return the stored string
