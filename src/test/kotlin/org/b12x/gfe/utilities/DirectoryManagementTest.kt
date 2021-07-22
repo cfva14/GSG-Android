@@ -1,11 +1,8 @@
 package org.b12x.gfe.utilities
 
 import org.b12x.gfe.utilities.preference.PrefsManager
-import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -27,9 +24,17 @@ class DirectoryManagementTest {
     }
 
     @Test
-    fun creatingDataFolder() {
+    fun createADataFolder() {
         directoryManagement.createDataFolder("TEST2", VERSION)
         assertTrue(directoryManagement.doesFolderExist(USER_DIRECTORY + NESTED_DIRECTORIES))
+    }
+
+    @Test
+    fun createAFolder() {
+        directoryManagement.createFolder("$USER_DIRECTORY$GSG_DATA/TEST2/test", true)
+        directoryManagement.createFolder("$USER_DIRECTORY$GSG_DATA/TEST2/test", false)
+        assertTrue(directoryManagement.doesFolderExist("$USER_DIRECTORY$GSG_DATA/TEST2/test"))
+        assertTrue(directoryManagement.doesFolderExist("$USER_DIRECTORY$GSG_DATA/TEST2/test_1"))
     }
 
     @Test
@@ -52,32 +57,25 @@ class DirectoryManagementTest {
 
     @Test
     fun removeFolderWithSubFolder() {
-        directoryManagement.createDataFolder("TEST2", VERSION)
+        directoryManagement.createFolder("$USER_DIRECTORY$GSG_DATA/TEST2/test3/test4", true)
         directoryManagement.removeFolder(USER_DIRECTORY + GSG_DATA + "TEST2/")
         assertTrue(directoryManagement.doesFolderExist(USER_DIRECTORY + GSG_DATA))
         assertFalse(directoryManagement.doesFolderExist(USER_DIRECTORY + GSG_DATA + "TEST2/"))
     }
 
-    companion object ArgumentsParameters {
+    @BeforeEach
+    internal fun setup() {
+        val GSG_DATA_FOLDER = System.getProperty("user.home") + "/Documents/GSG/GSGData"
+        File(GSG_DATA_FOLDER + "/TEST2/").deleteRecursively()
+    }
 
-        @BeforeEach
-//        @JvmStatic
-        internal fun setup() {
-            val GSG_DATA_FOLDER = System.getProperty("user.home") + "/Documents/GSG/GSGData"
-            File(GSG_DATA_FOLDER + "/TEST3/").deleteRecursively()
-            Files.deleteIfExists(Paths.get(GSG_DATA_FOLDER + "/TEST3/"))
-            File(GSG_DATA_FOLDER + "/TEST2/").deleteRecursively()
-            Files.deleteIfExists(Paths.get(GSG_DATA_FOLDER + "/TEST2/"))
-        }
+    companion object ArgumentsParameters {
 
         @AfterAll
         @JvmStatic
         internal fun takedown() {
-//            val GSG_DATA_FOLDER = System.getProperty("user.home") + "/Documents/GSG/GSGData"
-//            File(GSG_DATA_FOLDER + "/TEST3/").deleteRecursively()
-//            Files.deleteIfExists(Paths.get(GSG_DATA_FOLDER + "/TEST3/"))
-//            File(GSG_DATA_FOLDER + "/TEST2/").deleteRecursively()
-//            Files.deleteIfExists(Paths.get(GSG_DATA_FOLDER + "/TEST2/"))
+            val GSG_DATA_FOLDER = System.getProperty("user.home") + "/Documents/GSG/GSGData"
+            File(GSG_DATA_FOLDER + "/TEST2/").deleteRecursively()
         }
     }
 }
