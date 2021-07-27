@@ -1,10 +1,7 @@
 package org.b12x.gfe.utilities
 
 import java.io.File
-import java.nio.file.Files
 import java.nio.file.Files.createDirectories
-import java.nio.file.Files.deleteIfExists
-import java.nio.file.Path
 import java.nio.file.Paths
 
 class DirectoryManagement {
@@ -23,7 +20,6 @@ class DirectoryManagement {
         }
         return USER_DIRECTORY + dataFolder
     }
-
 
     fun doesFolderExist(pathInQuestion: String): Boolean {
         return File(pathInQuestion).exists()

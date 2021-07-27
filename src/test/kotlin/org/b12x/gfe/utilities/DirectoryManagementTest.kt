@@ -1,11 +1,8 @@
 package org.b12x.gfe.utilities
 
-import org.b12x.gfe.utilities.preference.PrefsManager
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
 import java.io.File
-import java.nio.file.Files
-import java.nio.file.Paths
 
 class DirectoryManagementTest {
 
@@ -31,6 +28,7 @@ class DirectoryManagementTest {
 
     @Test
     fun createAFolder() {
+        directoryManagement.createFolder("$USER_DIRECTORY$GSG_DATA/TEST2/test", true)
         directoryManagement.createFolder("$USER_DIRECTORY$GSG_DATA/TEST2/test", true)
         directoryManagement.createFolder("$USER_DIRECTORY$GSG_DATA/TEST2/test", false)
         assertTrue(directoryManagement.doesFolderExist("$USER_DIRECTORY$GSG_DATA/TEST2/test"))
@@ -74,8 +72,8 @@ class DirectoryManagementTest {
         @AfterAll
         @JvmStatic
         internal fun takedown() {
-            val GSG_DATA_FOLDER = System.getProperty("user.home") + "/Documents/GSG/GSGData"
-            File(GSG_DATA_FOLDER + "/TEST2/").deleteRecursively()
+//            val GSG_DATA_FOLDER = System.getProperty("user.home") + "/Documents/GSG/GSGData"
+//            File(GSG_DATA_FOLDER + "/TEST2/").deleteRecursively()
         }
     }
 }
