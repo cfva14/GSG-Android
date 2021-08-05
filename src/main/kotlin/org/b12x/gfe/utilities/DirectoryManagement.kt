@@ -6,20 +6,7 @@ import java.nio.file.Paths
 
 class DirectoryManagement {
 
-    val USER_DIRECTORY = System.getProperty("user.home")
-
-    fun determineParentLociFolder(loci: String): String {
-        val dataFolder = when (loci) {
-            "HLA" -> "/Documents/GSG/GSGData/HLA/"
-            "KIR" -> "/Documents/GSG/GSGData/KIR/"
-            "ABO" -> "/Documents/GSG/GSGData/ABO/"
-            "TEST" -> "/Documents/GSG/GSGData/TEST/"
-            else -> {
-                "/Documents/GSG/GSGData/$loci/"
-            }
-        }
-        return USER_DIRECTORY + dataFolder
-    }
+    private val lociLocations = LociLocations()
 
     fun doesFolderExist(pathInQuestion: String): Boolean {
         return File(pathInQuestion).exists()
@@ -34,7 +21,7 @@ class DirectoryManagement {
     }
 
     fun createDataFolder(loci: String, version: String) {
-        val finalPath = Paths.get( determineParentLociFolder(loci) + version)
+        val finalPath = Paths.get(lociLocations.determineParentLociFolder(loci) + version)
 
         // it won't overwrite the old directories or files
         createDirectories(finalPath)
