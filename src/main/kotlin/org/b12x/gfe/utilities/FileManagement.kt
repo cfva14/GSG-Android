@@ -13,25 +13,19 @@ class FileManagement {
     }
 
     fun createFile(whereTheFileShouldGo: String, fileName: String, fileSuffix: String, overwriteFile: Boolean) {
-        // redundant, but won't let me alter whereTheFileShouldGo if there's a missing slash
         var pathToFile = whereTheFileShouldGo
 
         // check the path for a slash at the end before adding file
         if (whereTheFileShouldGo.elementAt(whereTheFileShouldGo.length - 1).toString() != "/") {
-            pathToFile = whereTheFileShouldGo + "/"
+            pathToFile = "$whereTheFileShouldGo/"
         }
-        // create folder
-        directoryManagement.createFolder(pathToFile, true)
 
-//         check if file already exists, and/or overwrite is true
-        if (!doesFileExist(pathToFile + fileName)) {
-            Files.createFile(Paths.get("$pathToFile$fileName.$fileSuffix"))
-        } else if (doesFileExist(pathToFile + fileName) && overwriteFile) {
-            File("$pathToFile$fileName.$fileSuffix").delete()
-            Files.createFile(Paths.get("$pathToFile$fileName.$fileSuffix"))
-        } else {
-            Files.createFile(Paths.get(pathToFile + fileName + "_1." + fileSuffix))
-        }
+        // create folder
+        directoryManagement.createFolder(pathToFile, false)
+
+        // create file
+        val newFileString = "$pathToFile$fileName.$fileSuffix"
+        File(newFileString).createNewFile()
     }
 
     fun createADataFile(loci: String, locus: String, version: String) {

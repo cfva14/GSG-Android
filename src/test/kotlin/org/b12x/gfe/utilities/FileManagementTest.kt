@@ -2,6 +2,7 @@ package org.b12x.gfe.utilities
 
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.io.File
@@ -14,7 +15,8 @@ class FileManagementTest {
     val fileManagement = FileManagement()
     val GSG_DATA = "/Documents/GSG/GSGData"
     val USER_DIRECTORY = System.getProperty("user.home")
-    val TESTING_FOLDER = "/TEST2/output"
+    val TESTING_FOLDER_W_SLASH = "/TEST2/output/"
+    val TESTING_FOLDER_WO_SLASH = "/TEST2/output"
     val TEST_FILE_1 = "HLA-A_3.31.0_2019-12-19_11-28-48"
     val TEST_FILE_2 = "HLA-B_3.31.0_2018-12-19_11-28-48"
     val TEST_FILE_3 = "HLA-C_3.31.0_2017-12-19_11-28-48"
@@ -26,35 +28,39 @@ class FileManagementTest {
     val NESTED_NON_EXSISTENT_DIRECTORIES = "/Documents/GSG/GSGData/TEST2/3.31.0/"
 
     @Test
+    fun doesFileExist() {
+        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "txt", true)
+        assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_1.txt"))
+    }
+
+    @Test
     fun createAFile() {
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER", TEST_FILE_1, "txt", true)
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER", TEST_FILE_2, "csv", true)
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER", TEST_FILE_3, "tsv", true)
-        Assertions.assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER/$TEST_FILE_1.txt"))
-        Assertions.assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER/$TEST_FILE_2.csv"))
-        Assertions.assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER/$TEST_FILE_3.tsv"))
+        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "txt", true)
+        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_WO_SLASH", TEST_FILE_2, "csv", true)
+        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_WO_SLASH", TEST_FILE_3, "tsv", true)
+        assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_1.txt"))
+        assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_2.csv"))
+        assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_3.tsv"))
     }
 
-    @Test
-    fun overwriteAFile() {
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER", TEST_FILE_1, "txt", true)
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER", TEST_FILE_1, "csv", true)
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER", TEST_FILE_1, "txt", true)
-        Assertions.assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER/$TEST_FILE_1.txt"))
-        Assertions.assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER/$TEST_FILE_1.csv"))
-        Assertions.assertFalse(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER/$TEST_FILE_1" + "_1.txt"))
-
+    @Test // hard to test for. I look at the time stamps in the folder to confirm they have not been overwritten.
+    fun doesNotOverwriteAFile() {
+        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "txt", true)
+        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "csv", true)
+        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "txt", true)
+        assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_1.txt"))
+        assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_1.csv"))
     }
 
-    @Test
-    fun createASecondFile() {
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER", TEST_FILE_1, "txt", true)
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER", TEST_FILE_1, "txt", false)
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER", TEST_FILE_1, "txt", false)
-        Assertions.assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER/$TEST_FILE_1.txt"))
-        Assertions.assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER/$TEST_FILE_1" + "_1.txt"))
-        Assertions.assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER/$TEST_FILE_1" + "_1_1.txt"))
-    }
+//    @Test
+//    fun createASecondFile() {
+//        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "txt", true)
+//        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "txt", false)
+//        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "txt", false)
+//        Assertions.assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH/$TEST_FILE_1.txt"))
+//        Assertions.assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH/$TEST_FILE_1" + "_1.txt"))
+//        Assertions.assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH/$TEST_FILE_1" + "_1_1.txt"))
+//    }
 
     @BeforeEach
     internal fun setup() {
@@ -67,11 +73,11 @@ class FileManagementTest {
         @AfterAll
         @JvmStatic
         internal fun takedown() {
-//            val GSG_DATA_FOLDER = System.getProperty("user.home") + "/Documents/GSG/GSGData"
-//            File(GSG_DATA_FOLDER + "/TEST3/").deleteRecursively()
-//            Files.deleteIfExists(Paths.get(GSG_DATA_FOLDER + "/TEST3/"))
-//            File(GSG_DATA_FOLDER + "/TEST2/").deleteRecursively()
-//            Files.deleteIfExists(Paths.get(GSG_DATA_FOLDER + "/TEST2/"))
+            val GSG_DATA_FOLDER = System.getProperty("user.home") + "/Documents/GSG/GSGData"
+            File(GSG_DATA_FOLDER + "/TEST3/").deleteRecursively()
+            Files.deleteIfExists(Paths.get(GSG_DATA_FOLDER + "/TEST3/"))
+            File(GSG_DATA_FOLDER + "/TEST2/").deleteRecursively()
+            Files.deleteIfExists(Paths.get(GSG_DATA_FOLDER + "/TEST2/"))
         }
     }
 }

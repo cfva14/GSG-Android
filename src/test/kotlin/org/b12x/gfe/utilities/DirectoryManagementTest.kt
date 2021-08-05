@@ -11,6 +11,7 @@ class DirectoryManagementTest {
     val GSG_DATA = "/Documents/GSG/GSGData"
     val NESTED_DIRECTORIES = "/Documents/GSG/GSGData/TEST2/3.31.0/"
     val VERSION = "3.31.0"
+    val TEST_FILE_1 = "HLA-A_3.31.0_2019-12-19_11-28-48"
     val USER_DIRECTORY = System.getProperty("user.home")
 
     @Test
@@ -32,7 +33,18 @@ class DirectoryManagementTest {
         directoryManagement.createFolder("$USER_DIRECTORY$GSG_DATA/TEST2/test", true)
         directoryManagement.createFolder("$USER_DIRECTORY$GSG_DATA/TEST2/test", false)
         assertTrue(directoryManagement.doesFolderExist("$USER_DIRECTORY$GSG_DATA/TEST2/test"))
-        assertTrue(directoryManagement.doesFolderExist("$USER_DIRECTORY$GSG_DATA/TEST2/test_1"))
+//        assertTrue(directoryManagement.doesFolderExist("$USER_DIRECTORY$GSG_DATA/TEST2/test_1"))
+    }
+
+    @Test
+    fun overwriteAFolder() {
+        directoryManagement.createFolder("$USER_DIRECTORY$NESTED_DIRECTORIES", true)
+        fileManagement.createFile("$USER_DIRECTORY$NESTED_DIRECTORIES", TEST_FILE_1, "txt", true)
+        assertTrue(directoryManagement.doesFolderExist("$USER_DIRECTORY$NESTED_DIRECTORIES"))
+        assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$NESTED_DIRECTORIES$TEST_FILE_1.txt"))
+        directoryManagement.createFolder("$USER_DIRECTORY$NESTED_DIRECTORIES", true)
+        assertTrue(directoryManagement.doesFolderExist("$USER_DIRECTORY$NESTED_DIRECTORIES"))
+        assertFalse(fileManagement.doesFileExist("$USER_DIRECTORY$NESTED_DIRECTORIES$TEST_FILE_1.txt"))
     }
 
     @Test

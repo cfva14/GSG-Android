@@ -26,19 +26,17 @@ class DirectoryManagement {
     }
 
     fun createFolder(pathToCreate: String, overwriteFolder: Boolean) {
-        // check if file already exists, and/or overwrite is true
-        if (!doesFolderExist(pathToCreate) || overwriteFolder) {
-            createDirectories(Paths.get(pathToCreate))
-        } else {
-            createDirectories(Paths.get(pathToCreate +"_1"))
+        if (overwriteFolder) {
+            File(pathToCreate).deleteRecursively()
         }
+
+        createDirectories(Paths.get(pathToCreate))
     }
 
     fun createDataFolder(loci: String, version: String) {
-
         val finalPath = Paths.get( determineParentLociFolder(loci) + version)
 
-        // we don't care if it overwrites the old files
+        // it won't overwrite the old directories or files
         createDirectories(finalPath)
     }
 
