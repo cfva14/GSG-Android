@@ -52,14 +52,14 @@ class DirectoryManagementTest {
         directoryManagement.createDataFolder("TEST2", VERSION)
         directoryManagement.removeFolder(USER_DIRECTORY + NESTED_DIRECTORIES)
         assertTrue(directoryManagement.doesFolderExist("$USER_DIRECTORY$GSG_DATA/TEST2"))
-        assertFalse(directoryManagement.doesFolderExist(USER_DIRECTORY + NESTED_DIRECTORIES))
+        assertFalse(directoryManagement.doesFolderExist("$USER_DIRECTORY$NESTED_DIRECTORIES"))
     }
 
     @Test
     fun removeFolderWithFiles() {
-        fileManagement.createADataFile("TEST2", "testLocus1", VERSION)
-        fileManagement.createADataFile("TEST2", "testLocus2", VERSION)
-        fileManagement.createADataFile("TEST2", "testLocus3", VERSION)
+        fileManagement.createDataFile("TEST2", "testLocus1", VERSION)
+        fileManagement.createDataFile("TEST2", "testLocus2", VERSION)
+        fileManagement.createDataFile("TEST2", "testLocus3", VERSION)
         directoryManagement.removeFolder(USER_DIRECTORY + NESTED_DIRECTORIES)
         assertFalse(directoryManagement.doesFolderExist(USER_DIRECTORY + NESTED_DIRECTORIES))
         assertTrue(directoryManagement.doesFolderExist("$USER_DIRECTORY$GSG_DATA/TEST2"))
@@ -76,7 +76,7 @@ class DirectoryManagementTest {
     @BeforeEach
     internal fun setup() {
         val GSG_DATA_FOLDER = System.getProperty("user.home") + "/Documents/GSG/GSGData"
-        File(GSG_DATA_FOLDER + "/TEST2/").deleteRecursively()
+        File("$GSG_DATA_FOLDER/TEST2/").deleteRecursively()
     }
 
     companion object ArgumentsParameters {
@@ -84,8 +84,8 @@ class DirectoryManagementTest {
         @AfterAll
         @JvmStatic
         internal fun takedown() {
-//            val GSG_DATA_FOLDER = System.getProperty("user.home") + "/Documents/GSG/GSGData"
-//            File(GSG_DATA_FOLDER + "/TEST2/").deleteRecursively()
+            val GSG_DATA_FOLDER = System.getProperty("user.home") + "/Documents/GSG/GSGData"
+            File("$GSG_DATA_FOLDER/TEST2/").deleteRecursively()
         }
     }
 }

@@ -4,7 +4,7 @@ class LociLocations {
 
     private val USER_DIRECTORY = System.getProperty("user.home")
 
-    fun determineParentLociFolder(loci: String): String {
+    fun determineLociFolder(loci: String): String {
         val dataFolder = when (loci) {
             "HLA" -> "/Documents/GSG/GSGData/HLA/"
             "KIR" -> "/Documents/GSG/GSGData/KIR/"

@@ -28,19 +28,10 @@ class FileManagement {
         File(newFileString).createNewFile()
     }
 
-    fun createADataFile(loci: String, locus: String, version: String) {
+    fun createDataFile(loci: String, locus: String, version: String) {
+        val pathToFile = directoryManagement.createDataFolder(loci, version)
+        val fileName = "$locus-$version-Download"
 
-        directoryManagement.createDataFolder(loci, version)
-//        var pathToFile = whereTheFileShouldGo
-//
-//        // check the path for a slash at the end before adding file
-//        if (whereTheFileShouldGo.elementAt(whereTheFileShouldGo.length - 1).toString() != "/") {
-//            pathToFile = whereTheFileShouldGo + "/"
-//        }
-//
-//        // so as not to overwrite the file, check if it already exists
-//        if (!doesFileExist(pathToFile + fileName)) {
-//            Files.createFile(Paths.get(pathToFile + fileName))
-//        }
+        createFile(pathToFile, fileName, "csv", false)
     }
 }

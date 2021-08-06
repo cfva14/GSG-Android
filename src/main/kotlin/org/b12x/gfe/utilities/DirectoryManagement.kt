@@ -20,11 +20,13 @@ class DirectoryManagement {
         createDirectories(Paths.get(pathToCreate))
     }
 
-    fun createDataFolder(loci: String, version: String) {
-        val finalPath = Paths.get(lociLocations.determineParentLociFolder(loci) + version)
+    fun createDataFolder(loci: String, version: String): String {
+        val finalPath = lociLocations.determineLociFolder(loci) + version
 
         // it won't overwrite the old directories or files
-        createDirectories(finalPath)
+        createDirectories(Paths.get(finalPath))
+
+        return finalPath
     }
 
     fun removeFolder(pathToRemove: String) {
