@@ -10,7 +10,6 @@ import java.nio.file.Paths
 
 class FileManagementTest {
 
-    val directoryManagement = DirectoryManagement()
     val fileManagement = FileManagement()
     val GSG_DATA = "/Documents/GSG/GSGData"
     val USER_DIRECTORY = System.getProperty("user.home")
@@ -22,6 +21,24 @@ class FileManagementTest {
     val TEST_DATA_FILE_1_CSV = "HLA-A-3.31.0-Download.csv"
     val TEST_DATA_FILE_2_CSV = "HLA-DRB1-3.31.0-Download.csv"
     val RAW_DATA_DIRECTORIES = "/Documents/GSG/GSGData/TEST3/3.31.0/"
+
+    // Hard to test for. I look at the time stamps in the folder to confirm they have not been overwritten.
+    // Documents/GSG/GSGData/TEST2/output/
+    // The csv file gives the first time stamp, the tsv the second time stamp.
+    // The text file's time stamp should match the csv file's to pass.
+    // The time in question should be the creation time.
+    // Comment out the @AfterAll in the companion object or the test results will be deleted.
+    // Uncomment the 1 minute thread sleep to run properly.
+    @Test
+    fun doesNotOverwriteAFile() {
+        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "txt", true)
+        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "csv", true)
+//        Thread.sleep(60_000)
+        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "txt", true)
+        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "tsv", true)
+        assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_1.txt"))
+        assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_1.csv"))
+    }
 
     @Test
     fun doesTheFileExist() {
@@ -37,24 +54,6 @@ class FileManagementTest {
         assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_1.txt"))
         assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_2.csv"))
         assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_3.tsv"))
-    }
-
-    // Hard to test for. I look at the time stamps in the folder to confirm they have not been overwritten.
-    // Documents/GSG/GSGData/TEST2/output/
-    // The csv file gives the first time stamp, the tsv the second time stamp.
-    // The text file's time stamp should match the csv file's to pass.
-    // The time in question should be the creation time.
-    // Comment out the @AfterAll in the companion object or the test results will get deleted.
-    // Uncomment the 1 minute thread sleep to run properly.
-    @Test
-    fun doesNotOverwriteAFile() {
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "txt", true)
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "csv", true)
-//        Thread.sleep(60_000)
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "txt", true)
-        fileManagement.createFile("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH", TEST_FILE_1, "tsv", true)
-        assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_1.txt"))
-        assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$GSG_DATA$TESTING_FOLDER_W_SLASH$TEST_FILE_1.csv"))
     }
 
     @Test
