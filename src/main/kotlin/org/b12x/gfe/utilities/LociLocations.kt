@@ -1,6 +1,6 @@
 package org.b12x.gfe.utilities
 
-class LociLocations {
+object LociLocations {
 
     private val USER_DIRECTORY = System.getProperty("user.home")
 

@@ -6,8 +6,6 @@ import java.nio.file.Paths
 
 class DirectoryManagement {
 
-    private val lociLocations = LociLocations()
-
     fun doesFolderExist(pathInQuestion: String): Boolean {
         return File(pathInQuestion).exists()
     }
@@ -21,7 +19,7 @@ class DirectoryManagement {
     }
 
     fun createDataFolder(loci: String, version: String): String {
-        val finalPath = lociLocations.determineLociFolder(loci) + version
+        val finalPath = LociLocations.determineLociFolder(loci) + version
 
         // it won't overwrite the old directories or files
         createDirectories(Paths.get(finalPath))
