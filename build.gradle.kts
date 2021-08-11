@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "1.5.0"
     application
     id("org.openjfx.javafxplugin") version "0.0.9"
+    kotlin("plugin.serialization") version "1.5.0"
 }
 
 application { mainClassName = "org.b12x.gfe.MainKt" }
@@ -17,6 +18,7 @@ dependencies {
     // Kotlin standard library
     implementation(kotlin("stdlib-jdk8"))
     implementation( "org.jetbrains.kotlin:kotlin-reflect:1.4.30")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
 
     // TornadoFX dependency
     implementation("no.tornado:tornadofx:1.7.20")
@@ -27,6 +29,7 @@ dependencies {
 
     // JSON parsing
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.3")
+    implementation("com.beust:klaxon:5.5")
 
     // RxJava for Kotlin
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")

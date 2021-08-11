@@ -7,6 +7,7 @@ import okhttp3.Request
 
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
+import com.beust.klaxon.*
 import java.net.URL
 import javax.json.Json
 
@@ -14,15 +15,16 @@ import javax.json.Json
 
 class DataDownload {
     private val MEDIA_TYPE_JSON = "application/json; charset=utf-8".toMediaType()
+    private val MEDIA_TYPE_TEXT = "application/txt; charset=utf-8".toMediaType()
     private val DB_VERSIONS = "http://gfe.b12x.org/v1/imgt-versions"
 
-    fun makeRequest(url: String, request: String): String {
+    fun makeRequest(url: String, request: String): JsonObject {
         val okHttpClient = OkHttpClient()
 //        val parsedResponse = parseResponse(okHttpClient.newCall(createRequest(url, request)).execute())
         return parseResponse(okHttpClient.newCall(createRequest(DB_VERSIONS, request)).execute())
     }
 
-    fun createRequest(url: String, request: String): Request {
+    private fun createRequest(url: String, request: String): Request {
         val body = request.toRequestBody(MEDIA_TYPE_JSON)
         return Request.Builder()
             .url(url)
@@ -31,8 +33,18 @@ class DataDownload {
             .build()
     }
 
-    fun parseResponse(response: Response): String {
+    private fun parseResponse(response: Response): JsonObject {
         val body = response.body?.string() ?: ""
-        return body
+        val stringBuilder: StringBuilder = StringBuilder("{\"versions\" : $body }")
+        val parser: Parser = Parser.default()
+
+        val parsedObject = parser.parse(stringBuilder) as JsonObject
+//        val versionArray = Klaxon().parse(parsedObject.toString()) as JsonArray<JsonObject>
+        val versions = parsedObject["versions"]
+//        println("Versions: ${listOf(parsedObject)[0]}")//("versions")}")
+        println("Versions: ${versions}")//.toString()}")// .string("versions")}"//("versions")}")
+
+        return parsedObject
+
     }
 }
