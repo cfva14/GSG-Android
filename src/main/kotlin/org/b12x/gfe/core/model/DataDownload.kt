@@ -8,20 +8,23 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import com.beust.klaxon.*
+import org.b12x.gfe.core.model.parsers.VersionData
 import java.net.URL
 import javax.json.Json
 
 //import java.net.URL
 
-class DataDownload {
+class DataDownload(requestType: String, dataUrl: String) {
     private val MEDIA_TYPE_JSON = "application/json; charset=utf-8".toMediaType()
     private val MEDIA_TYPE_TEXT = "application/txt; charset=utf-8".toMediaType()
     private val DB_VERSIONS = "http://gfe.b12x.org/v1/imgt-versions"
+    private val url = dataUrl
+    private val type = requestType
 
-    fun makeRequest(url: String, request: String): JsonObject {
+    fun makeRequest(request: String) {
         val okHttpClient = OkHttpClient()
 //        val parsedResponse = parseResponse(okHttpClient.newCall(createRequest(url, request)).execute())
-        return parseResponse(okHttpClient.newCall(createRequest(DB_VERSIONS, request)).execute())
+        parseResponse(okHttpClient.newCall(createRequest(url, request)).execute())
     }
 
     private fun createRequest(url: String, request: String): Request {
@@ -33,18 +36,25 @@ class DataDownload {
             .build()
     }
 
-    private fun parseResponse(response: Response): JsonObject {
-        val body = response.body?.string() ?: ""
-        val stringBuilder: StringBuilder = StringBuilder("{\"versions\" : $body }")
-        val parser: Parser = Parser.default()
+    private fun parseResponse(response: Response) {
 
-        val parsedObject = parser.parse(stringBuilder) as JsonObject
-//        val versionArray = Klaxon().parse(parsedObject.toString()) as JsonArray<JsonObject>
-        val versions = parsedObject["versions"]
-//        println("Versions: ${listOf(parsedObject)[0]}")//("versions")}")
-        println("Versions: ${versions}")//.toString()}")// .string("versions")}"//("versions")}")
+        when (type) {
+            "versionData" -> VersionData.parseResponse(response)
+            "hlaData" -> "/Documents/GSG/GSGData/KIR/"
+            "TEST" -> "/Documents/GSG/GSGData/TEST/"
+            else -> {
+                null
+            }
+        }
 
-        return parsedObject
-
+//        val body = response.body?.string() ?: ""
+//        val stringBuilder: StringBuilder = StringBuilder(body)
+//        val parser: Parser = Parser.default()
+//
+//        val parsedObject = parser.parse(stringBuilder) as JsonArray<String>
+//        println("Versions: ${parsedObject}")
+//        parsedObject.forEach {
+//            println("A version: $it")
+//        }
     }
 }
