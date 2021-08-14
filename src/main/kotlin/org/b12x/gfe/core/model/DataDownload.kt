@@ -43,7 +43,7 @@ class DataDownload(requestType: String, dataUrl: String) {
             "hlaData" -> "/Documents/GSG/GSGData/KIR/"
             "TEST" -> "/Documents/GSG/GSGData/TEST/"
             else -> {
-                null
+                null // do nothing
             }
         }
 
