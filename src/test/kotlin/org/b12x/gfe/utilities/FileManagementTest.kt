@@ -1,6 +1,7 @@
 package org.b12x.gfe.utilities
 
 import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -61,6 +62,15 @@ class FileManagementTest {
         fileManagement.createDataFile("TEST3", "HLA-A", "3.31.0")
         fileManagement.createDataFile("TEST3", "HLA-DRB1", "3.31.0")
         assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$RAW_DATA_DIRECTORIES$TEST_DATA_FILE_1_CSV"))
+        assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$RAW_DATA_DIRECTORIES$TEST_DATA_FILE_2_CSV"))
+    }
+
+    @Test
+    fun deleteAFile() {
+        fileManagement.createDataFile("TEST3", "HLA-A", "3.31.0")
+        fileManagement.createDataFile("TEST3", "HLA-DRB1", "3.31.0")
+        fileManagement.deleteFile("$USER_DIRECTORY$RAW_DATA_DIRECTORIES$TEST_DATA_FILE_1_CSV")
+        assertFalse(fileManagement.doesFileExist("$USER_DIRECTORY$RAW_DATA_DIRECTORIES$TEST_DATA_FILE_1_CSV"))
         assertTrue(fileManagement.doesFileExist("$USER_DIRECTORY$RAW_DATA_DIRECTORIES$TEST_DATA_FILE_2_CSV"))
     }
 

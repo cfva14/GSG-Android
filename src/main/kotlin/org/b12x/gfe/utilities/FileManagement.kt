@@ -34,4 +34,10 @@ class FileManagement {
 
         createFile(pathToFile, fileName, "csv", false)
     }
+
+    fun deleteFile(pathToFile: String) {
+        if (doesFileExist(pathToFile)) {
+            File(pathToFile).delete()
+        }
+    }
 }

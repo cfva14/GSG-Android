@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 
 class DataDownloadTest {
-    private val dataDownload = DataDownload()
-    private val DB_VERSIONS = "http://gfe.b12x.org/imgt-versions"
+//    private val dataDownload = DataDownload()
+//    private val DB_VERSIONS = "http://gfe.b12x.org/imgt-versions"
 
 //    @Test
 //    fun true_downloadTestData_Versions() {
