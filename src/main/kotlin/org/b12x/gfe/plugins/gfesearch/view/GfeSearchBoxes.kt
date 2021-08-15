@@ -106,8 +106,12 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
                     prefWidth = 40.px
                     prefHeight = 25.px
                     padding = box(0.px, 5.px, 0.px, 5.px)
-                    textAlignment = TextAlignment.CENTER
+                    alignment = Pos.CENTER
                 }
+            }
+
+            if (labelName == "Workshop Status") {
+                currentTextField.setText("w")
             }
 
             style {
