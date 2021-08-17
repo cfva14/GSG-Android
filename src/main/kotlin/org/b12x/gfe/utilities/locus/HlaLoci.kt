@@ -1,9 +1,7 @@
-package org.b12x.gfe.plugins.gfesearch.controller
+package org.b12x.gfe.utilities.locus
 
 enum class HlaLoci(val fullName: String, val exons: Int){
-    A("HLA-A", 8), //{
-//        override fun getFullName() = fullName
-//                  },
+    A("HLA-A", 8),
     B("HLA-B",7),
     C("HLA-C",8),
     DPA1("HLA-DPA1",4),
@@ -18,8 +16,6 @@ enum class HlaLoci(val fullName: String, val exons: Int){
     override fun toString(): String {
         return fullName // working!
     }
-
-
 }
 
 interface FullName {

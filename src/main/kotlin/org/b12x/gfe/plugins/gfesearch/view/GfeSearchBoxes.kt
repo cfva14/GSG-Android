@@ -15,13 +15,12 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         style { padding = box(10.px, 10.px, 0.px, 10.px) }
         action {
             if (isSelected) {
-                currentLayoutData.checkArray.forEach { it.isSelected = true }
+                GfeLayoutData.checkArray.forEach { it.isSelected = true }
             } else {
-                currentLayoutData.checkArray.forEach { it.isSelected = false }
+                GfeLayoutData.checkArray.forEach { it.isSelected = false }
             }
         }
     }
-    val currentLayoutData = GfeLayoutData.getInstance() //selectAllCheckBox)
     val numberOfSearchBoxes = 8
     // TODO - link # of search boxes to locus
 
@@ -72,7 +71,7 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
             }
         }
         selectAllBox.add(selectAllCheckBox)
-        selectAllBox.add(label(currentLayoutData.locusName) {
+        selectAllBox.add(label(GfeLayoutData.locusName) {
             style {
                 padding = box(15.px, 0.px)
                 fontSize = 15.px
@@ -122,8 +121,8 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         }
         searchBoxComponent.add(Group(rotatedLabel))
 
-        currentLayoutData.checkArray.add(currentCheckBox)
-        currentLayoutData.textArray.add(currentTextField)
+        GfeLayoutData.checkArray.add(currentCheckBox)
+        GfeLayoutData.textArray.add(currentTextField)
 
         return searchBoxComponent
     }
