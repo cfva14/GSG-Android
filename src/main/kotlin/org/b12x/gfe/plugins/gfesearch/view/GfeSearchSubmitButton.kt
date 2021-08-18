@@ -11,8 +11,10 @@ class GfeSearchSubmitButton : View("Submit") {
             action {
                 runAsync {
 //                  myController.loadText()
-                    GfeLayoutData.resetArraysSoft()
-                    setOnAction { println("You pressed the GFE Search submit button.") }
+                    setOnAction {
+                        GfeLayoutData.resetArraysSoft()
+                        println("You pressed the GFE Search submit button.")
+                    }
                 } ui {
                     resultsTextField.text = "Data submitted"
                 }

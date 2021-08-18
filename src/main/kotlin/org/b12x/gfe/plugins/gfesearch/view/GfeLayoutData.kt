@@ -3,44 +3,47 @@ package org.b12x.gfe.plugins.gfesearch.view
 import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
 import org.b12x.gfe.utilities.preference.PrefsManager
+import tornadofx.runAsync
 import tornadofx.setValue
 import tornadofx.toProperty
 import kotlin.properties.Delegates
 import kotlin.reflect.jvm.internal.impl.util.Check
 
-object GfeLayoutData {
-    var checkArray: ArrayList<CheckBox> = ArrayList()
-    var textArray: ArrayList<TextField> = ArrayList()
-    var checkAllBoxStatus: Boolean = false
-    var locusName: String = "HLA-DRB1"
+class GfeLayoutData {
+//    var checkList: MutableList<CheckBox> = ArrayList()
+//    var textList: MutableList<TextField> = ArrayList()
+//    var checkAllBoxStatus: Boolean = false
+//    var locusName: String = "HLA-DRB1"
 
-    fun resetArraysHard() {
-        println("CheckArray size before reset: ${checkArray.size}")
-        println("TextArray size before reset: ${textArray.size}")
-        checkArray = ArrayList<CheckBox>()
-        println("CheckArray size after reset: ${checkArray.size}")
-        textArray = ArrayList<TextField>()
-        println("TextArray size after reset: ${textArray.size}")
-    }
+    companion object {
+        var checkList: MutableList<CheckBox> = ArrayList()
+        var textList: MutableList<TextField> = ArrayList()
+        var checkAllBoxStatus: Boolean = false
+        var locusName: String = "HLA-DRB1"
 
-    fun resetArraysSoft() {
-        println("CheckArray size before reset: ${checkArray.size}")
-        println("TextArray size before reset: ${textArray.size}")
-        checkArray = ArrayList<CheckBox>()
-        println("CheckArray size after reset: ${checkArray.size}")
-        textArray.forEach{
-            it.textProperty() by Delegates.observable(it) { _, _, new ->
-                it.textProperty().set("") }
-//            print("${it.text}, ")
-
-            // ...
-//            it.textProperty().set("")
+        fun resetArraysHard() {
+            println("CheckArray size before reset: ${checkList.size}")
+            println("TextArray size before reset: ${textList.size}")
+            checkList = ArrayList()
+            println("CheckArray size after reset: ${checkList.size}")
+            textList = ArrayList()
+            println("TextArray size after reset: ${textList.size}")
         }
-        textArray[0].textProperty().set("w")
-        textArray.forEach{
-            print("${it.text}, ")
-//            it.text = ""
+
+        fun resetArraysSoft() {
+            runAsync {
+
+//        println("CheckArray size before reset: ${checkArray.size}")
+//        println("TextArray size before reset: ${textArray.size}")
+                checkList = ArrayList()
+//        println("CheckArray size after reset: ${checkArray.size}")
+
+                textList[0].textProperty().value = "w"
+                for (i in 1 until textList.size) {
+                    textList[i].textProperty().value = ""
+                }
+            }
+//        println("TextArray size after reset: ${textArray.size}")
         }
-        println("TextArray size after reset: ${textArray.size}")
     }
 }

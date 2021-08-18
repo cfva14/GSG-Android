@@ -17,7 +17,7 @@ repositories {
 dependencies {
     // Kotlin standard library
     implementation(kotlin("stdlib-jdk8"))
-    implementation( "org.jetbrains.kotlin:kotlin-reflect:1.4.30")
+    implementation( "org.jetbrains.kotlin:kotlin-reflect:1.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
 
     // TornadoFX dependency
@@ -52,7 +52,7 @@ javafx { modules("javafx.controls", "javafx.fxml", "javafx.graphics") }
 // Set Kotlin/JVM target versions
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
-    kotlinOptions.languageVersion = "1.4"
+    kotlinOptions.languageVersion = "1.5"
 }
 
 // Use JUnit

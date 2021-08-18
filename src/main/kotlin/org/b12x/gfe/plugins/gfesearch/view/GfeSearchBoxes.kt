@@ -15,12 +15,13 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         style { padding = box(10.px, 10.px, 0.px, 10.px) }
         action {
             if (isSelected) {
-                GfeLayoutData.checkArray.forEach { it.isSelected = true }
+                GfeLayoutData.checkList.forEach { it.isSelected = true }
             } else {
-                GfeLayoutData.checkArray.forEach { it.isSelected = false }
+                GfeLayoutData.checkList.forEach { it.isSelected = false }
             }
         }
     }
+
     val numberOfSearchBoxes = 8
     // TODO - link # of search boxes to locus
 
@@ -83,8 +84,8 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
     }
 
     private fun individualSearchBoxAssembler(labelName: String): VBox {
-        lateinit var currentCheckBox: CheckBox
-        lateinit var currentTextField: TextField
+        var currentCheckBox: CheckBox by singleAssign()
+        var currentTextField: TextField by singleAssign()
 
         val rotatedLabel = label(labelName) {
             style {
@@ -100,7 +101,7 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
                     padding = box(10.px)
                 }
             }
-            currentTextField = textfield {
+            currentTextField = textfield("") {
                 style {
                     prefWidth = 40.px
                     prefHeight = 25.px
@@ -108,6 +109,10 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
                     alignment = Pos.CENTER
                 }
             }
+            currentTextField.textProperty()
+                .addListener { observable, oldValue, newValue ->
+                    println("textfield changed from $oldValue to $newValue")
+                }
 
             if (labelName == "Workshop Status") {
                 currentTextField.setText("w")
@@ -121,8 +126,8 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         }
         searchBoxComponent.add(Group(rotatedLabel))
 
-        GfeLayoutData.checkArray.add(currentCheckBox)
-        GfeLayoutData.textArray.add(currentTextField)
+        GfeLayoutData.checkList.add(currentCheckBox)
+        GfeLayoutData.textList.add(currentTextField)
 
         return searchBoxComponent
     }
