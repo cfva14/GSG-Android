@@ -33,17 +33,16 @@ class GfeLayoutData {
         fun resetArraysSoft() {
             runAsync {
 
-//        println("CheckArray size before reset: ${checkArray.size}")
-//        println("TextArray size before reset: ${textArray.size}")
-                checkList = ArrayList()
-//        println("CheckArray size after reset: ${checkArray.size}")
+                checkList.forEach { it.isSelected = false }
 
+//                println("TextArray size before reset: ${textList.size}")
                 textList[0].textProperty().value = "w"
                 for (i in 1 until textList.size) {
                     textList[i].textProperty().value = ""
                 }
+//                println("TextArray size after reset: ${textList.size}")
+
             }
-//        println("TextArray size after reset: ${textArray.size}")
         }
     }
 }

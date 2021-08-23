@@ -101,6 +101,10 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
                     padding = box(10.px)
                 }
             }
+            currentCheckBox.selectedProperty().addListener { observable, oldValue, newValue ->
+                println("checkbox changed from $oldValue to $newValue")
+            }
+
             currentTextField = textfield("") {
                 style {
                     prefWidth = 40.px

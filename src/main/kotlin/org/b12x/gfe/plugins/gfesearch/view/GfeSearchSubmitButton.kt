@@ -7,12 +7,13 @@ class GfeSearchSubmitButton : View("Submit") {
     private val resultsTextField = textfield("Nothing to display")
 
     override val root = vbox {
-        button("Update text") {
+        button("Submit") {
             action {
+                GfeLayoutData.resetArraysSoft()
                 runAsync {
 //                  myController.loadText()
                     setOnAction {
-                        GfeLayoutData.resetArraysSoft()
+//                        GfeLayoutData.resetArraysSoft()
                         println("You pressed the GFE Search submit button.")
                     }
                 } ui {

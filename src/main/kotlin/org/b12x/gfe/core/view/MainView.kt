@@ -40,6 +40,5 @@ class MainView : View("GFE Search Generator") {
         tab("Debug") {
             add(debugView::class)
         }
-
     }
 }
