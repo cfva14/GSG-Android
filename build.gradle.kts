@@ -1,8 +1,8 @@
 plugins {
-    kotlin("jvm") version "1.5.30"
+    kotlin("jvm") version "1.5.0"
     application
     id("org.openjfx.javafxplugin") version "0.0.9"
-    kotlin("plugin.serialization") version "1.5.30"
+    kotlin("plugin.serialization") version "1.5.0"
 }
 
 application { mainClassName = "org.b12x.gfe.MainKt" }
@@ -17,7 +17,7 @@ repositories {
 dependencies {
     // Kotlin standard library
     implementation(kotlin("stdlib-jdk8"))
-    implementation( "org.jetbrains.kotlin:kotlin-reflect:1.5.30")
+    implementation( "org.jetbrains.kotlin:kotlin-reflect:1.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
 
     // TornadoFX dependency
