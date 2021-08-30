@@ -103,6 +103,9 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
             }
             currentCheckBox.selectedProperty().addListener { observable, oldValue, newValue ->
                 println("checkbox changed from $oldValue to $newValue")
+                if(!currentCheckBox.isSelected) {
+                    selectAllCheckBox.isSelected = false
+                }
             }
 
             currentTextField = textfield("") {

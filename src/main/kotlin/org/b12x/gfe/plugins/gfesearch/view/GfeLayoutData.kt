@@ -18,7 +18,6 @@ class GfeLayoutData {
     companion object {
         var checkList: MutableList<CheckBox> = ArrayList()
         var textList: MutableList<TextField> = ArrayList()
-        var checkAllBoxStatus: Boolean = false
         var locusName: String = "HLA-DRB1"
 
         fun resetArraysHard() {
