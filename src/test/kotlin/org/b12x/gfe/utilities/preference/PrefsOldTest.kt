@@ -1,18 +1,14 @@
 package org.b12x.gfe.utilities.preference
 
-import com.nhaarman.mockitokotlin2.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import java.util.stream.Stream
 
-class PrefsTest {
+class PrefsOldTest {
 
-    private val prefs = Prefs()
+    private val prefs = PrefsOld()
 
     @Test
     fun getIntDefault() {

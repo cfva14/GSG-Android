@@ -1,13 +1,12 @@
 package org.b12x.gfe.plugins.optionstab.view
 
 import org.b12x.gfe.utilities.preference.ClearPrefs
-import org.b12x.gfe.utilities.preference.Prefs
-import org.b12x.gfe.utilities.preference.PrefsManager
+import org.b12x.gfe.utilities.preference.PrefsOld
 import tornadofx.*
 
 class OptionsView : View("My View") {
 
-    val prefs = Prefs()
+    val prefs = PrefsOld()
 
     override val root = vbox {
         button ("Reset Preferences"){

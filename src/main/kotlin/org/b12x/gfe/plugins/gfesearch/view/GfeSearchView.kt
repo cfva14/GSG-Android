@@ -2,7 +2,6 @@ package org.b12x.gfe.plugins.gfesearch.view
 
 import org.b12x.gfe.core.view.LocusComboBox
 import org.b12x.gfe.utilities.locus.HlaLoci
-import org.b12x.gfe.utilities.preference.Prefs
 import tornadofx.*
 import kotlin.system.exitProcess
 
