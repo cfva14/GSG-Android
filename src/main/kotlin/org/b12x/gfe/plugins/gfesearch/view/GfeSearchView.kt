@@ -10,8 +10,9 @@ class GfeSearchView : View("GFE SEARCH") {
 
 //    private val lociOptions = FXCollections.observableArrayList("HLA", "KIR")
     private var lociOptions = ArrayList<String>()
-    // populates lociOptions by existing
-    private val lociRaw = HlaLoci.values().forEach { lociOptions.add(it.fullName) }
+    init {
+        HlaLoci.values().forEach { lociOptions.add(it.fullName) }
+    }
 
     private val locusComboBox = LocusComboBox()
     private var gfeSearchBoxes = GfeSearchBoxes(HlaLoci.A)
