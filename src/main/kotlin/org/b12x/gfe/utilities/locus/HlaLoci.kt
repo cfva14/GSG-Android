@@ -16,6 +16,7 @@ enum class HlaLoci(val fullName: String, val exons: Int){
     override fun toString(): String {
         return fullName // working!
     }
+
 }
 
 interface FullName {

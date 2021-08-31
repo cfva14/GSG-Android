@@ -7,9 +7,10 @@ import javafx.scene.control.TextField
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import javafx.scene.text.TextAlignment
+import org.b12x.gfe.utilities.locus.HlaLoci
 import tornadofx.*
 
-class GfeSearchBoxes : View("Gfe Search Boxes") {
+class GfeSearchBoxes(loci: HlaLoci) : View("Gfe Search Boxes") {
 
     val selectAllCheckBox = checkbox {
         style { padding = box(10.px, 10.px, 0.px, 10.px) }
@@ -22,7 +23,7 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         }
     }
 
-    val numberOfSearchBoxes = 8
+    val numberOfSearchBoxes = loci.exons
     // TODO - link # of search boxes to locus
 
     val completedSearchBox = completedSearchBoxGenerator(numberOfSearchBoxes)
@@ -72,7 +73,7 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
             }
         }
         selectAllBox.add(selectAllCheckBox)
-        selectAllBox.add(label(GfeLayoutData.locusName) {
+        selectAllBox.add(label(GfeLayoutData.locusName.toString()) {
             style {
                 padding = box(15.px, 0.px)
                 fontSize = 15.px
@@ -80,7 +81,6 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
         })
 
         return selectAllBox
-
     }
 
     private fun individualSearchBoxAssembler(labelName: String): VBox {
@@ -102,7 +102,6 @@ class GfeSearchBoxes : View("Gfe Search Boxes") {
                 }
             }
             currentCheckBox.selectedProperty().addListener { observable, oldValue, newValue ->
-                println("checkbox changed from $oldValue to $newValue")
                 if(!currentCheckBox.isSelected) {
                     selectAllCheckBox.isSelected = false
                 }

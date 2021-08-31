@@ -9,17 +9,15 @@ import kotlin.system.exitProcess
 class GfeSearchView : View("GFE SEARCH") {
 
 //    private val lociOptions = FXCollections.observableArrayList("HLA", "KIR")
-    val prefs = Prefs()
     private var lociOptions = ArrayList<String>()
-    private val lociRaw = HlaLoci.values().forEach { lociOptions.add(it.fullName) } //.associateBy(HlaLoci::fullName)
+    // populates lociOptions by existing
+    private val lociRaw = HlaLoci.values().forEach { lociOptions.add(it.fullName) }
 
     private val locusComboBox = LocusComboBox()
-    private val gfeSearchBoxes: GfeSearchBoxes by inject()
-//    private val selectedCalc = SimpleStringProperty(lociOptions[0])
+    private var gfeSearchBoxes = GfeSearchBoxes(HlaLoci.A)
     private val gfeSearchSubmitButton: GfeSearchSubmitButton by inject()
 
     override val root = borderpane {
-//        top = combobox<String> (null, lociOptions)
         top = locusComboBox.root
 
         center = vbox {
@@ -42,23 +40,10 @@ class GfeSearchView : View("GFE SEARCH") {
         }
     }
 
-//    override val root = vbox {
-//        add(combobox<String> (selectedCalc, calcOptions))
-
-//        add(vbox {
-//            add(gfeSearchBoxes.root)
-//            add( hbox {
-//                add(button("Add") { setOnAction { println("You pressed button \"Add\"") } })
-//                add(button("Multiply") { setOnAction { println("You pressed button \"Multiply\"") } })
-//                add(button("Equals") { setOnAction { println("You pressed button \"Equals\"") } })
-//            })
-//        })
-//
-//        add(hbox {
-//            add(gfeSearchSubmitButton)
-//        })
-//    }
-    init {
-//        selectedCalc.onChange { println("Calculator changed to: $it") }
+    fun swapSearchBoxes(loci: HlaLoci) {
+        gfeSearchBoxes.removeFromParent()
+        gfeSearchBoxes = GfeSearchBoxes(loci)
+        this.root.center.add(gfeSearchBoxes)
+        println("GfeSearchView.swapSearchBoxes triggered")
     }
 }
