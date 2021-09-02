@@ -2,10 +2,8 @@ package org.b12x.gfe.core.view.debugtab
 
 import javafx.beans.property.SimpleStringProperty
 import javafx.collections.FXCollections
-import org.b12x.gfe.MyApp
 import org.b12x.gfe.Styles
 import tornadofx.*
-import tornadofx.Stylesheet.Companion.root
 import kotlin.system.exitProcess
 
 class DebugView : View("Debug") {

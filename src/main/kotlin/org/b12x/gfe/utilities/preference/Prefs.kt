@@ -1,19 +1,19 @@
 package org.b12x.gfe.utilities.preference
 
+import org.b12x.gfe.GSG
+import java.util.prefs.Preferences
 import kotlin.properties.Delegates
-import tornadofx.*
 
 object Prefs {
 
-    var currentGfeSearchLocus: String()
+    val prefs: Preferences = Preferences.userNodeForPackage(GSG::class.java)
 
-    preferences("GSG") {
-        // GFE Search Tab
-        currentGfeSearchLocus: String by Delegates.observable(get("current gfe search locus", "HLA-A")) { _, old, new ->
-            putString("current gfe search locus", new)
-//        PrefsManager.setPrefString(::currentLocus.name.camelToSnakeCase(), new)
-        }
+    var currentGfeSearchLocus: String by Delegates.observable(
+        prefs.get(
+            "currentGfeSearchLocus",
+            "HLA-A"
+        )
+    ) { _, old, new ->
+        prefs.put("currentGfeSearchLocus", new)
     }
-
-
 }

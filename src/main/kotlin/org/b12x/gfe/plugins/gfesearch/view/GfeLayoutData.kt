@@ -10,8 +10,7 @@ class GfeLayoutData {
     companion object {
         var checkList: MutableList<CheckBox> = ArrayList()
         var textList: MutableList<TextField> = ArrayList()
-//        var selectedLocus = HlaLoci.A
-        var selectedLocus = HlaLoci.values().find { it.fullName == Prefs.currentGfeSearchLocus }
+        var selectedLocus = HlaLoci.values().find { it.fullName == Prefs.currentGfeSearchLocus } ?: HlaLoci.A
 
         fun resetArraysHard() {
             checkList = ArrayList()

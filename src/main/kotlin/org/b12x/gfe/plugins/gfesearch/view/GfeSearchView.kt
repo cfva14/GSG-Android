@@ -14,7 +14,7 @@ class GfeSearchView : View("GFE SEARCH") {
     }
 
     private val locusComboBox = LocusComboBox()
-    private var gfeSearchBoxes = GfeSearchBoxes(HlaLoci.A)
+    private var gfeSearchBoxes = GfeSearchBoxes(GfeLayoutData.selectedLocus)
     private val gfeSearchSubmitButton: GfeSearchSubmitButton by inject()
 
     override val root = borderpane {

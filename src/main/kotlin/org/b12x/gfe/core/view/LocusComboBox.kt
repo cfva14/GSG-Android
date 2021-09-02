@@ -3,8 +3,8 @@ package org.b12x.gfe.core.view
 import javafx.beans.property.SimpleStringProperty
 import org.b12x.gfe.utilities.locus.HlaLoci
 import org.b12x.gfe.plugins.gfesearch.view.GfeLayoutData
-import org.b12x.gfe.plugins.gfesearch.view.GfeLayoutData.Companion.selectedLocus
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchView
+import org.b12x.gfe.utilities.preference.Prefs
 import org.b12x.gfe.utilities.preference.PrefsOld
 import tornadofx.*
 import kotlin.collections.ArrayList
@@ -20,23 +20,15 @@ class LocusComboBox : View("My View") {
         HlaLoci.values().forEach { lociNames.add(it.toString()) }
     }
 
-    //    private val currentLocusProperty = SimpleStringProperty()
-    val currentLocus = SimpleStringProperty().get()
-//    var currentLocus by currentLocusProperty
-//    currentLocus = "HLA-A"
-
-    var foo by property(prefs.currentLocus)
-    fun fooProperty() = getProperty(LocusComboBox::foo)
-
-//    var foo by property("baz")
-//    fun fooProperty() = getProperty(Bar::foo)
+    var foo by property(SimpleStringProperty(GfeLayoutData.selectedLocus.toString()))
 
     override val root = vbox {
-        choicebox<String>(fooProperty(), lociNames) {
+            choicebox<String>(foo, lociNames) {
             action {
-                selectedLocus = HlaLoci.values().find { it.fullName == this.value } ?: HlaLoci.A
+                GfeLayoutData.selectedLocus = HlaLoci.values().find { it.fullName == this.value } ?: HlaLoci.A
+                Prefs.currentGfeSearchLocus = this.value
                 GfeLayoutData.resetArraysHard()
-                find(GfeSearchView::class).swapSearchBoxes(selectedLocus!!)
+                find(GfeSearchView::class).swapSearchBoxes(GfeLayoutData.selectedLocus)
             }
         }
     }

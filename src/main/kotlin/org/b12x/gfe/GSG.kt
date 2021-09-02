@@ -5,7 +5,7 @@ import org.b12x.gfe.core.view.MainView
 import tornadofx.App
 import tornadofx.Stylesheet.Companion.label
 
-class MyApp: App(MainView::class, Styles::class) {
+class GSG: App(MainView::class, Styles::class) {
     override fun start(stage: Stage) {
         super.start(stage)
         stage.width = 1100.0
