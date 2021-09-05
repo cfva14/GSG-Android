@@ -23,6 +23,4 @@ object VersionData {
         }
         return parsedObject
     }
-
-
 }

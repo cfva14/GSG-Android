@@ -12,7 +12,6 @@ import kotlin.collections.ArrayList
 class LocusComboBox : View("My View") {
 
     //    private val lociOptions = FXCollections.observableArrayList("HLA", "KIR")
-    val prefs = PrefsOld()
 
     private val lociNames = ArrayList<String>()
 

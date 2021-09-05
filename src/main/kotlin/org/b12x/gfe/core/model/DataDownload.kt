@@ -40,7 +40,7 @@ class DataDownload(requestType: String, dataUrl: String) {
 
         when (type) {
             "versionData" -> VersionData.parseResponse(response)
-            "hlaData" -> "/Documents/GSG/GSGData/KIR/"
+            "hlaData" -> "/Documents/GSG/GSGData/HLA/"
             "TEST" -> "/Documents/GSG/GSGData/TEST/"
             else -> {
                 null // do nothing
