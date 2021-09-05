@@ -4,7 +4,7 @@ import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
 
-class FileManagement {
+object FileManagement {
 
     val directoryManagement = DirectoryManagement()
 
@@ -12,7 +12,7 @@ class FileManagement {
         return Files.exists(Paths.get(pathInQuestion))
     }
 
-    fun createFile(whereTheFileShouldGo: String, fileName: String, fileSuffix: String, overwriteFile: Boolean) {
+    fun createFile(whereTheFileShouldGo: String, fileName: String, fileSuffix: String, overwriteFile: Boolean): String {
         var pathToFile = whereTheFileShouldGo
 
         // check the path for a slash at the end before adding file
@@ -26,6 +26,8 @@ class FileManagement {
         // create file
         val newFileString = "$pathToFile$fileName.$fileSuffix"
         File(newFileString).createNewFile()
+
+        return newFileString
     }
 
     fun createDataFile(loci: String, locus: String, version: String) {

@@ -3,7 +3,6 @@ package org.b12x.gfe.utilities.preference
 import org.b12x.gfe.GSG
 import java.util.prefs.Preferences
 import kotlin.properties.Delegates
-import kotlin.reflect.KMutableProperty0
 
 object Prefs {
 
