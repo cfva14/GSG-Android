@@ -6,18 +6,40 @@ import java.nio.file.Paths
 
 class DirectoryManagement {
 
+    /**
+     * Checks for the existence of a folder.
+     *
+     * @param pathInQuestion the path to the folder to check
+     * @return whether or not the folder exists
+     */
     fun doesFolderExist(pathInQuestion: String): Boolean {
         return File(pathInQuestion).exists()
     }
 
-    fun createFolder(pathToCreate: String, overwriteFolder: Boolean) {
+    /**
+     * Checks for the existence of a file.
+     *
+     * @param pathToCreate the path to the folder
+     * @param overwriteFolder option to allow a preexisting folder to be overwritten
+     * @return path to folder
+     */
+    fun createFolder(pathToCreate: String, overwriteFolder: Boolean): String {
         if (overwriteFolder) {
             File(pathToCreate).deleteRecursively()
         }
 
         createDirectories(Paths.get(pathToCreate))
+        return pathToCreate
     }
 
+    /**
+     * Creates a datafolder.
+     *
+     * This will overwrite a prior datafile.
+     *
+     * @param loci which group of genes the folder is for
+     * @param version which version of the database is the folder is for
+     */
     fun createDataFolder(loci: String, version: String): String {
         val finalPath = LociLocations.determineLociFolder(loci) + version
 
@@ -27,6 +49,11 @@ class DirectoryManagement {
         return finalPath
     }
 
+    /**
+     * Deletes a folder.
+     *
+     * @param pathToRemove the path to the folder to delete
+     */
     fun removeFolder(pathToRemove: String) {
 
         // removes all contents and folder itself
