@@ -10,9 +10,8 @@ import java.io.File
 
 object VersionData {
 
+    // HLA Version API
     const val DB_VERSIONS = "http://gfe.b12x.org/v1/imgt-versions"
-
-    val dataDownload = DataDownload("versionData", DB_VERSIONS)
 
     /**
      * Parses incoming version data.
@@ -43,8 +42,7 @@ object VersionData {
         val versionFileLocation = FileManagement.createFile(
             LociLocations.determineLociFolder(loci),
             "versions",
-            "txt",
-            false)
+            "txt")
         if(!File(versionFileLocation).readLines().contains(version)) {
             File(versionFileLocation).appendText("$version\n")
         }

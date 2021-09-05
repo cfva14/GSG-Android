@@ -17,8 +17,8 @@ class OptionsView : View("My View") {
 
         button ("Download current Versions"){
             action {
-                val dataDownload = DataDownload("versionData", VersionData.DB_VERSIONS)
-                dataDownload.makeRequest()
+                val hlaDataDownload = DataDownload("HLA")
+                hlaDataDownload.makeRequest(dataType = "version", dataUrl = VersionData.DB_VERSIONS)
             }
         }
     }

@@ -9,7 +9,7 @@ object HlaData {
 
     const val DB_HLA = "http://gfe.b12x.org/v1/imgt-versions"
 
-    val dataDownload = DataDownload("hlaData", VersionData.DB_VERSIONS)
+    val hlaDataDownload = DataDownload("hla")
 
     fun parseResponse(response: Response): JsonArray<String> {
         val body = response.body?.string() ?: ""

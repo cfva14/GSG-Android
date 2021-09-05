@@ -10,26 +10,23 @@ import org.b12x.gfe.core.model.parsers.VersionData
 /**
  * Downloads data as indicated
  *
- * @param requestType what kind of data you are requesting, HLA, KIR, or versionData
- * @param dataUrl the URL to the appropriate database API
+ * @param loci what group of genes you are downloading data for
  */
-class DataDownload(requestType: String, dataUrl: String) {
+class DataDownload(lociGroup: String) {
     private val MEDIA_TYPE_JSON = "application/json; charset=utf-8".toMediaType()
     private val MEDIA_TYPE_TEXT = "application/txt; charset=utf-8".toMediaType()
-    private val DB_VERSIONS = "http://gfe.b12x.org/v1/imgt-versions"
-    private val url = dataUrl
-    private val type = requestType
-    private val loci = "HLA"
+    private val loci = lociGroup
 
     /**
      * Requests data from the GFE database
      *
      * @param request some sort of OKHttp request, probably necessary for getting non-version data, empty string works fine
+     * @param dataUrl the URL to the appropriate database API
+     * @param dataType What kind of raw data (version or data)
      */
-    fun makeRequest(request: String = "") {
+    fun makeRequest(request: String = "", dataUrl: String, dataType: String) {
         val okHttpClient = OkHttpClient()
-//        val parsedResponse = parseResponse(okHttpClient.newCall(createRequest(url, request)).execute())
-        parseResponse(okHttpClient.newCall(createRequest(url, request)).execute())
+        parseResponse(okHttpClient.newCall(createRequest(dataUrl, request)).execute(), dataType)
     }
 
     private fun createRequest(url: String, request: String): Request {
@@ -41,12 +38,11 @@ class DataDownload(requestType: String, dataUrl: String) {
             .build()
     }
 
-    private fun parseResponse(response: Response) {
+    private fun parseResponse(response: Response, dataType: String) {
 
-        when (type) {
-            "versionData" -> VersionData.parseResponse(loci, response)
-            "hlaData" -> "/Documents/GSG/GSGData/HLA/"
-            "TEST" -> "/Documents/GSG/GSGData/TEST/"
+        when (dataType) {
+            "version" -> VersionData.parseResponse(loci, response)
+            "data" -> "/Documents/GSG/GSGData/$loci/"
             else -> {
                 null // do nothing
             }
