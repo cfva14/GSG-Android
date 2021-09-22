@@ -17,7 +17,7 @@ class DirectoryManagement {
     }
 
     /**
-     * Checks for the existence of a file.
+     * Creates a new folder.
      *
      * @param pathToCreate the path to the folder
      * @param overwriteFolder option to allow a preexisting folder to be overwritten
@@ -33,9 +33,9 @@ class DirectoryManagement {
     }
 
     /**
-     * Creates a datafolder.
-     *
-     * This will overwrite a prior datafile.
+     * Creates a data folder.
+     * This is non-destructive and will not overwrite a pre-existing
+     * folder or any files it contains.
      *
      * @param loci which group of genes the folder is for
      * @param version which version of the database is the folder is for

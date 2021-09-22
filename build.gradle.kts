@@ -31,6 +31,11 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.3")
     implementation("com.beust:klaxon:5.5")
 
+    //Text comparison
+    // https://mvnrepository.com/artifact/io.github.java-diff-utils/java-diff-utils
+    implementation("io.github.java-diff-utils:java-diff-utils:4.11")
+
+
     // RxJava for Kotlin
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
 

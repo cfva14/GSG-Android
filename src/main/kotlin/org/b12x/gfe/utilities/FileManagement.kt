@@ -45,7 +45,7 @@ object FileManagement {
     }
 
     /**
-     * Creates a datafile.
+     * Creates a data file.
      *
      * This will overwrite a prior datafile.
      *
