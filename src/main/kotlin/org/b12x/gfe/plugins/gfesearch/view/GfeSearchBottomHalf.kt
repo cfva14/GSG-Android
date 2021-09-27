@@ -7,9 +7,12 @@ import kotlin.system.exitProcess
 class GfeSearchBottomHalf : View() {
 
     private val gfeSearchSubmitButton: GfeSearchSubmitButton by inject()
+    private val gfeSearchVersionComboBox: GfeSearchVersionComboBox by inject()
 
     override val root = borderpane {
-        top = hbox {}
+        top = hbox {
+            add(gfeSearchVersionComboBox.root)
+        }
 
         center = vbox {}
 

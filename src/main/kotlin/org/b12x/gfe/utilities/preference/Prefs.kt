@@ -21,5 +21,12 @@ object Prefs {
         prefs.put("currentGfeSearchLocus", new)
     }
 
-
+    var currentGfeSearchVersion: String by Delegates.observable(
+        prefs.get(
+            "currentGfeSearchVersion",
+            "--"
+        )
+    ) { _, _, new ->
+        prefs.put("currentGfeSearchVersion", new)
+    }
 }

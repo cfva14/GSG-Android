@@ -16,10 +16,10 @@ class GfeSearchLocusComboBox : View() {
         HlaLoci.values().forEach { lociNames.add(it.toString()) }
     }
 
-    var foo by property(SimpleStringProperty(GfeLayoutData.selectedLocus.toString()))
+    var currentLocus by property(SimpleStringProperty(GfeLayoutData.selectedLocus.toString()))
 
     override val root = vbox {
-            choicebox<String>(foo, lociNames) {
+            choicebox<String>(currentLocus, lociNames) {
             action {
                 GfeLayoutData.selectedLocus = HlaLoci.values().find { it.fullName == this.value } ?: HlaLoci.A
                 Prefs.currentGfeSearchLocus = this.value
