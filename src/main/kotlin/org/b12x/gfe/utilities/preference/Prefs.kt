@@ -6,7 +6,7 @@ import kotlin.properties.Delegates
 
 object Prefs {
 
-    val prefs: Preferences = Preferences.userNodeForPackage(GSG::class.java)
+    private val prefs: Preferences = Preferences.userNodeForPackage(GSG::class.java)
 
     fun nuclearOption() {
         prefs.removeNode()

@@ -1,15 +1,12 @@
-package org.b12x.gfe.core.view
+package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.beans.property.SimpleStringProperty
 import org.b12x.gfe.utilities.locus.HlaLoci
-import org.b12x.gfe.plugins.gfesearch.view.GfeLayoutData
-import org.b12x.gfe.plugins.gfesearch.view.GfeSearchView
 import org.b12x.gfe.utilities.preference.Prefs
-import org.b12x.gfe.utilities.preference.PrefsOld
 import tornadofx.*
 import kotlin.collections.ArrayList
 
-class LocusComboBox : View("My View") {
+class GfeSearchLocusComboBox : View() {
 
     //    private val lociOptions = FXCollections.observableArrayList("HLA", "KIR")
 
@@ -27,8 +24,15 @@ class LocusComboBox : View("My View") {
                 GfeLayoutData.selectedLocus = HlaLoci.values().find { it.fullName == this.value } ?: HlaLoci.A
                 Prefs.currentGfeSearchLocus = this.value
                 GfeLayoutData.resetArraysHard()
-                find(GfeSearchView::class).swapSearchBoxes(GfeLayoutData.selectedLocus)
+                swapSearchBoxes(GfeLayoutData.selectedLocus)
             }
         }
+    }
+
+    fun swapSearchBoxes(loci: HlaLoci) {
+        find(GfeSearchView::class).gfeSearchBoxes.removeFromParent()
+        find(GfeSearchView::class).gfeSearchBoxes = GfeSearchBoxes(loci)
+        find(GfeSearchView::class).root.center.add(find(GfeSearchView::class).gfeSearchBoxes)
+        println("GfeSearchView.swapSearchBoxes triggered")
     }
 }
