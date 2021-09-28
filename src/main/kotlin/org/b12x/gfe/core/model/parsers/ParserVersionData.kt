@@ -41,7 +41,7 @@ object ParserVersionData {
     private fun addVersion(loci: String, version: String) {
         val versionFileLocation = FileManagement.createFile(
             LociLocations.determineLociFolder(loci),
-            "versions",
+            "onlineVersions",
             "txt")
         if(!File(versionFileLocation).readLines().contains(version)) {
             File(versionFileLocation).appendText("$version\n")

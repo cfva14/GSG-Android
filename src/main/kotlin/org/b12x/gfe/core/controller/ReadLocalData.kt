@@ -6,12 +6,14 @@ import org.b12x.gfe.core.model.DataDownload
 import org.b12x.gfe.core.model.parsers.ParserVersionData
 import org.b12x.gfe.utilities.FileManagement
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.Paths
 
 class ReadLocalData(loci: String) {
 
     var GSG_FOLDER: String = setLoci(loci)
     val USER_DIRECTORY = System.getProperty("user.home")
-    var DATA_FOLDERS = ArrayList<File>()
+    var dataFolders = ArrayList<String>()
 
     /**
      * Sets the specific group of genes to be read.
@@ -34,33 +36,37 @@ class ReadLocalData(loci: String) {
     /**
      * Gets all subfolders for a specific set of genes in the user's GSG data directory.
      *
-     * @return a list of files
+     * @return a list of folder names
      */
-    fun getSubFolders(): List<File> {
-        print(USER_DIRECTORY)
+    fun getSubFolders(): List<String> {
+        val gsgDataLocation = File(USER_DIRECTORY + GSG_FOLDER)
+        println(gsgDataLocation)
 
-//        DATA_FOLDERS= File(USER_DIRECTORY + GSG_FOLDER).listFiles().toList()
-//        val tempArray = File(USER_DIRECTORY + GSG_FOLDER).listFiles().toList()
-//        tempArray.forEach { DATA_FOLDERS.add(File(it.name)) }
-        DATA_FOLDERS.add(File("Test1"))
+        gsgDataLocation.listFiles().forEach {
+            if (it.exists() and it.isDirectory) {
+                dataFolders.add(it.name.toString())
+            }
+        }
 
-        return DATA_FOLDERS
+        println(dataFolders)
+
+        return dataFolders
     }
 
-    fun returnVersionFile(): File {
-        val versionsFile = USER_DIRECTORY + GSG_FOLDER + "versions.txt"
-        if (FileManagement.doesFileExist(versionsFile)) {
-            return File(versionsFile)
+    fun returnOnlineVersionFile(): File {
+        val onlineVersionsFile = USER_DIRECTORY + GSG_FOLDER + "onlineVersions.txt"
+        if (FileManagement.doesFileExist(onlineVersionsFile)) {
+            return File(onlineVersionsFile)
         }
         runBlocking {
             launch {
                 val dataDownload = DataDownload("HLA")
                 dataDownload.makeRequest(dataType = "version", dataUrl = ParserVersionData.DB_VERSIONS)
-
             }
         }
-        return File(versionsFile)
+        return File(onlineVersionsFile)
     }
 
+//    private fun
 
 }
