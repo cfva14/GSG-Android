@@ -1,7 +1,6 @@
 package org.b12x.gfe.core.controller
 
 import javafx.beans.Observable
-import org.b12x.gfe.MyApp
 import org.b12x.gfe.plugins.gfesearch.view.TestApp
 import org.b12x.gfe.plugins.gfesearch.view.TestLayout
 import org.b12x.gfe.utilities.preference.PrefsManager

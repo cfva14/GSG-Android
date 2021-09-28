@@ -5,7 +5,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
-import org.b12x.gfe.core.model.parsers.VersionData
+import org.b12x.gfe.core.model.parsers.ParserVersionData
 
 /**
  * Downloads data as indicated
@@ -25,6 +25,8 @@ class DataDownload(lociGroup: String) {
      * @param dataType What kind of raw data (version or data)
      */
     fun makeRequest(request: String = "", dataUrl: String, dataType: String) {
+        // TODO: check for internet access
+
         val okHttpClient = OkHttpClient()
         parseResponse(okHttpClient.newCall(createRequest(dataUrl, request)).execute(), dataType)
     }
@@ -41,7 +43,7 @@ class DataDownload(lociGroup: String) {
     private fun parseResponse(response: Response, dataType: String) {
 
         when (dataType) {
-            "version" -> VersionData.parseResponse(loci, response)
+            "version" -> ParserVersionData.parseResponse(loci, response)
             "data" -> "/Documents/GSG/GSGData/$loci/"
             else -> {
                 null // do nothing

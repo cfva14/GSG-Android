@@ -8,7 +8,7 @@ import org.b12x.gfe.utilities.FileManagement
 import org.b12x.gfe.utilities.LociLocations
 import java.io.File
 
-object VersionData {
+object ParserVersionData {
 
     // HLA Version API
     const val DB_VERSIONS = "http://gfe.b12x.org/v1/imgt-versions"

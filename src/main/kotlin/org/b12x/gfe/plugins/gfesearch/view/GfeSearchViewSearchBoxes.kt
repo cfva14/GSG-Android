@@ -9,15 +9,15 @@ import javafx.scene.layout.VBox
 import org.b12x.gfe.utilities.locus.HlaLoci
 import tornadofx.*
 
-class GfeSearchBoxes(loci: HlaLoci) : View("Gfe Search Boxes") {
+class GfeSearchViewSearchBoxes(loci: HlaLoci) : View("Gfe Search Boxes") {
 
     val selectAllCheckBox = checkbox {
         style { padding = box(10.px, 10.px, 0.px, 10.px) }
         action {
             if (isSelected) {
-                GfeLayoutData.checkList.forEach { it.isSelected = true }
+                GfeSearchLayoutData.checkList.forEach { it.isSelected = true }
             } else {
-                GfeLayoutData.checkList.forEach { it.isSelected = false }
+                GfeSearchLayoutData.checkList.forEach { it.isSelected = false }
             }
         }
     }
@@ -71,7 +71,7 @@ class GfeSearchBoxes(loci: HlaLoci) : View("Gfe Search Boxes") {
             }
         }
         selectAllBox.add(selectAllCheckBox)
-        selectAllBox.add(label(GfeLayoutData.selectedLocus.toString()) {
+        selectAllBox.add(label(GfeSearchLayoutData.selectedLocus.toString()) {
             style {
                 padding = box(15.px, 0.px)
                 fontSize = 15.px
@@ -130,8 +130,8 @@ class GfeSearchBoxes(loci: HlaLoci) : View("Gfe Search Boxes") {
         }
         searchBoxComponent.add(Group(rotatedLabel))
 
-        GfeLayoutData.checkList.add(currentCheckBox)
-        GfeLayoutData.textList.add(currentTextField)
+        GfeSearchLayoutData.checkList.add(currentCheckBox)
+        GfeSearchLayoutData.textList.add(currentTextField)
 
         return searchBoxComponent
     }

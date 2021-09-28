@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.5.0"
+    kotlin("jvm") version "1.5.30"
     application
     id("org.openjfx.javafxplugin") version "0.0.9"
     kotlin("plugin.serialization") version "1.5.0"
@@ -19,12 +19,13 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation( "org.jetbrains.kotlin:kotlin-reflect:1.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
 
     // TornadoFX dependency
     implementation("no.tornado:tornadofx:1.7.20")
 
     // API tools
-    implementation("com.squareup.okhttp3:okhttp:4.2.1")
+    implementation("com.squareup.okhttp3:okhttp:4.9.1")
     implementation("com.squareup.okio:okio:2.10.0")
 
     // JSON parsing

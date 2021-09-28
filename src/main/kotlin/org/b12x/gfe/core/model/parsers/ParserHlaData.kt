@@ -5,7 +5,7 @@ import com.beust.klaxon.Parser
 import okhttp3.Response
 import org.b12x.gfe.core.model.DataDownload
 
-object HlaData {
+object ParserHlaData {
 
     const val DB_HLA = "http://gfe.b12x.org/v1/imgt-versions"
 

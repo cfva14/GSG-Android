@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 import tornadofx.*
 
 
-class GfeLayoutDataTest : View("Test") {
+class GfeSearchLayoutDataTest : View("Test") {
 
     lateinit var checkArray: ArrayList<CheckBox>
     lateinit var textArray: ArrayList<TextField>

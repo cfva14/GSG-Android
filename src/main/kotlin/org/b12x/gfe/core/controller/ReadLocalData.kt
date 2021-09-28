@@ -1,5 +1,10 @@
 package org.b12x.gfe.core.controller
 
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import org.b12x.gfe.core.model.DataDownload
+import org.b12x.gfe.core.model.parsers.ParserVersionData
+import org.b12x.gfe.utilities.FileManagement
 import java.io.File
 
 class ReadLocalData(loci: String) {
@@ -40,6 +45,21 @@ class ReadLocalData(loci: String) {
         DATA_FOLDERS.add(File("Test1"))
 
         return DATA_FOLDERS
+    }
+
+    fun returnVersionFile(): File {
+        val versionsFile = USER_DIRECTORY + GSG_FOLDER + "versions.txt"
+        if (FileManagement.doesFileExist(versionsFile)) {
+            return File(versionsFile)
+        }
+        runBlocking {
+            launch {
+                val dataDownload = DataDownload("HLA")
+                dataDownload.makeRequest(dataType = "version", dataUrl = ParserVersionData.DB_VERSIONS)
+
+            }
+        }
+        return File(versionsFile)
     }
 
 

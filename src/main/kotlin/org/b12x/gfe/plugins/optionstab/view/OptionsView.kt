@@ -1,7 +1,7 @@
 package org.b12x.gfe.plugins.optionstab.view
 
 import org.b12x.gfe.core.model.DataDownload
-import org.b12x.gfe.core.model.parsers.VersionData
+import org.b12x.gfe.core.model.parsers.ParserVersionData
 import org.b12x.gfe.utilities.preference.Prefs
 import tornadofx.*
 
@@ -18,7 +18,7 @@ class OptionsView : View("My View") {
         button ("Download current Versions"){
             action {
                 val hlaDataDownload = DataDownload("HLA")
-                hlaDataDownload.makeRequest(dataType = "version", dataUrl = VersionData.DB_VERSIONS)
+                hlaDataDownload.makeRequest(dataType = "version", dataUrl = ParserVersionData.DB_VERSIONS)
             }
         }
     }

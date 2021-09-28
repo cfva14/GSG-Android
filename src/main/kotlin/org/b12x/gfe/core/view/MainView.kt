@@ -1,15 +1,14 @@
 package org.b12x.gfe.core.view
 
 import javafx.scene.control.TabPane
-import org.b12x.gfe.Styles
 import org.b12x.gfe.core.view.debugtab.DebugView
-import org.b12x.gfe.plugins.gfesearch.view.GfeSearchView
+import org.b12x.gfe.plugins.gfesearch.view.GfeSearchViewParent
 import org.b12x.gfe.plugins.optionstab.view.OptionsView
 import tornadofx.*
 
 class MainView : View("GFE Search Generator") {
 
-    private val gfeSearchView = find(GfeSearchView::class)
+    private val gfeSearchViewParent = find(GfeSearchViewParent::class)
     private val optionsView = find(OptionsView::class)
     private val debugView = find(DebugView::class)
 
@@ -20,7 +19,7 @@ class MainView : View("GFE Search Generator") {
 //            addClass(Styles.heading)
 //        }
         tab("GFE Search") {
-            add(gfeSearchView::class)
+            add(gfeSearchViewParent::class)
         }
         tab("Allele Name Search") {
 //            add(alleleSearchView::class)
