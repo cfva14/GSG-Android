@@ -38,7 +38,7 @@ class ReadLocalData(loci: String) {
      *
      * @return a list of folder names
      */
-    fun getSubFolders(): List<String> {
+    fun getSubFolderNames(): List<String> {
         val gsgDataLocation = File(USER_DIRECTORY + GSG_FOLDER)
         println(gsgDataLocation)
 

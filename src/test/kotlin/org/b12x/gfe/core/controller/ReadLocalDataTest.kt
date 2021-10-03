@@ -1,23 +1,9 @@
 package org.b12x.gfe.core.controller
 
-import javafx.beans.Observable
-import org.b12x.gfe.plugins.gfesearch.view.TestApp
-import org.b12x.gfe.plugins.gfesearch.view.TestLayout
-import org.b12x.gfe.utilities.preference.PrefsManager
-import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
-import org.junit.jupiter.params.provider.ValueSource
 import java.io.File
-import java.nio.file.Path
-import java.util.stream.Stream
 import kotlin.io.walk
-import kotlin.system.exitProcess
 
 
 class ReadLocalDataTest {
@@ -47,7 +33,7 @@ class ReadLocalDataTest {
     fun listFolders() {
         readLocalData.setLoci("TEST")
         val localFiles = listOf("Test", "3.34.0", "3.35.0")
-        assertEquals(localFiles, readLocalData.getSubFolders())
+        assertEquals(localFiles, readLocalData.getSubFolderNames())
     }
 
     @Test

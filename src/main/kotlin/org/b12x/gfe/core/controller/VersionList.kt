@@ -2,13 +2,9 @@ package org.b12x.gfe.core.controller
 
 class VersionList {
     private val localData = ReadLocalData("HLA")
-    val localVersionNames = localData.getSubFolders()
-    val onlineVersionNames = getOnlineVersionList()
-    val completeVersionList = ArrayList<String>()
-
-    fun generateCompleteVersionList() {
-        
-    }
+    private val localVersionNames = localData.getSubFolderNames()
+    private val onlineVersionNames = getOnlineVersionList()
+    val completeVersionSet = (localVersionNames + onlineVersionNames).toSet()
 
     private fun getOnlineVersionList(): ArrayList<String> {
         val versionList = ArrayList<String>()
@@ -18,8 +14,6 @@ class VersionList {
         }
         return versionList
     }
-
-
 
 
 

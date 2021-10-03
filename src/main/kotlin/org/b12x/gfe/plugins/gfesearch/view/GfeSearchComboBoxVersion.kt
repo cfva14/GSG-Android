@@ -2,20 +2,22 @@ package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.beans.property.SimpleStringProperty
 import org.b12x.gfe.core.controller.ReadLocalData
+import org.b12x.gfe.core.controller.VersionList
 import org.b12x.gfe.utilities.preference.Prefs
 import tornadofx.*
 
 class GfeSearchComboBoxVersion : View("My View") {
 
-    private val versions = ArrayList<String>()
+    private val versionList = VersionList()
+    private val versions = versionList.completeVersionSet.toList().sortedDescending()
 
-    init {
-        val readLocalData = ReadLocalData("HLA")
-        val versionsFile = readLocalData.returnOnlineVersionFile()
-        versionsFile.forEachLine {
-            versions.add(it)
-        }
-    }
+//    init {
+//        val readLocalData = ReadLocalData("HLA")
+//        val versionsFile = readLocalData.returnOnlineVersionFile()
+//        versionsFile.forEachLine {
+//            versions.add(it)
+//        }
+//    }
 
     var currentVersion by property(
         SimpleStringProperty(GfeSearchLayoutData.selectedVersion)
@@ -24,7 +26,6 @@ class GfeSearchComboBoxVersion : View("My View") {
     override val root = hbox {
         choicebox<String>(currentVersion, versions) {
             action {
-//                GfeSearchLayoutData.selectedLocus = HlaLoci.values().find { it.fullName == this.value } ?: HlaLoci.A
                 Prefs.currentGfeSearchVersion = this.value
 //                GfeSearchLayoutData.resetArraysHard()
 //                swapSearchBoxes(GfeLayoutData.selectedLocus)
