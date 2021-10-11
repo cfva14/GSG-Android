@@ -20,21 +20,27 @@ class GfeSearchComboBoxLocus : View() {
         SimpleStringProperty(GfeSearchLayoutData.selectedLocus.toString())
     )
 
-    override val root = vbox {
-        choicebox<String>(currentLocus, lociNames) {
-            action {
-                GfeSearchLayoutData.selectedLocus = HlaLoci.values().find { it.fullName == this.value } ?: HlaLoci.A
-                Prefs.currentGfeSearchLocus = this.value
-                GfeSearchLayoutData.resetArraysHard()
-                swapSearchBoxes(GfeSearchLayoutData.selectedLocus)
-            }
+
+    var comboBoxLocus = choicebox<String>(currentLocus, lociNames) {
+        action {
+            GfeSearchLayoutData.selectedLocus = HlaLoci.values().find { it.fullName == this.value } ?: HlaLoci.A
+            Prefs.currentGfeSearchLocus = this.value
+            GfeSearchLayoutData.resetArraysHard()
+            swapSearchBoxes(GfeSearchLayoutData.selectedLocus)
         }
     }
 
-    fun swapSearchBoxes(loci: HlaLoci) {
+    override val root = vbox {
+        add(comboBoxLocus)
+    }
+
+    // swaps the old set of search boxes out, and puts in the new set
+    // based on the locus HlaLoci passed to it.
+    private fun swapSearchBoxes(loci: HlaLoci) {
         find(GfeSearchViewParent::class).gfeSearchViewSearchBoxes.removeFromParent()
         find(GfeSearchViewParent::class).gfeSearchViewSearchBoxes = GfeSearchViewSearchBoxes(loci)
         find(GfeSearchViewParent::class).root.center.add(find(GfeSearchViewParent::class).gfeSearchViewSearchBoxes)
-        println("GfeSearchView.swapSearchBoxes triggered")
     }
+
+    fun swapLocusChoiceBox() {}
 }

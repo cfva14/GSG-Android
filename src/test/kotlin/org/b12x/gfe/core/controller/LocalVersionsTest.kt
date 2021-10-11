@@ -6,13 +6,13 @@ import java.io.File
 import kotlin.io.walk
 
 
-class ReadLocalDataTest {
+class LocalVersionsTest {
 
     val TEST = "/Documents/GSG/GSGData/HLA/Test/"
     val GSGDATA = "Documents/GSG/GSGData/"
     val userDirectory = System.getProperty("user.home")
 
-    val readLocalData = ReadLocalData("TEST")
+    val localVersions = LocalVersions("TEST")
 
 
     @Test
@@ -23,17 +23,17 @@ class ReadLocalDataTest {
 
     @Test
     fun changeLoci() {
-        readLocalData.setLoci("HLA")
-        assertEquals("/Documents/GSG/GSGData/HLA/", readLocalData.GSG_FOLDER)
-        readLocalData.setLoci("TEST")
-        assertEquals("/Documents/GSG/GSGData/TEST/", readLocalData.GSG_FOLDER)
+        localVersions.setLoci("HLA")
+        assertEquals("/Documents/GSG/GSGData/HLA/", localVersions.GSG_FOLDER)
+        localVersions.setLoci("TEST")
+        assertEquals("/Documents/GSG/GSGData/TEST/", localVersions.GSG_FOLDER)
     }
 
     @Test
     fun listFolders() {
-        readLocalData.setLoci("TEST")
+        localVersions.setLoci("TEST")
         val localFiles = listOf("Test", "3.34.0", "3.35.0")
-        assertEquals(localFiles, readLocalData.getSubFolderNames())
+        assertEquals(localFiles, localVersions.getSubFolderNames())
     }
 
     @Test

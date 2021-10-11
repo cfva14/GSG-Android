@@ -8,12 +8,16 @@ import org.b12x.gfe.utilities.FileManagement
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
+import kotlin.io.path.fileSize
 
-class ReadLocalData(loci: String) {
+class LocalVersions(loci: String) {
 
-    var GSG_FOLDER: String = setLoci(loci)
-    val USER_DIRECTORY = System.getProperty("user.home")
-    var dataFolders = ArrayList<String>()
+    private val gsgFolder: String = setLoci(loci)
+    private val userDirectory = System.getProperty("user.home")
+    private val gsgDataLocation = File(userDirectory + gsgFolder)
+    private val headerLength = 50  // bytes
+
+    val dataFolders = ArrayList<Version>()
 
     /**
      * Sets the specific group of genes to be read.
@@ -21,7 +25,7 @@ class ReadLocalData(loci: String) {
      * @return a string of the path to the appropriate data folder
      */
     fun setLoci(lociGroup: String): String {
-        GSG_FOLDER = when (lociGroup) {
+        return when (lociGroup) {
             "HLA" -> "/Documents/GSG/GSGData/HLA/"
             "KIR" -> "/Documents/GSG/GSGData/KIR/"
             "ABO" -> "/Documents/GSG/GSGData/ABO/"
@@ -30,7 +34,6 @@ class ReadLocalData(loci: String) {
                 "/Documents/GSG/GSGData/"
             }
         }
-        return GSG_FOLDER
     }
 
     /**
@@ -38,23 +41,20 @@ class ReadLocalData(loci: String) {
      *
      * @return a list of folder names
      */
-    fun getSubFolderNames(): List<String> {
-        val gsgDataLocation = File(USER_DIRECTORY + GSG_FOLDER)
-        println(gsgDataLocation)
-
+    fun getVersionFolderNames(): ArrayList<String> {
+        var lociAvailable = ArrayList<String>()
         gsgDataLocation.listFiles().forEach {
-            if (it.exists() and it.isDirectory) {
-                dataFolders.add(it.name.toString())
+            if (it.exists() and it.isDirectory and folderContainsData(it)) {
+//                val version = Version(it.name.toString(), lociAvailable)
+//                dataFolders.add(version)
             }
         }
-
-        println(dataFolders)
-
-        return dataFolders
+        return lociAvailable
     }
 
+    // Move this
     fun returnOnlineVersionFile(): File {
-        val onlineVersionsFile = USER_DIRECTORY + GSG_FOLDER + "onlineVersions.txt"
+        val onlineVersionsFile = userDirectory + gsgFolder + "onlineVersions.txt"
         if (FileManagement.doesFileExist(onlineVersionsFile)) {
             return File(onlineVersionsFile)
         }
@@ -67,6 +67,17 @@ class ReadLocalData(loci: String) {
         return File(onlineVersionsFile)
     }
 
-//    private fun
+    // If any file contains data, the parent folder should be added to the list
+    private fun folderContainsData(folder: File) =
+        folder.listFiles().any { fileContainsData(it) }
 
+    // A file with only a header and no data is 50 bytes or fewer
+    // (usually 18, but this gives some leeway to change the header)
+    private fun fileContainsData(file: File) = file.length() > headerLength
+
+    // get the locus name out of the file name
+    private fun locusName(fileName: String) = fileName.split("_")[1]
+
+//     HlaLoci.values().find { it.fullName == locusName(fileName) }
+// GfeSearchComboBoxLocus.kt ln 26
 }

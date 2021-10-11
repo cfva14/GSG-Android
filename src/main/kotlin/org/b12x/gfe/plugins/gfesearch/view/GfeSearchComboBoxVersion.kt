@@ -1,7 +1,6 @@
 package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.beans.property.SimpleStringProperty
-import org.b12x.gfe.core.controller.ReadLocalData
 import org.b12x.gfe.core.controller.VersionList
 import org.b12x.gfe.utilities.preference.Prefs
 import tornadofx.*
