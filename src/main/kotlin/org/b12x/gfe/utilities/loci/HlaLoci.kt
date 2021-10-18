@@ -1,6 +1,6 @@
-package org.b12x.gfe.utilities.locus
+package org.b12x.gfe.utilities.loci
 
-enum class HlaLoci(val fullName: String, val exons: Int){
+enum class HlaLoci(override val fullName: String, override val exons: Int) : Loci {
     A("HLA-A", 8),
     B("HLA-B",7),
     C("HLA-C",8),

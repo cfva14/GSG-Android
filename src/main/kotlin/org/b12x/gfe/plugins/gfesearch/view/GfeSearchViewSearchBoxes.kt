@@ -6,7 +6,7 @@ import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
-import org.b12x.gfe.utilities.locus.HlaLoci
+import org.b12x.gfe.utilities.loci.HlaLoci
 import tornadofx.*
 
 class GfeSearchViewSearchBoxes(loci: HlaLoci) : View("Gfe Search Boxes") {

@@ -1,7 +1,7 @@
 package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.beans.property.SimpleStringProperty
-import org.b12x.gfe.utilities.locus.HlaLoci
+import org.b12x.gfe.utilities.loci.HlaLoci
 import org.b12x.gfe.utilities.preference.Prefs
 import tornadofx.*
 import kotlin.collections.ArrayList

@@ -8,7 +8,7 @@ import tornadofx.*
 class GfeSearchComboBoxVersion : View("My View") {
 
     private val versionList = VersionList()
-    private val versions = versionList.completeVersionSet.toList().sortedDescending()
+    private val versions = versionList.allVersionNames.sortedDescending()
 
 //    init {
 //        val readLocalData = ReadLocalData("HLA")

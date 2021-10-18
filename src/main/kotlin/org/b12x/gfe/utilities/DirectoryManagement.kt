@@ -39,9 +39,10 @@ class DirectoryManagement {
      *
      * @param loci which group of genes the folder is for
      * @param version which version of the database is the folder is for
+     * @return string of the created path
      */
     fun createDataFolder(loci: String, version: String): String {
-        val finalPath = LociLocations.determineLociFolder(loci) + version
+        val finalPath = LociLocations.setLociLocation(loci) + version
 
         // it won't overwrite the old directories or files
         createDirectories(Paths.get(finalPath))

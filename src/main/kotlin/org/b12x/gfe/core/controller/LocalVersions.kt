@@ -1,73 +1,39 @@
 package org.b12x.gfe.core.controller
 
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import org.b12x.gfe.core.model.DataDownload
-import org.b12x.gfe.core.model.parsers.ParserVersionData
-import org.b12x.gfe.utilities.FileManagement
+import org.b12x.gfe.utilities.LociLocations
+import org.b12x.gfe.utilities.loci.HlaLoci
+import org.b12x.gfe.utilities.loci.Loci
 import java.io.File
-import java.nio.file.Files
-import java.nio.file.Paths
-import kotlin.io.path.fileSize
+import kotlin.reflect.KClass
 
 class LocalVersions(loci: String) {
 
-    private val gsgFolder: String = setLoci(loci)
-    private val userDirectory = System.getProperty("user.home")
-    private val gsgDataLocation = File(userDirectory + gsgFolder)
+    private val gsgDataLocation = File(LociLocations.setLociLocation(loci))
+    private val lociGroup: Loci = LociLocations.setLociType(loci)
     private val headerLength = 50  // bytes
 
     val dataFolders = ArrayList<Version>()
 
-    /**
-     * Sets the specific group of genes to be read.
-     *
-     * @return a string of the path to the appropriate data folder
-     */
-    fun setLoci(lociGroup: String): String {
-        return when (lociGroup) {
-            "HLA" -> "/Documents/GSG/GSGData/HLA/"
-            "KIR" -> "/Documents/GSG/GSGData/KIR/"
-            "ABO" -> "/Documents/GSG/GSGData/ABO/"
-            "TEST" -> "/Documents/GSG/GSGData/TEST/"
-            else -> {
-                "/Documents/GSG/GSGData/"
-            }
-        }
-    }
 
     /**
      * Gets all subfolders for a specific set of genes in the user's GSG data directory.
+     * Hopefully these are all different version files, but the function does not screen for that.
      *
      * @return a list of folder names
      */
-    fun getVersionFolderNames(): ArrayList<String> {
+    fun getFolderNames(): ArrayList<String> {
         var lociAvailable = ArrayList<String>()
         gsgDataLocation.listFiles().forEach {
             if (it.exists() and it.isDirectory and folderContainsData(it)) {
-//                val version = Version(it.name.toString(), lociAvailable)
-//                dataFolders.add(version)
+                val version = Version(it.name.toString(), lociAvailable)
+                dataFolders.add(version)
             }
         }
         return lociAvailable
     }
 
-    // Move this
-    fun returnOnlineVersionFile(): File {
-        val onlineVersionsFile = userDirectory + gsgFolder + "onlineVersions.txt"
-        if (FileManagement.doesFileExist(onlineVersionsFile)) {
-            return File(onlineVersionsFile)
-        }
-        runBlocking {
-            launch {
-                val dataDownload = DataDownload("HLA")
-                dataDownload.makeRequest(dataType = "version", dataUrl = ParserVersionData.DB_VERSIONS)
-            }
-        }
-        return File(onlineVersionsFile)
-    }
-
-    // If any file contains data, the parent folder should be added to the list
+    // Check to see if there are any files in the folder with data in them
+    // It doesn't matter how many
     private fun folderContainsData(folder: File) =
         folder.listFiles().any { fileContainsData(it) }
 
@@ -75,8 +41,38 @@ class LocalVersions(loci: String) {
     // (usually 18, but this gives some leeway to change the header)
     private fun fileContainsData(file: File) = file.length() > headerLength
 
+
+
     // get the locus name out of the file name
     private fun locusName(fileName: String) = fileName.split("_")[1]
+
+
+//    fun returnOnlineVersionFile(): File {
+//        val onlineVersionsFile = gsgDataLocation + "onlineVersions.txt"
+//        if (FileManagement.doesFileExist(onlineVersionsFile)) {
+//            return File(onlineVersionsFile)
+//        }
+//        runBlocking {
+//            launch {
+//                val dataDownload = DataDownload("HLA")
+//                dataDownload.makeRequest(dataType = "version", dataUrl = ParserVersionData.DB_VERSIONS)
+//            }
+//        }
+//        return File(onlineVersionsFile)
+//    }
+
+//    fun createVersion(): Version {
+//        val lociAvailable: ArrayList<Loci> // <HlaLoci>
+//        if (folderContainsData(gsgDataLocation)) {
+//
+//            lociGroup.find { it.fullName == locusName(it) } ?: HlaLoci.A
+//        }
+//        return Version()
+//    }
+
+    // Return the
+    private fun findHlaLocus(file: File): HlaLoci =
+        HlaLoci.values().find { it.fullName == locusName(file.name) } ?: HlaLoci.A
 
 //     HlaLoci.values().find { it.fullName == locusName(fileName) }
 // GfeSearchComboBoxLocus.kt ln 26
