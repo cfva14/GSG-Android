@@ -3,8 +3,12 @@ package org.b12x.gfe.plugins.gfesearch.controller
 import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
 
-data class GfeData (var checkArray: ArrayList<CheckBox> = ArrayList(),
-                    var textArray: ArrayList<TextField> = ArrayList(),
-                    var regex: String = "",
-                    var textFormat: String = "CSV",
-                    val writeToFile: Boolean = false)
+data class GfeData(
+    val loci: String = "HLA",
+    val locus: String = "HLA-A",
+    val checkArray: ArrayList<CheckBox> = ArrayList(),
+    val textArray: ArrayList<TextField> = ArrayList(),
+    val regex: String = "",
+    val textFormat: String = "CSV",
+    val writeToFile: Boolean = false
+)

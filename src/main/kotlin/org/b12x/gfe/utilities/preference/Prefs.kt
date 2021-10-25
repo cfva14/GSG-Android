@@ -12,13 +12,31 @@ object Prefs {
         prefs.removeNode()
     }
 
-    var currentGfeSearchLocus: String by Delegates.observable(
+    var currentGfeSearchLociGroup: String by Delegates.observable(
         prefs.get(
-            "currentGfeSearchLocus",
-            "HLA-A"
+            "currentGfeSearchLociGroup",
+            "HLA"
         )
     ) { _, _, new ->
-        prefs.put("currentGfeSearchLocus", new)
+        prefs.put("currentGfeSearchLociGroup", new)
+    }
+
+    var currentGfeSearchLocusHla: String by Delegates.observable(
+        prefs.get(
+            "currentGfeSearchLocusHla",
+            "A"
+        )
+    ) { _, _, new ->
+        prefs.put("currentGfeSearchLocusHla", new)
+    }
+
+    var currentGfeSearchLocusKir: String by Delegates.observable(
+        prefs.get(
+            "currentGfeSearchLocusKir",
+            "KIR2DL1"
+        )
+    ) { _, _, new ->
+        prefs.put("currentGfeSearchLocusKir", new)
     }
 
     var currentGfeSearchVersion: String by Delegates.observable(

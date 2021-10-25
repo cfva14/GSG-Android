@@ -3,9 +3,9 @@ package org.b12x.gfe.core.model.parsers
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.Parser
 import okhttp3.Response
-import org.b12x.gfe.core.model.DataDownload
 import org.b12x.gfe.utilities.FileManagement
-import org.b12x.gfe.utilities.LociLocations
+import org.b12x.gfe.utilities.Loci
+import org.b12x.gfe.utilities.setLociLocation
 import java.io.File
 
 object ParserVersionData {
@@ -40,7 +40,7 @@ object ParserVersionData {
      */
     private fun addVersion(loci: String, version: String) {
         val versionFileLocation = FileManagement.createFile(
-            LociLocations.setLociLocation(loci),
+            setLociLocation(loci),
             "onlineVersions",
             "txt")
         if(!File(versionFileLocation).readLines().contains(version)) {

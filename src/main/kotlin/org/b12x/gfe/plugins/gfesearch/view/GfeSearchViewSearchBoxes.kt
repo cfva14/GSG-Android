@@ -6,10 +6,10 @@ import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
-import org.b12x.gfe.utilities.loci.HlaLoci
+import org.b12x.gfe.utilities.Loci
 import tornadofx.*
 
-class GfeSearchViewSearchBoxes(loci: HlaLoci) : View("Gfe Search Boxes") {
+class GfeSearchViewSearchBoxes(loci: Loci) : View("Gfe Search Boxes") {
 
     val selectAllCheckBox = checkbox {
         style { padding = box(10.px, 10.px, 0.px, 10.px) }
@@ -22,7 +22,7 @@ class GfeSearchViewSearchBoxes(loci: HlaLoci) : View("Gfe Search Boxes") {
         }
     }
 
-    val numberOfSearchBoxes = loci.exons
+    val numberOfSearchBoxes = 8 // loci.exons
 
     val completedSearchBox = completedSearchBoxGenerator(numberOfSearchBoxes)
 

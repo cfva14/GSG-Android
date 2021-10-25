@@ -17,6 +17,17 @@ class DirectoryManagement {
     }
 
     /**
+     * Checks to see if there's anything in the folder.
+     *
+     * @param pathInQuestion the path to the folder to check
+     * @return if the folder contains anything.
+     */
+    fun doesFolderContainFiles(pathInQuestion: String): Boolean {
+        val files = File(pathInQuestion).list()
+        return files.isNotEmpty()
+    }
+
+    /**
      * Creates a new folder.
      *
      * @param pathToCreate the path to the folder
@@ -42,7 +53,7 @@ class DirectoryManagement {
      * @return string of the created path
      */
     fun createDataFolder(loci: String, version: String): String {
-        val finalPath = LociLocations.setLociLocation(loci) + version
+        val finalPath = setLociLocation(loci) + version
 
         // it won't overwrite the old directories or files
         createDirectories(Paths.get(finalPath))
