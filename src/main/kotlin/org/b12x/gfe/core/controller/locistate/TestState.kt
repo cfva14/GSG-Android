@@ -1,8 +1,8 @@
 package org.b12x.gfe.core.controller.locistate
 
-class KirState: LociState {
+class TestState: LociState {
 
-    override fun getIdentity(ctx: LociStateContext) = "KIR"
+    override fun getIdentity(ctx: LociStateContext) = "TEST"
 
     override fun updateVersions(ctx: LociStateContext) {
         TODO("Not yet implemented")

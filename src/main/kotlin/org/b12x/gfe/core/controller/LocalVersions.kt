@@ -1,5 +1,10 @@
 package org.b12x.gfe.core.controller
 
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import org.b12x.gfe.core.model.DataDownload
+import org.b12x.gfe.core.model.parsers.ParserVersionData
+import org.b12x.gfe.utilities.FileManagement
 import org.b12x.gfe.utilities.setLociLocation
 import java.io.File
 import java.nio.file.Paths
@@ -72,17 +77,18 @@ class LocalVersions(loci: String) {
     private fun locusName(file: File) = file.toString().split("_")[1]
 
 
-//    fun returnOnlineVersionFile(): File {
-//        val onlineVersionsFile = gsgDataLocation + "onlineVersions.txt"
-//        if (FileManagement.doesFileExist(onlineVersionsFile)) {
-//            return File(onlineVersionsFile)
-//        }
-//        runBlocking {
-//            launch {
-//                val dataDownload = DataDownload("HLA")
-//                dataDownload.makeRequest(dataType = "version", dataUrl = ParserVersionData.DB_VERSIONS)
-//            }
-//        }
-//        return File(onlineVersionsFile)
-//    }
+    fun returnOnlineVersionFile(): File {
+        val onlineVersionsFile = gsgDataLocation + "onlineVersions.txt"
+        if (FileManagement.doesFileExist(onlineVersionsFile)) {
+            return File(onlineVersionsFile)
+        }
+        runBlocking {
+            launch {
+                val dataDownload = DataDownload("HLA")
+                dataDownload.makeRequest(dataType = "version", dataUrl = ParserVersionData.DB_VERSIONS)
+            }
+        }
+
+        return File(onlineVersionsFile)
+    }
 }

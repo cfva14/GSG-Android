@@ -1,7 +1,7 @@
 package org.b12x.gfe.core.controller
 
-class VersionList {
-    private val localVersions = LocalVersions("HLA")
+class VersionList(loci: String) {
+    private val localVersions = LocalVersions(loci)
     private val onlineVersionNames = getOnlineVersionList()
     val allVersionNames = combineVersionLists()
     val availableVersions = ArrayList<String>()

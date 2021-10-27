@@ -1,19 +1,43 @@
 package org.b12x.gfe.core.controller.locistate
 
+import org.b12x.gfe.utilities.preference.Prefs
+
 class LociStateContext {
     private var currentState: LociState? = null
 
     init {
-        currentState = HlaState()
+        currentState = when (Prefs.currentGfeSearchLociGroup) {
+            "HLA" -> HlaState()
+            "KIR" -> KirState()
+            "TEST" -> TestState()
+            else -> {
+                HlaState()
+            }
+        }
     }
 
-    fun setState(state: LociState) {
+    fun setState(loci: String) {
+        currentState = when (loci) {
+            "HLA" -> HlaState()
+            "KIR" -> KirState()
+            "TEST" -> TestState()
+            else -> {
+                HlaState()
+            }
+        }
         println("Current State: ${currentState.toString()}")
-        currentState = state
     }
 
     fun updateVersions() {
         return currentState!!.updateVersions(this)
+    }
+
+    fun updateLocus() {
+        return currentState!!.updateLocus(this)
+    }
+
+    fun getIdentity(): String {
+        return currentState!!.getIdentity(this)
     }
 }
 

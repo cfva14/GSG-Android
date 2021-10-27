@@ -1,11 +1,9 @@
 package org.b12x.gfe.core.controller.locistate
 
 interface LociState {
+    fun getIdentity(ctx: LociStateContext): String
     fun updateVersions(ctx: LociStateContext)
     fun updateLocus(ctx: LociStateContext)
-    // ctx: the implemented context.
-
-//    fun update
 }
 
 /*

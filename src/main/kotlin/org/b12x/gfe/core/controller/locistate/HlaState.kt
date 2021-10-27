@@ -1,8 +1,16 @@
 package org.b12x.gfe.core.controller.locistate
 
+import org.b12x.gfe.plugins.gfesearch.view.GfeSearchComboBoxVersion
+import org.b12x.gfe.plugins.gfesearch.view.GfeSearchLayoutData
+import org.b12x.gfe.plugins.gfesearch.view.GfeSearchViewParent
+import tornadofx.*
+
 class HlaState: LociState {
+
+    override fun getIdentity(ctx: LociStateContext) = "HLA"
+
     override fun updateVersions(ctx: LociStateContext) {
-        TODO("Not yet implemented")
+        find(GfeSearchComboBoxVersion::class).versions
     }
 
     override fun updateLocus(ctx: LociStateContext) {
