@@ -114,7 +114,7 @@ sealed class Loci {
             val fullName: String = "KIR3DP1",
             val exons: Int = 5,
             val skippedExons: List<Int> = listOf()
-        ) : KIR() // 5 Exons (Ask Jill about Exon 2)
+        ) : KIR() // 5 Exons (Optional Exon 2)
 
         data class KIR2DP1(
             val fullName: String = "KIR2DP1",

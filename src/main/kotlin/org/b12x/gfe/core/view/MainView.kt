@@ -36,6 +36,12 @@ class MainView : View("GFE Search Generator") {
                 button("Button 2")
             }
         }
+        tab("Information") {
+            vbox() {
+                button("Button 1")
+                button("Button 2")
+            }
+        }
         tab("Debug") {
             add(debugView::class)
         }

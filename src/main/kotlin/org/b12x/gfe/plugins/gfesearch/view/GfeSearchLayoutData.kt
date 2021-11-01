@@ -18,7 +18,7 @@ class GfeSearchLayoutData {
         var selectedLociGroup by property(SimpleStringProperty(Prefs.currentGfeSearchLociGroup))
         var gfeSearchLociStateContext = LociStateContext()
         var selectedLocus = getLocusType(selectedLociGroup.toString()) // HlaLoci.values().find { it.fullName == Prefs.currentGfeSearchLocusHla } ?: AllLoci.HlaLoci.A
-        var selectedVersion by property(SimpleStringProperty(Prefs.currentGfeSearchVersion))
+        var selectedVersion by property(SimpleStringProperty(Prefs.currentGfeSearchVersionHla))
 
         fun resetArraysHard() {
             checkList = ArrayList()

@@ -10,7 +10,7 @@ class GfeSearchViewBottomHalf : View() {
 
     override val root = borderpane {
         top = hbox {
-            add(gfeSearchComboBoxVersion.root)
+
         }
 
         center = vbox {}

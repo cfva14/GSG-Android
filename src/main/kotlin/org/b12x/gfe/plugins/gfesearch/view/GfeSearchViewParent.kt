@@ -7,6 +7,7 @@ class GfeSearchViewParent : View("GFE SEARCH") {
 //    private val lociOptions = FXCollections.observableArrayList("HLA", "KIR")
 
     private val locusComboBox = GfeSearchComboBoxLocus()
+    private val versionComboBox = GfeSearchComboBoxVersion()
     private val lociComboBox = GfeSearchComboBoxLoci("GfeSearch")
     var gfeSearchViewSearchBoxes = GfeSearchViewSearchBoxes(GfeSearchLayoutData.selectedLocus)
     private val gfeSearchViewBottomHalf = GfeSearchViewBottomHalf()
@@ -14,6 +15,7 @@ class GfeSearchViewParent : View("GFE SEARCH") {
     override val root = borderpane {
         top = hbox {
             add(lociComboBox.root)
+            add(versionComboBox.root)
             add(locusComboBox.root)
 
             style {

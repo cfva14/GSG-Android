@@ -16,8 +16,7 @@ class HlaState: LociState {
         comboBoxVersion.versionList = VersionList("HLA")
         comboBoxVersion.versions = observableListOf(comboBoxVersion.versionList.allVersionNames.sortedDescending())
         comboBoxVersion.comboBoxVersion.items = comboBoxVersion.versions
-        comboBoxVersion.comboBoxVersion.value = comboBoxVersion.versions[0]
-
+        comboBoxVersion.comboBoxVersion.value = Prefs.currentGfeSearchVersionHla
     }
 
     override fun updateLocus(ctx: LociStateContext) {

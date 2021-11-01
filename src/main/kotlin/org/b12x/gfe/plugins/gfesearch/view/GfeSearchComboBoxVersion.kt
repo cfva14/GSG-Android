@@ -14,13 +14,14 @@ class GfeSearchComboBoxVersion : View("My View"), ComboBoxVersion {
     override var versionList: VersionList = VersionList(loci.toString())
     override var versions: ObservableList<String> = observableListOf(versionList.allVersionNames.sortedDescending())
 
-    override var currentVersion by property(
+    override var currentVersion: SimpleStringProperty by property(
         GfeSearchLayoutData.selectedVersion
     )
 
     override val comboBoxVersion = choicebox<String>(currentVersion, versions) {
         action {
-            Prefs.currentGfeSearchVersion = this.value
+//            Prefs.currentGfeSearchVersion = this.value
+//            GfeSearchLayoutData.selectedVersion = SimpleStringProperty(this.value)
 ////                GfeSearchLayoutData.resetArraysHard()
 ////                swapSearchBoxes(GfeLayoutData.selectedLocus)
         }
