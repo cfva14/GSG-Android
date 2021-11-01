@@ -1,24 +1,22 @@
 package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.beans.property.SimpleStringProperty
+import org.b12x.gfe.core.view.ComboBoxLocus
 import org.b12x.gfe.utilities.Loci
-import org.b12x.gfe.utilities.Loci.HLA
 import org.b12x.gfe.utilities.getHlaLoci
-import org.b12x.gfe.utilities.preference.Prefs
 import tornadofx.*
-import kotlin.collections.ArrayList
 
-class GfeSearchComboBoxLocus : View() {
+class GfeSearchComboBoxLocus : View(), ComboBoxLocus {
 
     //    private val lociOptions = FXCollections.observableArrayList("HLA", "KIR")
 
-    private var lociNames : List<String> = getHlaLoci().mapNotNull { it.toString() }
+    override var locusNames : List<String> = getHlaLoci().mapNotNull { it.toString() }
 
-    var currentLocus by property(
+    override var currentLocus: SimpleStringProperty by property(
         SimpleStringProperty(GfeSearchLayoutData.selectedLocus.toString())
     )
 
-    var comboBoxLocus = choicebox<String>(currentLocus, lociNames) {
+    override var comboBoxLocus = choicebox<String>(currentLocus, locusNames) {
         action {
 //            GfeSearchLayoutData.selectedLocus = HlaLoci.values().find { it.fullName == this.value } ?: HlaLoci.A
 //            Prefs.currentGfeSearchLocus = this.value

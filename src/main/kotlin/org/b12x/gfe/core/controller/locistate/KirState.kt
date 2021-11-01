@@ -1,11 +1,19 @@
 package org.b12x.gfe.core.controller.locistate
 
+import org.b12x.gfe.core.controller.version.VersionList
+import org.b12x.gfe.core.view.ComboBoxVersion
+import tornadofx.observableListOf
+
 class KirState: LociState {
 
     override fun getIdentity(ctx: LociStateContext) = "KIR"
 
-    override fun updateVersions(ctx: LociStateContext) {
-        TODO("Not yet implemented")
+    override fun updateVersions(ctx: LociStateContext, comboBoxVersion: ComboBoxVersion) {
+        comboBoxVersion.versionList = VersionList("KIR")
+        comboBoxVersion.versions = observableListOf(comboBoxVersion.versionList.allVersionNames.sortedDescending())
+        comboBoxVersion.comboBoxVersion.items = comboBoxVersion.versions
+        comboBoxVersion.comboBoxVersion.value = comboBoxVersion.versions[0]
+
     }
 
     override fun updateLocus(ctx: LociStateContext) {

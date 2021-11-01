@@ -1,10 +1,12 @@
 package org.b12x.gfe.core.controller.locistate
 
+import org.b12x.gfe.core.view.ComboBoxVersion
+
 class TestState: LociState {
 
     override fun getIdentity(ctx: LociStateContext) = "TEST"
 
-    override fun updateVersions(ctx: LociStateContext) {
+    override fun updateVersions(ctx: LociStateContext, comboBoxVersion: ComboBoxVersion) {
         TODO("Not yet implemented")
     }
 

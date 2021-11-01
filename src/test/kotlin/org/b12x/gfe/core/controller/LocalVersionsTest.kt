@@ -1,5 +1,6 @@
 package org.b12x.gfe.core.controller
 
+import org.b12x.gfe.core.controller.version.LocalVersions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.io.File

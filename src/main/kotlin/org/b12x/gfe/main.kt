@@ -1,7 +1,5 @@
 package org.b12x.gfe
 
-import org.b12x.gfe.core.controller.LocalVersions
-import org.b12x.gfe.utilities.setLociLocation
 import tornadofx.launch
 import java.io.File
 

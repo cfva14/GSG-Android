@@ -1,16 +1,23 @@
 package org.b12x.gfe.core.controller.locistate
 
+import org.b12x.gfe.core.controller.version.VersionList
+import org.b12x.gfe.core.view.ComboBoxVersion
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchComboBoxVersion
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchLayoutData
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchViewParent
+import org.b12x.gfe.utilities.preference.Prefs
 import tornadofx.*
 
 class HlaState: LociState {
 
     override fun getIdentity(ctx: LociStateContext) = "HLA"
 
-    override fun updateVersions(ctx: LociStateContext) {
-        find(GfeSearchComboBoxVersion::class).versions
+    override fun updateVersions(ctx: LociStateContext, comboBoxVersion: ComboBoxVersion) {
+        comboBoxVersion.versionList = VersionList("HLA")
+        comboBoxVersion.versions = observableListOf(comboBoxVersion.versionList.allVersionNames.sortedDescending())
+        comboBoxVersion.comboBoxVersion.items = comboBoxVersion.versions
+        comboBoxVersion.comboBoxVersion.value = comboBoxVersion.versions[0]
+
     }
 
     override fun updateLocus(ctx: LociStateContext) {
@@ -18,13 +25,13 @@ class HlaState: LociState {
     }
 }
 
-/*
-class SealedCalc: CalculatorState {
-
-    override fun add(ctx: Calculator, int1: Int, int2: Int): Int =
-        CalculatorSealed.Add(int1, int2).apply(int1, int2)
-
-    override fun multiply(ctx: Calculator, int1: Int, int2: Int): Int =
-        CalculatorSealed.Multiply(int1, int2).apply(int1, int2)
-}
-*/
+//var test = when (whichTab) {
+//    "GfeSearch" -> Prefs.currentGfeSearchLociGroup = this.value
+//            "NameSearch" -> Prefs.currentNameSearchLociGroup = this.value
+//            "Comparison" -> Prefs.currentComparisonLociGroup = this.value
+//            "Options" -> Prefs.currentOptionsLociGroup = this.value
+//            "Debug" -> Prefs.currentDebugLociGroup = this.value
+//    else -> {
+//        Prefs.currentGfeSearchLociGroup = this.value
+//    }
+//}

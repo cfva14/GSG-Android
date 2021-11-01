@@ -1,4 +1,4 @@
-package org.b12x.gfe.core.controller
+package org.b12x.gfe.core.controller.version
 
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
