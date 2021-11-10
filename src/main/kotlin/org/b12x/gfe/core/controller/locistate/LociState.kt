@@ -1,11 +1,14 @@
 package org.b12x.gfe.core.controller.locistate
 
+import org.b12x.gfe.core.controller.loci.LociEnum
+import org.b12x.gfe.core.view.ComboBoxLocus
 import org.b12x.gfe.core.view.ComboBoxVersion
 
 interface LociState {
+    var tab: String
     fun getIdentity(ctx: LociStateContext): String
     fun updateVersions(ctx: LociStateContext, comboBoxVersion: ComboBoxVersion)
-    fun updateLocus(ctx: LociStateContext)
+    fun updateLocus(ctx: LociStateContext, comboBoxLocus: ComboBoxLocus)
 }
 
 /*

@@ -6,7 +6,6 @@ import javafx.scene.control.TextField
 import org.b12x.gfe.core.controller.locistate.LociStateContext
 import org.b12x.gfe.utilities.getLocusType
 //import org.b12x.gfe.utilities.LociLocations.setLociType
-import org.b12x.gfe.utilities.setLociType
 import org.b12x.gfe.utilities.preference.Prefs
 import tornadofx.property
 

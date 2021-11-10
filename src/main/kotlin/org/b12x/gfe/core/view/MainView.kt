@@ -24,6 +24,9 @@ class MainView : View("GFE Search Generator") {
         tab("Allele Name Search") {
 //            add(alleleSearchView::class)
         }
+        tab("Comparison Tool") {
+//            add(comparisonView::class)
+        }
         tab("Allele Calling Tool") {
 //            add(alleleCallView::class)
         }

@@ -1,10 +1,14 @@
 package org.b12x.gfe.core.controller.locistate
 
+import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.core.controller.version.VersionList
+import org.b12x.gfe.core.view.ComboBoxLocus
 import org.b12x.gfe.core.view.ComboBoxVersion
 import tornadofx.observableListOf
 
 class KirState: LociState {
+
+    override var tab = "GFE"
 
     override fun getIdentity(ctx: LociStateContext) = "KIR"
 
@@ -16,8 +20,8 @@ class KirState: LociState {
 
     }
 
-    override fun updateLocus(ctx: LociStateContext) {
-        TODO("Not yet implemented")
+    override fun updateLocus(ctx: LociStateContext, comboBoxLocus: ComboBoxLocus) {
+        // TODO("Not yet implemented")
     }
 }
 

@@ -1,6 +1,8 @@
 package org.b12x.gfe.core.controller.locistate
 
+import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.core.controller.version.VersionList
+import org.b12x.gfe.core.view.ComboBoxLocus
 import org.b12x.gfe.core.view.ComboBoxVersion
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchComboBoxVersion
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchLayoutData
@@ -9,6 +11,8 @@ import org.b12x.gfe.utilities.preference.Prefs
 import tornadofx.*
 
 class HlaState: LociState {
+
+    override var tab = "GFE"
 
     override fun getIdentity(ctx: LociStateContext) = "HLA"
 
@@ -19,8 +23,8 @@ class HlaState: LociState {
         comboBoxVersion.comboBoxVersion.value = Prefs.currentGfeSearchVersionHla
     }
 
-    override fun updateLocus(ctx: LociStateContext) {
-        TODO("Not yet implemented")
+    override fun updateLocus(ctx: LociStateContext, comboBoxLocus: ComboBoxLocus) {
+//        TODO("Not yet implemented")
     }
 }
 

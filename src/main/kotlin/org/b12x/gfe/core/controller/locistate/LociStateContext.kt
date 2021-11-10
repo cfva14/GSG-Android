@@ -1,5 +1,6 @@
 package org.b12x.gfe.core.controller.locistate
 
+import org.b12x.gfe.core.view.ComboBoxLocus
 import org.b12x.gfe.core.view.ComboBoxVersion
 import org.b12x.gfe.utilities.preference.Prefs
 
@@ -29,12 +30,16 @@ class LociStateContext {
         println("Current State: ${currentState.toString()}")
     }
 
+    fun setTab(currentTab: String) {
+        currentState!!.tab = currentTab
+    }
+
     fun updateVersions(comboBoxVersion: ComboBoxVersion) {
         return currentState!!.updateVersions(this, comboBoxVersion)
     }
 
-    fun updateLocus() {
-        return currentState!!.updateLocus(this)
+    fun updateLocus(comboBoxLocus: ComboBoxLocus) {
+        return currentState!!.updateLocus(this, comboBoxLocus)
     }
 
     fun getIdentity(): String {

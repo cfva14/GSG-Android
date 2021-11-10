@@ -13,7 +13,7 @@ import tornadofx.*
 
 class GfeSearchComboBoxLoci(whichTab: String) : View("Available Loci"), ComboBoxLoci {
 
-    val loci: ObservableList<String> = observableListOf("HLA", "KIR", "TEST")
+    val loci: ObservableList<String> = observableListOf("HLA", "KIR")
     var gfeSearchLociStateContext = GfeSearchLayoutData.gfeSearchLociStateContext
 
     override var currentLoci: SimpleStringProperty by property(GfeSearchLayoutData.selectedLociGroup)
@@ -22,8 +22,9 @@ class GfeSearchComboBoxLoci(whichTab: String) : View("Available Loci"), ComboBox
         action {
             Prefs.currentGfeSearchLociGroup = this.value
             gfeSearchLociStateContext.setState(this.value)
+            gfeSearchLociStateContext.setTab("GFE")
             gfeSearchLociStateContext.updateVersions(find(GfeSearchComboBoxVersion::class))
-
+            gfeSearchLociStateContext.updateLocus(find(GfeSearchComboBoxLocus::class))
         }
     }
 

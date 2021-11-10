@@ -1,8 +1,11 @@
 package org.b12x.gfe.core.controller.locistate
 
+import org.b12x.gfe.core.view.ComboBoxLocus
 import org.b12x.gfe.core.view.ComboBoxVersion
 
 class TestState: LociState {
+
+    override var tab = "GFE"
 
     override fun getIdentity(ctx: LociStateContext) = "TEST"
 
@@ -10,7 +13,7 @@ class TestState: LociState {
         TODO("Not yet implemented")
     }
 
-    override fun updateLocus(ctx: LociStateContext) {
+    override fun updateLocus(ctx: LociStateContext, comboBoxLocus: ComboBoxLocus) {
         TODO("Not yet implemented")
     }
 }
