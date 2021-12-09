@@ -4,15 +4,16 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.b12x.gfe.core.model.DataDownload
 import org.b12x.gfe.core.model.parsers.ParserVersionData
+import org.b12x.gfe.utilities.DirectoryManagement
 import org.b12x.gfe.utilities.FileManagement
-import org.b12x.gfe.utilities.setLociLocation
 import java.io.File
 import java.nio.file.Paths
 import kotlin.io.path.exists
 
 class LocalVersions(loci: String) {
 
-    private val gsgDataLocation = setLociLocation(loci) // setLociLocation(loci)
+    private val directoryManagement = DirectoryManagement()
+    private val gsgDataLocation = directoryManagement.setLociLocation(loci)
     private val headerLength = 50  // bytes
 
     val versionsList = createVersions()

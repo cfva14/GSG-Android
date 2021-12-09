@@ -4,11 +4,12 @@ import com.beust.klaxon.JsonArray
 import com.beust.klaxon.Parser
 import okhttp3.Response
 import org.b12x.gfe.utilities.FileManagement
-import org.b12x.gfe.utilities.Loci
-import org.b12x.gfe.utilities.setLociLocation
+import org.b12x.gfe.utilities.DirectoryManagement
 import java.io.File
 
 object ParserVersionData {
+
+    private val directoryManagement = DirectoryManagement()
 
     // HLA Version API
     const val DB_VERSIONS = "http://gfe.b12x.org/v1/imgt-versions"
@@ -40,7 +41,7 @@ object ParserVersionData {
      */
     private fun addVersion(loci: String, version: String) {
         val versionFileLocation = FileManagement.createFile(
-            setLociLocation(loci),
+            directoryManagement.setLociLocation(loci),
             "onlineVersions",
             "txt")
         if(!File(versionFileLocation).readLines().contains(version)) {

@@ -3,7 +3,7 @@ package org.b12x.gfe.core.controller.version
 class VersionList(loci: String) {
     private val localVersions = LocalVersions(loci)
     private val onlineVersionNames = getOnlineVersionList()
-    var allVersionNames = combineVersionLists()
+    var allVersionNames = combineVersionLists().sortedDescending()
     val availableVersions = ArrayList<String>()
 
     private fun getOnlineVersionList(): ArrayList<String> {

@@ -1,8 +1,8 @@
 package org.b12x.gfe.plugins.optionstab.view
 
+import org.b12x.gfe.core.controller.PrefsCore
 import org.b12x.gfe.core.model.DataDownload
 import org.b12x.gfe.core.model.parsers.ParserVersionData
-import org.b12x.gfe.utilities.preference.Prefs
 import tornadofx.*
 
 class OptionsView : View("My View") {
@@ -11,7 +11,7 @@ class OptionsView : View("My View") {
     override val root = vbox {
         button ("Reset Preferences"){
             action {
-                Prefs.nuclearOption()
+                PrefsCore.nuclearOption()
             }
         }
 

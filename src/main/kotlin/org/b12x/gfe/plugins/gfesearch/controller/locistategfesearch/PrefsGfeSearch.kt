@@ -1,16 +1,13 @@
-package org.b12x.gfe.utilities.preference
+package org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch
 
 import org.b12x.gfe.GSG
+import org.b12x.gfe.core.controller.PrefsCore
 import java.util.prefs.Preferences
 import kotlin.properties.Delegates
 
-object Prefs {
+object PrefsGfeSearch {
 
-    private val prefs: Preferences = Preferences.userNodeForPackage(GSG::class.java)
-
-    fun nuclearOption() {
-        prefs.removeNode()
-    }
+    private val prefs: Preferences = PrefsCore.prefs
 
     var currentGfeSearchLociGroup: String by Delegates.observable(
         prefs.get(
@@ -51,7 +48,7 @@ object Prefs {
     var currentGfeSearchVersionKir: String by Delegates.observable(
         prefs.get(
             "currentGfeSearchVersionKir",
-            ""
+            "2.7.0"
         )
     ) { _, _, new ->
         prefs.put("currentGfeSearchVersionKir", new)

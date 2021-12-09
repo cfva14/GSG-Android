@@ -17,5 +17,5 @@ enum class HlaLoci(override val fullName: String, override val exons: Int) : Loc
         return fullName // working!
     }
 
-    val allEnumLocus = enumValues<HlaLoci>()
+    //val allEnumLocus = enumValues<HlaLoci>()
 }

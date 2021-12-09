@@ -2,29 +2,30 @@ package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.beans.property.SimpleStringProperty
 import javafx.collections.ObservableList
-import org.b12x.gfe.core.controller.locistate.LociStateContext
+import org.b12x.gfe.core.controller.loci.HlaLoci
+import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.core.view.ComboBoxLoci
-import org.b12x.gfe.plugins.gfesearch.view.GfeSearchLayoutData
-import org.b12x.gfe.plugins.gfesearch.view.GfeSearchViewParent
-import org.b12x.gfe.plugins.gfesearch.view.GfeSearchViewSearchBoxes
-import org.b12x.gfe.utilities.Loci
-import org.b12x.gfe.utilities.preference.Prefs
+import org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch.PrefsGfeSearch
+import org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch.VersionEventBus
+import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxesHla
 import tornadofx.*
 
 class GfeSearchComboBoxLoci(whichTab: String) : View("Available Loci"), ComboBoxLoci {
 
     val loci: ObservableList<String> = observableListOf("HLA", "KIR")
-    var gfeSearchLociStateContext = GfeSearchLayoutData.gfeSearchLociStateContext
+    var gfeSearchLociStateContext = GfeSearchLayoutData.lociStateContextGfeSearch
 
     override var currentLoci: SimpleStringProperty by property(GfeSearchLayoutData.selectedLociGroup)
 
     override val comboBoxLoci = choicebox<String>(currentLoci, loci) {
         action {
-            Prefs.currentGfeSearchLociGroup = this.value
+            PrefsGfeSearch.currentGfeSearchLociGroup = this.value
             gfeSearchLociStateContext.setState(this.value)
-            gfeSearchLociStateContext.setTab("GFE")
-            gfeSearchLociStateContext.updateVersions(find(GfeSearchComboBoxVersion::class))
-            gfeSearchLociStateContext.updateLocus(find(GfeSearchComboBoxLocus::class))
+            println(find(GfeSearchComboBoxVersion::class).comboBoxVersion)
+            gfeSearchLociStateContext.updateVersions(find(GfeSearchComboBoxVersion::class).versions)
+
+            fire(VersionEventBus)
+            gfeSearchLociStateContext.updateLocus(find(GfeSearchComboBoxLocus::class), HlaLoci.A)
         }
     }
 
@@ -34,9 +35,9 @@ class GfeSearchComboBoxLoci(whichTab: String) : View("Available Loci"), ComboBox
 
     // swaps the old set of search boxes out, and puts in the new set
     // based on the locus HlaLoci passed to it.
-    override fun swapSearchBoxes(loci: Loci) {
-        find(GfeSearchViewParent::class).gfeSearchViewSearchBoxes.removeFromParent()
-        find(GfeSearchViewParent::class).gfeSearchViewSearchBoxes = GfeSearchViewSearchBoxes(loci)
-        find(GfeSearchViewParent::class).root.center.add(find(GfeSearchViewParent::class).gfeSearchViewSearchBoxes)
+    override fun swapSearchBoxes(loci: LociEnum) {
+//        find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesHla.removeFromParent()
+//        find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesHla = GfeSearchViewSearchBoxesHla(loci)
+//        find(GfeSearchViewParent::class).root.center.add(find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesHla)
     }
 }

@@ -1,13 +1,14 @@
 package org.b12x.gfe.plugins.gfesearch.view
 
+import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxesHla
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-class GfeSearchViewSearchBoxesTest {
-    val gfeSearchViewSearchBoxes = GfeSearchViewSearchBoxes()
+class GfeSearchViewSearchBoxesHlaTest {
+    val gfeSearchViewSearchBoxesHla = GfeSearchViewSearchBoxesHla()
 //    val dataClass = gfeSearchBoxes.currentSearchData
     val numberOfSearchBoxes = 3
 

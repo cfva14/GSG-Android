@@ -3,10 +3,10 @@ package org.b12x.gfe.plugins.gfesearch.view
 import javafx.beans.property.SimpleStringProperty
 import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
-import org.b12x.gfe.core.controller.locistate.LociStateContext
-import org.b12x.gfe.utilities.getLocusType
-//import org.b12x.gfe.utilities.LociLocations.setLociType
-import org.b12x.gfe.utilities.preference.Prefs
+import org.b12x.gfe.core.controller.loci.HlaLoci
+import org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch.LociStateContextGfeSearch
+//import org.b12x.gfe.utilities.getLocusType
+import org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch.PrefsGfeSearch
 import tornadofx.property
 
 class GfeSearchLayoutData {
@@ -14,10 +14,10 @@ class GfeSearchLayoutData {
     companion object {
         var checkList: MutableList<CheckBox> = ArrayList()
         var textList: MutableList<TextField> = ArrayList()
-        var selectedLociGroup by property(SimpleStringProperty(Prefs.currentGfeSearchLociGroup))
-        var gfeSearchLociStateContext = LociStateContext()
-        var selectedLocus = getLocusType(selectedLociGroup.toString()) // HlaLoci.values().find { it.fullName == Prefs.currentGfeSearchLocusHla } ?: AllLoci.HlaLoci.A
-        var selectedVersion by property(SimpleStringProperty(Prefs.currentGfeSearchVersionHla))
+        var selectedLociGroup by property(SimpleStringProperty(PrefsGfeSearch.currentGfeSearchLociGroup))
+        var lociStateContextGfeSearch = LociStateContextGfeSearch()
+        var selectedLocus = HlaLoci.values().find { it.fullName == PrefsGfeSearch.currentGfeSearchLocusHla } ?: HlaLoci.A
+        var selectedVersion by property(SimpleStringProperty(PrefsGfeSearch.currentGfeSearchVersionHla))
 
         fun resetArraysHard() {
             checkList = ArrayList()

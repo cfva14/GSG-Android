@@ -6,7 +6,7 @@ import org.b12x.gfe.core.controller.version.VersionList
 
 interface ComboBoxVersion {
     var versionList: VersionList
-    var versions: ObservableList<String>
-    var currentVersion: SimpleStringProperty
+    val versions: ObservableList<String>
+    val currentVersion: SimpleStringProperty
     val comboBoxVersion: ChoiceBox<String>
 }

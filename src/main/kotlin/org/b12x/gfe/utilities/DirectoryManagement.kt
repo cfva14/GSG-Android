@@ -71,4 +71,22 @@ class DirectoryManagement {
         // removes all contents and folder itself
         File(pathToRemove).deleteRecursively()
     }
+
+    private val userDirectory = System.getProperty("user.home")
+
+    /**
+     * Sets the specific group of genes to be read.
+     *
+     * @params a string representing the target loci
+     * @return a string to the location of the specified data directory
+     */
+    fun setLociLocation(loci: String) = when (loci) {
+        "HLA" -> "$userDirectory/Documents/GSG/GSGData/HLA/"
+        "KIR" -> "$userDirectory/Documents/GSG/GSGData/KIR/"
+        "ABO" -> "$userDirectory/Documents/GSG/GSGData/ABO/"
+        "TEST" -> "$userDirectory/Documents/GSG/GSGData/TEST/"
+        else -> {
+            "$userDirectory/Documents/GSG/GSGData/$loci/"
+        }
+    }
 }

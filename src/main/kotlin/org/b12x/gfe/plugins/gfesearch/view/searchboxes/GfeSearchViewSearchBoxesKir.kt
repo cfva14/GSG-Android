@@ -1,4 +1,4 @@
-package org.b12x.gfe.plugins.gfesearch.view
+package org.b12x.gfe.plugins.gfesearch.view.searchboxes
 
 import javafx.geometry.Pos
 import javafx.scene.Group
@@ -6,23 +6,17 @@ import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
-import org.b12x.gfe.utilities.Loci
+import org.b12x.gfe.core.controller.loci.LociEnum
+import org.b12x.gfe.plugins.gfesearch.view.GfeSearchLayoutData
 import tornadofx.*
+import tornadofx.Stylesheet.Companion.root
 
-class GfeSearchViewSearchBoxes(loci: Loci) : View("Gfe Search Boxes") {
+class GfeSearchViewSearchBoxesKir(loci: LociEnum) : View("Gfe Search Boxes"), GfeSearchViewSearchBoxes {
 
-    val selectAllCheckBox = checkbox {
-        style { padding = box(10.px, 10.px, 0.px, 10.px) }
-        action {
-            if (isSelected) {
-                GfeSearchLayoutData.checkList.forEach { it.isSelected = true }
-            } else {
-                GfeSearchLayoutData.checkList.forEach { it.isSelected = false }
-            }
-        }
-    }
+    val gfeSearchBoxShared = GfeSearchBoxShared()
+    val selectAllCheckBox: CheckBox = gfeSearchBoxShared.selectAllCheckBox
 
-    val numberOfSearchBoxes = 8 // loci.exons
+    override val numberOfSearchBoxes = 9 // kirLoci.exons
 
     val completedSearchBox = completedSearchBoxGenerator(numberOfSearchBoxes)
 
@@ -40,13 +34,13 @@ class GfeSearchViewSearchBoxes(loci: Loci) : View("Gfe Search Boxes") {
         }
     }
 
-    private fun completedSearchBoxGenerator(numberOfBoxes: Int): HBox {
+    override fun completedSearchBoxGenerator(numberOfBoxes: Int): HBox {
         val completedSearchBox = hbox {
             style {
                 padding = box(0.px, 0.px, 0.px, 0.px)
             }
         }
-        completedSearchBox.add(Group(selectAllBoxAssembler()))
+        completedSearchBox.add(Group(gfeSearchBoxShared.root))
 
         completedSearchBox.add(Group(individualSearchBoxAssembler("Workshop Status")))
         completedSearchBox.add(Group(individualSearchBoxAssembler("5' UTR")))
@@ -62,24 +56,6 @@ class GfeSearchViewSearchBoxes(loci: Loci) : View("Gfe Search Boxes") {
         return completedSearchBox
     }
 
-    private fun selectAllBoxAssembler(): VBox {
-        val selectAllBox = vbox {
-            style {
-                prefWidth = 80.px
-//                padding = box(10.px, 0.px, 0.px, 0.px)
-                alignment = Pos.CENTER
-            }
-        }
-        selectAllBox.add(selectAllCheckBox)
-        selectAllBox.add(label(GfeSearchLayoutData.selectedLocus.toString()) {
-            style {
-                padding = box(15.px, 0.px)
-                fontSize = 15.px
-            }
-        })
-
-        return selectAllBox
-    }
 
     private fun individualSearchBoxAssembler(labelName: String): VBox {
         var currentCheckBox: CheckBox by singleAssign()
