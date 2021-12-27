@@ -9,10 +9,10 @@ import org.b12x.gfe.core.view.ComboBoxVersion
 
 interface LociStateGfeSearch {
     fun getLoci(ctx: LociStateContextGfeSearch): String
-    fun getCurrentVersion(ctx: LociStateContextGfeSearch): SimpleStringProperty
+    fun getCurrentVersion(ctx: LociStateContextGfeSearch): String
     fun setCurrentVersion(ctx: LociStateContextGfeSearch, currentVersion: String)
     fun getCurrentLocus(ctx: LociStateContextGfeSearch): LociEnum
-    fun updateVersions(ctx: LociStateContextGfeSearch, verObList: ObservableList<String>)
+    fun updateVersions(ctx: LociStateContextGfeSearch)
     fun updateLocus(ctx: LociStateContextGfeSearch, comboBoxLocus: ComboBoxLocus, loci: LociEnum)
 }
 

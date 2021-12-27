@@ -20,7 +20,7 @@ class KirStateGfeSearch: LociStateGfeSearch {
     override fun getLoci(ctx: LociStateContextGfeSearch) = "KIR"
 
     override fun getCurrentVersion(ctx: LociStateContextGfeSearch) =
-        SimpleStringProperty(PrefsGfeSearch.currentGfeSearchVersionKir)
+        PrefsGfeSearch.currentGfeSearchVersionKir
 
     override fun setCurrentVersion(ctx: LociStateContextGfeSearch, newVersion: String) {
         PrefsGfeSearch.currentGfeSearchVersionKir = newVersion
@@ -29,17 +29,20 @@ class KirStateGfeSearch: LociStateGfeSearch {
     override fun getCurrentLocus(ctx: LociStateContextGfeSearch) =
         KirLoci.values().find { it.fullName == PrefsGfeSearch.currentGfeSearchLocusKir } ?: KirLoci.KIR2DL1
 
-    override fun updateVersions(ctx: LociStateContextGfeSearch, verObList: ObservableList<String>) {
+    override fun updateVersions(ctx: LociStateContextGfeSearch) {
 //        override fun updateVersions(ctx: LociStateContextGfeSearch, comboBoxVersion: ChoiceBox<String>) {
         var versionList: VersionList = VersionList("KIR")
 //        comboboxVersion.versionList = VersionList("KIR")
-        var versions: ObservableList<String> = observableListOf(versionList.allVersionNames)
+        var versions = versionList.allVersionNames
         println(versions)
+        val gfeSearchComboBoxVersion = GfeSearchComboBoxVersion()
+        val verObList = gfeSearchComboBoxVersion.versionsObservableList
+
         verObList.clear()
         verObList.addAll(versions)
-        val localCBV = find(GfeSearchComboBoxVersion::class).comboBoxVersion
+//        val localCBV = find(GfeSearchComboBoxVersion::class).comboBoxVersion
 //        localCBV.items = versions
-        localCBV.value = versions[0]
+//        localCBV.value = versions[0]
 //        comboBoxVersion.value = versions[0]
 //        comboBoxVersion.replaceWith(comboBoxVersion)
 

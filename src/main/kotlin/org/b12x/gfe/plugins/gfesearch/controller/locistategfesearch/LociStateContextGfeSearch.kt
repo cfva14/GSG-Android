@@ -31,8 +31,8 @@ class LociStateContextGfeSearch {
         println("Current State: ${currentState.toString()}")
     }
 
-    fun updateVersions(verObList: ObservableList<String>) {
-        return currentState!!.updateVersions(this, verObList)
+    fun updateVersions() {
+        return currentState!!.updateVersions(this)
     }
 
     fun updateLocus(comboBoxLocus: ComboBoxLocus, loci: LociEnum) {
@@ -43,7 +43,7 @@ class LociStateContextGfeSearch {
         return currentState!!.getLoci(this)
     }
 
-    fun getCurrentVersion(): SimpleStringProperty {
+    fun getCurrentVersion(): String {
         return currentState!!.getCurrentVersion(this)
     }
 

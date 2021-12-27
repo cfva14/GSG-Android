@@ -2,6 +2,7 @@ package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.beans.property.SimpleStringProperty
 import javafx.collections.FXCollections
+import javafx.collections.ListChangeListener
 import javafx.collections.ObservableList
 import javafx.scene.control.ChoiceBox
 import org.b12x.gfe.core.controller.version.VersionList
@@ -10,32 +11,45 @@ import org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch.LociStateCon
 import tornadofx.*
 import tornadofx.Stylesheet.Companion.empty
 
-class GfeSearchComboBoxVersion : View("My View"), ComboBoxVersion {
+class GfeSearchComboBoxVersion : View("My View") {
 
-    //    private val lociStateContext = GfeSearchLayoutData.gfeSearchLociStateContext
-//    var loci: SimpleStringProperty = GfeSearchLayoutData.selectedLociGroup
     val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
-    override var versionList: VersionList = VersionList(stateContext.getLoci())
-    override val versions: ObservableList<String> = observableListOf(versionList.allVersionNames)
+    var versionList: VersionList = VersionList(stateContext.getLoci())
+    var versions: List<String> = versionList.allVersionNames
+    var versionsObservableList: ObservableList<String> = FXCollections.observableArrayList(versions)
 
-    override val currentVersion: SimpleStringProperty by property(stateContext.getCurrentVersion())
-//    SimpleStringProperty by property(
-//        GfeSearchLayoutData.selectedVersion
-//    )
-
-    override val comboBoxVersion = choicebox<String>(currentVersion, versions) {
-        action {
-            if (this.value != null) {
-                stateContext.setCurrentVersion(this.value)
+    init {
+        versionsObservableList.addListener { _: ListChangeListener.Change<out String>? ->
+            comboBoxVersion.apply {
+                versions = versionsObservableList
+                println("This is what is currently in the observable list: $versions")
+                println("This is what the choicebox thinks is in its list: ${this.items}")
+                currentVersion = stateContext.getCurrentVersion()
+                println("currentVersion changed: $currentVersion")
             }
-//            Prefs.currentGfeSearchVersion = this.value
-//            GfeSearchLayoutData.selectedVersion = SimpleStringProperty(this.value)
-////                GfeSearchLayoutData.resetArraysHard()
-////                swapSearchBoxes(GfeLayoutData.selectedLocus)
+//            GfeSearchViewParent.swapVersionComboBox()
         }
     }
 
-    override val root = hbox {
+    val currentVersionProperty = SimpleStringProperty(stateContext.getCurrentVersion()) // No default needed
+    var currentVersion: String by currentVersionProperty// Nullable String
+
+    var comboBoxVersion = choicebox<String>(currentVersionProperty, versionsObservableList) {
+        action {
+            if (this.value != null) {
+                stateContext.setCurrentVersion(currentVersion)
+            }
+
+            println("currentVersion according to Context = " + stateContext.getCurrentVersion())
+            println("currentVersion according to choicebox = " + currentVersionProperty)
+////            Prefs.currentGfeSearchVersion = this.value
+////            GfeSearchLayoutData.selectedVersion = SimpleStringProperty(this.value)
+//////                GfeSearchLayoutData.resetArraysHard()
+//////                swapSearchBoxes(GfeLayoutData.selectedLocus)
+        }
+    }
+
+    override var root = hbox {
         add(comboBoxVersion)
     }
 

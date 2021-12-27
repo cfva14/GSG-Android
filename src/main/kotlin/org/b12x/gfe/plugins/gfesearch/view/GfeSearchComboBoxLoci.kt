@@ -21,10 +21,12 @@ class GfeSearchComboBoxLoci(whichTab: String) : View("Available Loci"), ComboBox
         action {
             PrefsGfeSearch.currentGfeSearchLociGroup = this.value
             gfeSearchLociStateContext.setState(this.value)
-            println(find(GfeSearchComboBoxVersion::class).comboBoxVersion)
-            gfeSearchLociStateContext.updateVersions(find(GfeSearchComboBoxVersion::class).versions)
+//            println(find(GfeSearchComboBoxVersion::class).comboBoxVersion)
+            gfeSearchLociStateContext.updateVersions()
+            GfeSearchViewParent.swapVersionComboBox()
 
-            fire(VersionEventBus)
+
+//            fire(VersionEventBus)
             gfeSearchLociStateContext.updateLocus(find(GfeSearchComboBoxLocus::class), HlaLoci.A)
         }
     }
