@@ -10,7 +10,9 @@ class GfeSearchComboBoxLocus : View(), ComboBoxLocus {
 
     //    private val lociOptions = FXCollections.observableArrayList("HLA", "KIR")
 
-    override var locusNames : List<String> = listOf("HLA-A", "HLA-B")//getHlaLoci().mapNotNull { it.toString() }
+    val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
+
+    override var locusNames : List<String> = stateContext.getCurrentLocusNamesList()
 
     override var currentLocus: SimpleStringProperty by property(
         SimpleStringProperty("HLA-B") //GfeSearchLayoutData.selectedLocus.toString())

@@ -12,8 +12,10 @@ import tornadofx.View
 
 class KirStateGfeSearch: LociStateGfeSearch {
 
+    /* Loci */
     override fun getLoci(ctx: LociStateContextGfeSearch) = "KIR"
 
+    /* Version */
     override fun getCurrentVersion(ctx: LociStateContextGfeSearch) =
         PrefsGfeSearch.currentGfeSearchVersionKir
 
@@ -21,15 +23,7 @@ class KirStateGfeSearch: LociStateGfeSearch {
         PrefsGfeSearch.currentGfeSearchVersionKir = newVersion
     }
 
-    override fun getCurrentLocus(ctx: LociStateContextGfeSearch) =
-        KirLoci.values().find { it.fullName == PrefsGfeSearch.currentGfeSearchLocusKir } ?: KirLoci.KIR2DL1
-
-    override fun setCurrentLocus(ctx: LociStateContextGfeSearch, newLocus: String) {
-        PrefsGfeSearch.currentGfeSearchLocusKir = newLocus
-    }
-
     override fun updateVersions(ctx: LociStateContextGfeSearch) {
-//        override fun updateVersions(ctx: LociStateContextGfeSearch, comboBoxVersion: ChoiceBox<String>) {
         var versionList: VersionList = VersionList("KIR")
 //        comboboxVersion.versionList = VersionList("KIR")
         var versions = versionList.allVersionNames
@@ -45,6 +39,23 @@ class KirStateGfeSearch: LociStateGfeSearch {
 //        comboBoxVersion.value = versions[0]
 //        comboBoxVersion.replaceWith(comboBoxVersion)
 
+    }
+
+    /* Locus */
+
+    override fun getCurrentLocusNamesList(ctx: LociStateContextGfeSearch): List<String> {
+        val locusNames = ArrayList<String>()
+        KirLoci.values().forEach {
+            locusNames.add(it.toString())
+        }
+        return locusNames
+    }
+
+    override fun getCurrentLocus(ctx: LociStateContextGfeSearch) =
+        KirLoci.values().find { it.fullName == PrefsGfeSearch.currentGfeSearchLocusKir } ?: KirLoci.KIR2DL1
+
+    override fun setCurrentLocus(ctx: LociStateContextGfeSearch, newLocus: String) {
+        PrefsGfeSearch.currentGfeSearchLocusKir = newLocus
     }
 
     override fun updateLocus(ctx: LociStateContextGfeSearch, comboBoxLocus: ComboBoxLocus, loci: LociEnum) {

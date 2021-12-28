@@ -29,62 +29,55 @@ class LociStateContextGfeSearch {
         println("Current State: ${currentState.toString()}")
     }
 
-    fun updateVersions() {
-        return currentState!!.updateVersions(this)
-    }
-
-    fun updateLocus(comboBoxLocus: ComboBoxLocus, loci: LociEnum) {
-        return currentState!!.updateLocus(this, comboBoxLocus, loci)
-    }
+    /* Loci */
 
     fun getLoci(): String {
-        return currentState!!.getLoci(this)
+        return currentState?.getLoci(this)
+            ?: HlaStateGfeSearch().getLoci(this)
     }
 
+    /* Version */
+
     fun getCurrentVersion(): String {
-        return currentState!!.getCurrentVersion(this)
+        return currentState?.getCurrentVersion(this)
+            ?: HlaStateGfeSearch().getCurrentVersion(this)
     }
 
     fun setCurrentVersion(currentVersion: String) {
-        return currentState!!.setCurrentVersion(this, currentVersion)
+        return currentState?.setCurrentVersion(this, currentVersion)
+            ?: HlaStateGfeSearch().setCurrentVersion(this, currentVersion)
     }
 
+    fun updateVersions() {
+        return currentState?.updateVersions(this)
+            ?: HlaStateGfeSearch().updateVersions(this)
+    }
+
+    /* Locus */
+
     fun getCurrentLocus(): LociEnum {
-        return currentState!!.getCurrentLocus(this)
+        return currentState?.getCurrentLocus(this)
+            ?: HlaStateGfeSearch().getCurrentLocus(this)
     }
 
     fun setCurrentLocus(currentLocus: String) {
-        return currentState!!.setCurrentLocus(this, currentLocus)
+        return currentState?.setCurrentLocus(this, currentLocus)
+            ?: HlaStateGfeSearch().setCurrentLocus(this, currentLocus)
+    }
+
+    fun updateLocus(comboBoxLocus: ComboBoxLocus, loci: LociEnum) {
+        return currentState?.updateLocus(this, comboBoxLocus, loci)
+            ?: HlaStateGfeSearch().updateLocus(this, comboBoxLocus, loci)
+    }
+
+    fun getCurrentLocusNamesList(): List<String> {
+        return currentState?.getCurrentLocusNamesList(this)
+            ?: HlaStateGfeSearch().getCurrentLocusNamesList(this)
     }
 
     fun createNewSearchBoxes(): View {
-        return currentState!!.createNewSearchBoxes(this)
+        return currentState?.createNewSearchBoxes(this)
+            ?: HlaStateGfeSearch().createNewSearchBoxes(this)
     }
 
 }
-
-/*
-object Calculator { // StateContext
-
-    private var currentState: CalculatorState? = null
-
-    init {
-        currentState = EnumCalc()
-    }
-
-    fun setState(state: CalculatorState) {
-        println("Current state: ${state.toString()}")
-        currentState = state
-    }
-
-    fun add(int1: Int, int2: Int): Int {
-        println("Adding via ${currentState.toString()}")
-        return currentState!!.add(this, int1, int2)
-    }
-
-    fun multiply(int1: Int, int2: Int): Int {
-        println("Multiplying via ${currentState.toString()}")
-        return currentState!!.multiply(this, int1, int2)
-    }
-}
- */

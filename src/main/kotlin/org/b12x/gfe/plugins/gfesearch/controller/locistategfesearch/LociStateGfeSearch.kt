@@ -10,12 +10,18 @@ import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxes
 import tornadofx.View
 
 interface LociStateGfeSearch {
+    /* Loci */
     fun getLoci(ctx: LociStateContextGfeSearch): String
+
+    /* Version */
     fun getCurrentVersion(ctx: LociStateContextGfeSearch): String
     fun setCurrentVersion(ctx: LociStateContextGfeSearch, currentVersion: String)
+    fun updateVersions(ctx: LociStateContextGfeSearch)
+
+    /* Locus*/
     fun getCurrentLocus(ctx: LociStateContextGfeSearch): LociEnum
     fun setCurrentLocus(ctx: LociStateContextGfeSearch, currentLocus: String)
-    fun updateVersions(ctx: LociStateContextGfeSearch)
+    fun getCurrentLocusNamesList(ctx: LociStateContextGfeSearch): List<String>
     fun updateLocus(ctx: LociStateContextGfeSearch, comboBoxLocus: ComboBoxLocus, loci: LociEnum)
     fun createNewSearchBoxes(ctx: LociStateContextGfeSearch): View
 }
