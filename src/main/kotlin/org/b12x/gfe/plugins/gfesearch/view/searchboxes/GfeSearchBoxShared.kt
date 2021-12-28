@@ -4,6 +4,9 @@ import org.b12x.gfe.plugins.gfesearch.view.GfeSearchLayoutData
 import tornadofx.*
 
 class GfeSearchBoxShared() : View(){
+
+    val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
+
     val selectAllCheckBox = checkbox {
         style { padding = box(10.px, 10.px, 0.px, 10.px) }
         action {
@@ -23,7 +26,7 @@ class GfeSearchBoxShared() : View(){
             }
         }
         selectAllBox.add(selectAllCheckBox)
-        selectAllBox.add(label(GfeSearchLayoutData.selectedLocus.toString()) {
+        selectAllBox.add(label(stateContext.getCurrentLocus().toString()) {
             style {
                 padding = box(15.px, 0.px)
                 fontSize = 15.px

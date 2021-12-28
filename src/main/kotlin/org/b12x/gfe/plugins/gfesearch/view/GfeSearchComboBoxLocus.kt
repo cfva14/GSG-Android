@@ -16,7 +16,7 @@ class GfeSearchComboBoxLocus : View(), ComboBoxLocus {
     override var locusNames : List<String> = stateContext.getCurrentLocusNamesList()
 
     override var currentLocus: SimpleStringProperty by property(
-        SimpleStringProperty("HLA-B") //GfeSearchLayoutData.selectedLocus.toString())
+        SimpleStringProperty(stateContext.getCurrentLocus().toString())
     )
 
     override var comboBoxLocus = choicebox<String>(currentLocus, locusNames) {
