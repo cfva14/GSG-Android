@@ -9,7 +9,7 @@ import tornadofx.Stylesheet.Companion.label
 class GSG: App(MainView::class, Styles::class) {
     override fun start(stage: Stage) {
         super.start(stage)
-        stage.width = 1100.0
+        stage.width = 1150.0
         stage.height = 800.0
 
     }

@@ -37,7 +37,8 @@ class GfeSearchComboBoxVersion : View("My View") {
     var comboBoxVersion = choicebox<String>(currentVersionProperty, versionsObservableList) {
         action {
             if (this.value != null) {
-                stateContext.setCurrentVersion(currentVersion)
+                stateContext.setCurrentVersion(this.value)
+//                stateContext.setCurrentVersion(currentVersion)
             }
 
             println("currentVersion according to Context = " + stateContext.getCurrentVersion())

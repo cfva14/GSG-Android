@@ -12,12 +12,12 @@ import tornadofx.*
 
 class GfeSearchViewSearchBoxesHla(loci: LociEnum) : View("Gfe Search Boxes") {
 
+    private val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
+
     val gfeSearchBoxShared = GfeSearchBoxShared()
     val selectAllCheckBox: CheckBox = gfeSearchBoxShared.selectAllCheckBox
 
-    val numberOfSearchBoxes = 8 // hlaLoci.exons
-
-    val completedSearchBox = completedSearchBoxGenerator(numberOfSearchBoxes)
+    val completedSearchBox = completedSearchBoxGenerator(stateContext.getCurrentLocus().exons)
 
     override val root = vbox {
         label {

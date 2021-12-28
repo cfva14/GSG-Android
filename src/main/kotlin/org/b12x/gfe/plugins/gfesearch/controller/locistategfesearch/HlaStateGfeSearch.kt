@@ -1,18 +1,12 @@
 package org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch
 
-import javafx.beans.property.SimpleStringProperty
-import javafx.collections.ObservableList
-import javafx.scene.control.ChoiceBox
 import org.b12x.gfe.core.controller.loci.HlaLoci
 import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.core.controller.version.VersionList
 import org.b12x.gfe.core.view.ComboBoxLocus
-import org.b12x.gfe.core.view.ComboBoxVersion
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchComboBoxVersion
+import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxesHla
 import tornadofx.*
-import tornadofx.FXEvent
-import tornadofx.EventBus.RunOn.*
-
 
 
 class HlaStateGfeSearch : LociStateGfeSearch {
@@ -29,7 +23,7 @@ class HlaStateGfeSearch : LociStateGfeSearch {
     override fun getCurrentLocus(ctx: LociStateContextGfeSearch) =
         HlaLoci.values().find { it.fullName == PrefsGfeSearch.currentGfeSearchLocusHla } ?: HlaLoci.A
 
-    fun setCurrentLocus(ctx: LociStateContextGfeSearch, newLocus: String) {
+    override fun setCurrentLocus(ctx: LociStateContextGfeSearch, newLocus: String) {
         PrefsGfeSearch.currentGfeSearchLocusHla = newLocus
     }
 
@@ -53,6 +47,12 @@ class HlaStateGfeSearch : LociStateGfeSearch {
 
     override fun updateLocus(ctx: LociStateContextGfeSearch, comboBoxLocus: ComboBoxLocus, loci: LociEnum) {
 //        TODO("Not yet implemented")
+    }
+
+    override fun createNewSearchBoxes(ctx: LociStateContextGfeSearch): View {
+        val currentLocus = HlaLoci.values().find { it.fullName == PrefsGfeSearch.currentGfeSearchLocusHla } ?: HlaLoci.A
+
+        return GfeSearchViewSearchBoxesHla(currentLocus)
     }
 }
 

@@ -2,6 +2,8 @@ package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.beans.property.SimpleStringProperty
 import javafx.collections.ObservableList
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 import org.b12x.gfe.core.controller.loci.HlaLoci
 import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.core.view.ComboBoxLoci
@@ -22,8 +24,13 @@ class GfeSearchComboBoxLoci(whichTab: String) : View("Available Loci"), ComboBox
             PrefsGfeSearch.currentGfeSearchLociGroup = this.value
             gfeSearchLociStateContext.setState(this.value)
 //            println(find(GfeSearchComboBoxVersion::class).comboBoxVersion)
-            gfeSearchLociStateContext.updateVersions()
-            GfeSearchViewParent.swapVersionComboBox()
+            runBlocking {
+                async {
+                    gfeSearchLociStateContext.updateVersions()
+                    GfeSearchViewParent.swapVersionComboBox()
+
+                }
+            }
 
 
 //            fire(VersionEventBus)

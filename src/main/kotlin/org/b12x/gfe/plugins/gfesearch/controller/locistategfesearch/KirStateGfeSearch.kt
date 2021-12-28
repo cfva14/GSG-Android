@@ -1,19 +1,14 @@
 package org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch
 
-import javafx.beans.property.SimpleStringProperty
-import javafx.collections.ObservableList
-import javafx.scene.control.ChoiceBox
 import org.b12x.gfe.core.controller.loci.HlaLoci
 import org.b12x.gfe.core.controller.loci.KirLoci
 import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.core.controller.version.VersionList
 import org.b12x.gfe.core.view.ComboBoxLocus
-import org.b12x.gfe.core.view.ComboBoxVersion
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchComboBoxVersion
-import org.b12x.gfe.plugins.gfesearch.view.GfeSearchViewParent
+import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxesHla
 import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxesKir
-import tornadofx.*
-import kotlin.properties.Delegates
+import tornadofx.View
 
 class KirStateGfeSearch: LociStateGfeSearch {
 
@@ -28,6 +23,10 @@ class KirStateGfeSearch: LociStateGfeSearch {
 
     override fun getCurrentLocus(ctx: LociStateContextGfeSearch) =
         KirLoci.values().find { it.fullName == PrefsGfeSearch.currentGfeSearchLocusKir } ?: KirLoci.KIR2DL1
+
+    override fun setCurrentLocus(ctx: LociStateContextGfeSearch, newLocus: String) {
+        PrefsGfeSearch.currentGfeSearchLocusKir = newLocus
+    }
 
     override fun updateVersions(ctx: LociStateContextGfeSearch) {
 //        override fun updateVersions(ctx: LociStateContextGfeSearch, comboBoxVersion: ChoiceBox<String>) {
@@ -58,15 +57,9 @@ class KirStateGfeSearch: LociStateGfeSearch {
 //            find(GfeSearchViewParent::class).root.center.add(find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesKir)
 
     }
+
+    override fun createNewSearchBoxes(ctx: LociStateContextGfeSearch): View {
+        val currentLocus = KirLoci.values().find { it.fullName == PrefsGfeSearch.currentGfeSearchLocusKir } ?: KirLoci.KIR2DL1
+        return GfeSearchViewSearchBoxesKir(currentLocus)
+    }
 }
-
-/*
-class EnumCalc: CalculatorState {
-
-    override fun add(ctx: Calculator, int1: Int, int2: Int): Int =
-        CalculatorEnum.ADD.apply(int1, int2)
-
-    override fun multiply(ctx: Calculator, int1: Int, int2: Int): Int =
-        CalculatorEnum.MULTIPLY.apply(int1, int2)
-}
-*/

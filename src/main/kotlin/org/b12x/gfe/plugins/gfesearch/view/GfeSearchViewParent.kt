@@ -1,6 +1,7 @@
 package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.scene.layout.BorderPane
+import kotlinx.coroutines.runBlocking
 import org.b12x.gfe.core.controller.loci.HlaLoci
 import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxesHla
@@ -8,26 +9,13 @@ import tornadofx.*
 
 class GfeSearchViewParent : View("GFE SEARCH") {
 
-//    private val lociOptions = FXCollections.observableArrayList("HLA", "KIR")
+    private val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
 
-//    private val locusComboBox = GfeSearchComboBoxLocus()
-//    var gfeSearchComboBoxVersion = GfeSearchComboBoxVersion()
-//    var versionComboBox = gfeSearchComboBoxVersion.root
-//    private val lociComboBox = GfeSearchComboBoxLoci("GfeSearch")
-    var gfeSearchBoxes = GfeSearchViewSearchBoxesHla(HlaLoci.A)
     var gfeSearchViewComboBoxes = GfeSearchViewComboBoxes()
+
+    var gfeSearchBoxes = stateContext.createNewSearchBoxes()
+
     private val gfeSearchViewBottomHalf = GfeSearchViewBottomHalf()
-
-    fun startingSearchBoxes() {
-        // put in a blank box and run switch? Will it do it without it?
-
-    }
-
-//    val comboBoxLayoutPane: BorderPane = // borderpane() {
-//        left = hbox { add(lociComboBox.root) }
-//        center = hbox { add(versionComboBox) }
-//        right = hbox { add(locusComboBox.root) }
-//    }
 
     override val root = borderpane {
         top = hbox {
@@ -53,11 +41,12 @@ class GfeSearchViewParent : View("GFE SEARCH") {
 
 
         fun swapVersionComboBox() {
-//            val gfeSearchViewParent = find(GfeSearchViewParent::class)
-            gfeSearchViewParent.gfeSearchBoxes.removeFromParent()
+            gfeSearchViewParent.gfeSearchViewComboBoxes.removeFromParent()
 
-            comboBoxes.gfeSearchComboBoxVersion = GfeSearchComboBoxVersion()
-            val versionComboBox = comboBoxes.gfeSearchComboBoxVersion.root
+            var gfeSearchComboBoxVersion = GfeSearchComboBoxVersion()
+//            comboBoxes.gfeSearchComboBoxVersion = GfeSearchComboBoxVersion()
+            val versionComboBox = gfeSearchComboBoxVersion.root
+//            val versionComboBox = comboBoxes.gfeSearchComboBoxVersion.root
 
 //            var versionComboBox = gfeSearchComboBoxVersion.root
 

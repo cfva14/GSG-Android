@@ -1,9 +1,11 @@
 package org.b12x.gfe.plugins.optionstab.view
 
+import org.b12x.gfe.GSG
 import org.b12x.gfe.core.controller.PrefsCore
 import org.b12x.gfe.core.model.DataDownload
 import org.b12x.gfe.core.model.parsers.ParserVersionData
 import tornadofx.*
+import java.util.prefs.Preferences
 
 class OptionsView : View("My View") {
 //    val DataDownload()

@@ -19,6 +19,10 @@ enum class KirLoci(override val fullName: String, override val exons: Int, val s
     KIR3DP1("KIR3DP1", 5, listOf()), // sometimes missing exon 2
     KIR2DP1("KIR2DP1", 9, listOf());
 
-    val allEnumLocus = enumValues<KirLoci>()
+//    val allEnumLocus = enumValues<KirLoci>()
+
+    override fun toString(): String {
+        return fullName // working!
+    }
 
 }

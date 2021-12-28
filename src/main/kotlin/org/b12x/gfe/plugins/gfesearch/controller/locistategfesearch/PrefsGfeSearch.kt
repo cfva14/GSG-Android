@@ -7,7 +7,7 @@ import kotlin.properties.Delegates
 
 object PrefsGfeSearch {
 
-    private val prefs: Preferences = PrefsCore.prefs
+    var prefs: Preferences = PrefsCore.prefs
 
     var currentGfeSearchLociGroup: String by Delegates.observable(
         prefs.get(

@@ -1,11 +1,9 @@
 package org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch
 
-import javafx.beans.property.SimpleStringProperty
-import javafx.collections.ObservableList
-import javafx.scene.control.ChoiceBox
 import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.core.view.ComboBoxLocus
-import org.b12x.gfe.core.view.ComboBoxVersion
+import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxes
+import tornadofx.View
 
 class LociStateContextGfeSearch {
     private var currentState: LociStateGfeSearch? = null
@@ -54,6 +52,15 @@ class LociStateContextGfeSearch {
     fun getCurrentLocus(): LociEnum {
         return currentState!!.getCurrentLocus(this)
     }
+
+    fun setCurrentLocus(currentLocus: String) {
+        return currentState!!.setCurrentLocus(this, currentLocus)
+    }
+
+    fun createNewSearchBoxes(): View {
+        return currentState!!.createNewSearchBoxes(this)
+    }
+
 }
 
 /*
