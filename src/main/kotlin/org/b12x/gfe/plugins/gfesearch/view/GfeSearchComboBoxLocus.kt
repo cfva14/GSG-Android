@@ -1,6 +1,7 @@
 package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.beans.property.SimpleStringProperty
+import org.b12x.gfe.core.controller.loci.HlaLoci
 import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.core.view.ComboBoxLocus
 import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxesHla
@@ -20,10 +21,9 @@ class GfeSearchComboBoxLocus : View(), ComboBoxLocus {
 
     override var comboBoxLocus = choicebox<String>(currentLocus, locusNames) {
         action {
-//            GfeSearchLayoutData.selectedLocus = HlaLoci.values().find { it.fullName == this.value } ?: HlaLoci.A
-//            Prefs.currentGfeSearchLocus = this.value
-//            GfeSearchLayoutData.resetArraysHard()
-//            swapSearchBoxes(GfeSearchLayoutData.selectedLocus)
+            stateContext.setCurrentLocus(this.value)
+            GfeSearchLayoutData.resetArraysHard()
+            swapSearchBoxes(GfeSearchLayoutData.selectedLocus)
         }
     }
 
@@ -34,9 +34,9 @@ class GfeSearchComboBoxLocus : View(), ComboBoxLocus {
     // swaps the old set of search boxes out, and puts in the new set
     // based on the locus HlaLoci passed to it.
     private fun swapSearchBoxes(loci: LociEnum) {
-//        find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesHla.removeFromParent()
-//        find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesHla = GfeSearchViewSearchBoxesHla(loci)
-//        find(GfeSearchViewParent::class).root.center.add(find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesHla)
+        find(GfeSearchViewParent::class).gfeSearchBoxes.removeFromParent()
+        find(GfeSearchViewParent::class).gfeSearchBoxes = stateContext.createNewSearchBoxes()
+        find(GfeSearchViewParent::class).root.center.add(find(GfeSearchViewParent::class).gfeSearchBoxes)
     }
 
     fun swapLocusChoiceBox() {}
