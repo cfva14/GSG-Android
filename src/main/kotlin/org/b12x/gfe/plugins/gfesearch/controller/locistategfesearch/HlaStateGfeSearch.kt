@@ -27,10 +27,12 @@ class HlaStateGfeSearch : LociStateGfeSearch {
         var versionList = VersionList("HLA")
         var versions = versionList.allVersionNames
 
-        val gfeSearchComboBoxVersion = GfeSearchChoiceBoxVersion()
+        val gfeSearchComboBoxVersion = find(GfeSearchChoiceBoxVersion::class)
         val verObList1 = gfeSearchComboBoxVersion.versionsObservableList
         verObList1.clear()
         verObList1.addAll(versions)
+
+        gfeSearchComboBoxVersion.currentVersion = PrefsGfeSearch.currentGfeSearchVersionHla
     }
 
     /* Locus */

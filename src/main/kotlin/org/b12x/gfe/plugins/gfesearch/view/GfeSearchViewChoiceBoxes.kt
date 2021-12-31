@@ -6,26 +6,27 @@ import tornadofx.*
 
 class GfeSearchViewChoiceBoxes : View("GFE Search Options") {
     val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
-    val gfeSearchChoiceBoxLocus = GfeSearchChoiceBoxLocus()
+
+    val gfeSearchChoiceBoxLocus = find(GfeSearchChoiceBoxLocus::class)
     var locusChoiceBox = gfeSearchChoiceBoxLocus.root
 
-    var gfeSearchChoiceBoxVersion = GfeSearchChoiceBoxVersion()
+    var gfeSearchChoiceBoxVersion = find(GfeSearchChoiceBoxVersion::class)
     var versionChoiceBox = gfeSearchChoiceBoxVersion.root
-    var versionPane = hbox { add(versionChoiceBox) }
 
-    private val lociChoiceBox = GfeSearchChoiceBoxLoci("GfeSearch")
-
+    val gfeSearchChoiceBoxLoci = GfeSearchChoiceBoxLoci("GfeSearch")
+    val lociChoiceBox = gfeSearchChoiceBoxLoci.root
+    
     override val root = borderpane {
-        left = hbox { add(lociChoiceBox.root) }
-        center = hbox { add(versionPane) }
+        left = hbox { add(lociChoiceBox) }
+        center = hbox { add(versionChoiceBox) }
         right = hbox { add(locusChoiceBox) }
     }
 
-    fun swapVersionChoiceBox() {
-        println("Yes Virgina, there is a call to swap the Version Choice Box.")
-        find(this::class).versionPane.removeFromParent()
-//        gfeSearchChoiceBoxVersion = GfeSearchChoiceBoxVersion()
-//        versionChoiceBox = gfeSearchChoiceBoxVersion.root
-//        root.center.add(gfeSearchChoiceBoxVersion.root)
-    }
+//    fun swapVersionChoiceBox() {
+//        println("Yes Virgina, there is a call to swap the Version Choice Box.")
+////        find(GfeSearchViewChoiceBoxes::class).versionChoiceBox.removeFromParent()
+////        gfeSearchChoiceBoxVersion = GfeSearchChoiceBoxVersion()
+////        versionChoiceBox = gfeSearchChoiceBoxVersion.root
+//        root.center.add(versionPane)
+//    }
 }

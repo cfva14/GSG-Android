@@ -6,7 +6,7 @@ import org.b12x.gfe.core.controller.version.VersionList
 import org.b12x.gfe.core.view.ComboBoxLocus
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchChoiceBoxVersion
 import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxesKir
-import tornadofx.View
+import tornadofx.*
 
 class KirStateGfeSearch: LociStateGfeSearch {
 
@@ -22,20 +22,14 @@ class KirStateGfeSearch: LociStateGfeSearch {
     }
 
     override fun updateVersions(ctx: LociStateContextGfeSearch) {
-        var versionList: VersionList = VersionList("KIR")
-//        comboboxVersion.versionList = VersionList("KIR")
+        var versionList = VersionList("KIR")
         var versions = versionList.allVersionNames
-        println(versions)
-        val gfeSearchComboBoxVersion = GfeSearchChoiceBoxVersion()
-        val verObList = gfeSearchComboBoxVersion.versionsObservableList
 
-        verObList.clear()
-        verObList.addAll(versions)
-//        val localCBV = find(GfeSearchComboBoxVersion::class).comboBoxVersion
-//        localCBV.items = versions
-//        localCBV.value = versions[0]
-//        comboBoxVersion.value = versions[0]
-//        comboBoxVersion.replaceWith(comboBoxVersion)
+        val gfeSearchComboBoxVersion = find(GfeSearchChoiceBoxVersion::class)
+        val verObList1 = gfeSearchComboBoxVersion.versionsObservableList
+        verObList1.clear()
+        verObList1.addAll(versions)
+        gfeSearchComboBoxVersion.currentVersion = PrefsGfeSearch.currentGfeSearchVersionKir
 
     }
 

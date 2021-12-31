@@ -27,7 +27,6 @@ class LociStateContextGfeSearch {
                 HlaStateGfeSearch()
             }
         }
-        println("Current State: ${currentState.toString()}")
     }
 
     /* Loci */

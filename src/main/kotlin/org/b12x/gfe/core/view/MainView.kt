@@ -21,7 +21,7 @@ class MainView : View("GFE Search Generator") {
 //            addClass(Styles.heading)
 //        }
         tab("GFE Search") {
-            add(gfeSearchViewParent::class)
+            add(gfeSearchViewParent)
             this.setOnSelectionChanged { _ ->
                 tabStateContext.setState("GFE")
                 // set which tab in parent prefs?
