@@ -9,6 +9,4 @@ import org.b12x.gfe.core.controller.loci.LociEnum
 interface ComboBoxLoci {
     var currentLoci: SimpleStringProperty
     val comboBoxLoci: ChoiceBox<String>
-
-    fun swapSearchBoxes(loci: LociEnum)
 }

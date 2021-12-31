@@ -1,6 +1,7 @@
 package org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch
 
 import org.b12x.gfe.core.controller.loci.LociEnum
+//import org.b12x.gfe.core.view.ChoiceBoxLocus
 import org.b12x.gfe.core.view.ComboBoxLocus
 import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxes
 import tornadofx.View
@@ -65,9 +66,9 @@ class LociStateContextGfeSearch {
             ?: HlaStateGfeSearch().setCurrentLocus(this, currentLocus)
     }
 
-    fun updateLocus(comboBoxLocus: ComboBoxLocus, loci: LociEnum) {
-        return currentState?.updateLocus(this, comboBoxLocus, loci)
-            ?: HlaStateGfeSearch().updateLocus(this, comboBoxLocus, loci)
+    fun updateLocus(choiceBoxLocus: ComboBoxLocus, loci: LociEnum) {
+        return currentState?.updateLocus(this, choiceBoxLocus, loci)
+            ?: HlaStateGfeSearch().updateLocus(this, choiceBoxLocus, loci)
     }
 
     fun getCurrentLocusNamesList(): List<String> {

@@ -1,12 +1,10 @@
 package org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch
 
-import org.b12x.gfe.core.controller.loci.HlaLoci
 import org.b12x.gfe.core.controller.loci.KirLoci
 import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.core.controller.version.VersionList
 import org.b12x.gfe.core.view.ComboBoxLocus
-import org.b12x.gfe.plugins.gfesearch.view.GfeSearchComboBoxVersion
-import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxesHla
+import org.b12x.gfe.plugins.gfesearch.view.GfeSearchChoiceBoxVersion
 import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxesKir
 import tornadofx.View
 
@@ -28,7 +26,7 @@ class KirStateGfeSearch: LociStateGfeSearch {
 //        comboboxVersion.versionList = VersionList("KIR")
         var versions = versionList.allVersionNames
         println(versions)
-        val gfeSearchComboBoxVersion = GfeSearchComboBoxVersion()
+        val gfeSearchComboBoxVersion = GfeSearchChoiceBoxVersion()
         val verObList = gfeSearchComboBoxVersion.versionsObservableList
 
         verObList.clear()

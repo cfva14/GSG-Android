@@ -7,5 +7,5 @@ interface ComboBoxLocus {
 
     var locusNames : List<String>
     var currentLocus: SimpleStringProperty
-    var comboBoxLocus : ChoiceBox<String>
+    var choiceBoxLocus : ChoiceBox<String>
 }

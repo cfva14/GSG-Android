@@ -11,7 +11,7 @@ import org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch.LociStateCon
 import tornadofx.*
 import tornadofx.Stylesheet.Companion.empty
 
-class GfeSearchComboBoxVersion : View("My View") {
+class GfeSearchChoiceBoxVersion : View("My View") {
 
     val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
     var versionList: VersionList = VersionList(stateContext.getLoci())

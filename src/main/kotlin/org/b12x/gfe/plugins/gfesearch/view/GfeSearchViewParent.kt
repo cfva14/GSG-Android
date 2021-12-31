@@ -11,7 +11,7 @@ class GfeSearchViewParent : View("GFE SEARCH") {
 
     private val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
 
-    var gfeSearchViewComboBoxes = GfeSearchViewComboBoxes()
+    var gfeSearchViewChoiceBoxes = GfeSearchViewChoiceBoxes()
 
     var gfeSearchBoxes = stateContext.createNewSearchBoxes()
 
@@ -19,7 +19,7 @@ class GfeSearchViewParent : View("GFE SEARCH") {
 
     override val root = borderpane {
         top = hbox {
-            add(gfeSearchViewComboBoxes.root)
+            add(gfeSearchViewChoiceBoxes.root)
         }
 
         center = vbox {
@@ -37,31 +37,31 @@ class GfeSearchViewParent : View("GFE SEARCH") {
     companion object {
         private val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
         val gfeSearchViewParent = find(GfeSearchViewParent::class)
-        val comboBoxes = find(GfeSearchViewComboBoxes::class)
+        val ChoiceBoxes = find(GfeSearchViewChoiceBoxes::class)
 
 
-        fun swapVersionComboBox() {
-            gfeSearchViewParent.gfeSearchViewComboBoxes.removeFromParent()
+        fun swapVersionChoiceBox() {
+            gfeSearchViewParent.gfeSearchViewChoiceBoxes.removeFromParent()
 
-            var gfeSearchComboBoxVersion = GfeSearchComboBoxVersion()
-//            comboBoxes.gfeSearchComboBoxVersion = GfeSearchComboBoxVersion()
-            val versionComboBox = gfeSearchComboBoxVersion.root
-//            val versionComboBox = comboBoxes.gfeSearchComboBoxVersion.root
+//            var gfeSearchChoiceBoxVersion = GfeSearchChoiceBoxVersion()
+//            ChoiceBoxes.gfeSearchChoiceBoxVersion = GfeSearchChoiceBoxVersion()
+//            val versionChoiceBox = gfeSearchChoiceBoxVersion.root
+//            val versionChoiceBox = ChoiceBoxes.gfeSearchChoiceBoxVersion.root
 
-//            var versionComboBox = gfeSearchComboBoxVersion.root
+//            var versionChoiceBox = gfeSearchChoiceBoxVersion.root
 
-//            gfeSearchViewParent.versionComboBox.removeFromParent()
-//            gfeSearchViewParent.comboBoxLayoutPane.center.add(versionComboBox)
-//            var companionVersionComboBox = companionGfeSearchComboBoxVersion.root
-//            companionGfeSearchComboBoxVersion.root.add(companionVersionComboBox)
+//            gfeSearchViewParent.versionChoiceBox.removeFromParent()
+//            gfeSearchViewParent.ChoiceBoxLayoutPane.center.add(versionChoiceBox)
+//            var companionVersionChoiceBox = companionGfeSearchChoiceBoxVersion.root
+//            companionGfeSearchChoiceBoxVersion.root.add(companionVersionChoiceBox)
 
 //            gfeSearchViewParent.gfeSearchBoxes.removeFromParent()
-//            gfeSearchViewParent.root.top.add(gfeSearchViewParent.comboBoxLayoutPane)
-            gfeSearchViewParent.root.top.add(versionComboBox)
-//            gfeSearchViewParent.root.top.add(gfeSearchViewParent.comboBoxLayoutPane)
+//            gfeSearchViewParent.root.top.add(gfeSearchViewParent.ChoiceBoxLayoutPane)
+//            gfeSearchViewParent.root.top.add(versionChoiceBox)
+//            gfeSearchViewParent.root.top.add(gfeSearchViewParent.ChoiceBoxLayoutPane)
         }
 
-        fun swapLocusComboBox() {
+        fun swapLocusChoiceBox() {
 //        find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesHla.removeFromParent()
 //        find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesHla = GfeSearchViewSearchBoxesHla(loci)
 //        find(GfeSearchViewParent::class).root.center.add(find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesHla)
