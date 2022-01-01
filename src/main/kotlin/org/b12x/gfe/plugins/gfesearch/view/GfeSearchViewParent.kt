@@ -6,9 +6,9 @@ class GfeSearchViewParent : View("GFE SEARCH") {
 
     private val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
 
-    var gfeSearchViewChoiceBoxes = GfeSearchViewChoiceBoxes()
+    private var gfeSearchViewChoiceBoxes = GfeSearchViewChoiceBoxes()
 
-    var gfeSearchBoxes = stateContext.createNewSearchBoxes()
+    private var gfeSearchBoxes = stateContext.createNewSearchBoxes()
 
     private val gfeSearchViewBottomHalf = GfeSearchViewBottomHalf()
 

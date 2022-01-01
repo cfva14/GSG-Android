@@ -10,10 +10,10 @@ class GfeSearchChoiceBoxLoci(whichTab: String) : View("Available Loci") {
     val loci: ObservableList<String> = observableListOf("HLA", "KIR")
     var stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
 
-    val currentLociProperty = SimpleStringProperty(stateContext.getLoci()) // No default needed
-    var currentLoci: String by currentLociProperty// Nullable String
+    private val currentLociProperty = SimpleStringProperty(stateContext.getLoci()) // No default needed
+    private var currentLoci: String by currentLociProperty// Nullable String
 
-    val choiceBoxLoci = choicebox<String>(currentLociProperty, loci) {
+    private val choiceBoxLoci = choicebox<String>(currentLociProperty, loci) {
         action {
             PrefsGfeSearch.currentGfeSearchLociGroup = this.value
             stateContext.setState(this.value)

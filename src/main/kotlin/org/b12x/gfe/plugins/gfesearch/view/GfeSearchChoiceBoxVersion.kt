@@ -13,16 +13,16 @@ import tornadofx.Stylesheet.Companion.empty
 
 class GfeSearchChoiceBoxVersion : View("My View") {
 
-    val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
+    private val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
 
-    val versionList: VersionList = VersionList(stateContext.getLoci())
+    private val versionList: VersionList = VersionList(stateContext.getLoci())
     var versions: List<String> = versionList.allVersionNames
     var versionsObservableList: ObservableList<String> = FXCollections.observableArrayList(versions)
 
-    val currentVersionProperty = SimpleStringProperty(stateContext.getCurrentVersion()) // No default needed
+    private val currentVersionProperty = SimpleStringProperty(stateContext.getCurrentVersion()) // No default needed
     var currentVersion: String by currentVersionProperty// Nullable String
 
-    var comboBoxVersion = choicebox<String>(currentVersionProperty, versionsObservableList) {
+    private var comboBoxVersion = choicebox<String>(currentVersionProperty, versionsObservableList) {
         action {
             if (this.value != null) {
                 stateContext.setCurrentVersion(this.value)

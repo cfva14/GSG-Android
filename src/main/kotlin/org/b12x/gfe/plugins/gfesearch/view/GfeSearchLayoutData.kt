@@ -16,9 +16,6 @@ class GfeSearchLayoutData {
         var textList: MutableList<TextField> = ArrayList()
         var lociStateContextGfeSearch = LociStateContextGfeSearch()
 
-//        var selectedLociGroup by property(SimpleStringProperty(lociStateContextGfeSearch.getLoci()))
-//        var selectedVersion by property(SimpleStringProperty(lociStateContextGfeSearch.getCurrentVersion()))
-
         fun resetArraysHard() {
             checkList = ArrayList()
             textList = ArrayList()

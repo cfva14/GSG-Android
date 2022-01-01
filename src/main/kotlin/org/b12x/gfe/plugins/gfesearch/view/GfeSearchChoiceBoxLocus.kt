@@ -8,15 +8,15 @@ import tornadofx.*
 
 class GfeSearchChoiceBoxLocus : View() {
 
-    val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
+    private val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
 
-    var locusNames : List<String> = stateContext.getCurrentLocusNamesList()
+    private var locusNames : List<String> = stateContext.getCurrentLocusNamesList()
     var locusObservableList: ObservableList<String> = FXCollections.observableArrayList(locusNames)
 
-    val currentLocusProperty = SimpleStringProperty(stateContext.getCurrentLocus().toString())
+    private val currentLocusProperty = SimpleStringProperty(stateContext.getCurrentLocus().toString())
     var currentLocus: String by currentLocusProperty
 
-    var choiceBoxLocus = choicebox<String>(currentLocusProperty, locusObservableList) {
+    private var choiceBoxLocus = choicebox<String>(currentLocusProperty, locusObservableList) {
         action {
             if (this.value != null) {
                 stateContext.setCurrentLocus(this.value)
