@@ -57,8 +57,13 @@ class HlaStateGfeSearch : LociStateGfeSearch {
     // I know it's not spelled locuses, but loci is already used.
     override fun updateLocuses(ctx: LociStateContextGfeSearch) {
         val locusNames = getHlaLocusNames()
-        find(GfeSearchChoiceBoxLocus::class)
 
+        val gfeSearchChoiceBoxLocus = find(GfeSearchChoiceBoxLocus::class)
+        val locObservableList = gfeSearchChoiceBoxLocus.locusObservableList
+        locObservableList.clear()
+        locObservableList.addAll(locusNames)
+
+        gfeSearchChoiceBoxLocus.currentLocus = PrefsGfeSearch.currentGfeSearchLocusHla
     }
 
     override fun createNewSearchBoxes(ctx: LociStateContextGfeSearch): View {
