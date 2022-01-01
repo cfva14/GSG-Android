@@ -17,6 +17,7 @@ class GfeSearchChoiceBoxLoci(whichTab: String) : View("Available Loci") {
             PrefsGfeSearch.currentGfeSearchLociGroup = this.value
             stateContext.setState(this.value)
             stateContext.updateVersions()
+            stateContext.updateLocus()
         }
     }
 

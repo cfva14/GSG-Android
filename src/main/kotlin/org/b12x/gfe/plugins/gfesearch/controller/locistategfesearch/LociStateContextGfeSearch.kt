@@ -65,9 +65,9 @@ class LociStateContextGfeSearch {
             ?: HlaStateGfeSearch().setCurrentLocus(this, currentLocus)
     }
 
-    fun updateLocus(choiceBoxLocus: ComboBoxLocus, loci: LociEnum) {
-        return currentState?.updateLocus(this, choiceBoxLocus, loci)
-            ?: HlaStateGfeSearch().updateLocus(this, choiceBoxLocus, loci)
+    fun updateLocus() {
+        return currentState?.updateLocuses(this)
+            ?: HlaStateGfeSearch().updateLocuses(this)
     }
 
     fun getCurrentLocusNamesList(): List<String> {

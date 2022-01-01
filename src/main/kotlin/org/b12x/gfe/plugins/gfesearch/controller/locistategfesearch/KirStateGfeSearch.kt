@@ -1,5 +1,6 @@
 package org.b12x.gfe.plugins.gfesearch.controller.locistategfesearch
 
+import org.b12x.gfe.core.controller.loci.HlaLoci
 import org.b12x.gfe.core.controller.loci.KirLoci
 import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.core.controller.version.VersionList
@@ -35,14 +36,6 @@ class KirStateGfeSearch: LociStateGfeSearch {
 
     /* Locus */
 
-    override fun getCurrentLocusNamesList(ctx: LociStateContextGfeSearch): List<String> {
-        val locusNames = ArrayList<String>()
-        KirLoci.values().forEach {
-            locusNames.add(it.toString())
-        }
-        return locusNames
-    }
-
     override fun getCurrentLocus(ctx: LociStateContextGfeSearch) =
         KirLoci.values().find { it.fullName == PrefsGfeSearch.currentGfeSearchLocusKir } ?: KirLoci.KIR2DL1
 
@@ -50,15 +43,19 @@ class KirStateGfeSearch: LociStateGfeSearch {
         PrefsGfeSearch.currentGfeSearchLocusKir = newLocus
     }
 
-    override fun updateLocus(ctx: LociStateContextGfeSearch, comboBoxLocus: ComboBoxLocus, loci: LociEnum) {
-        // swaps the old set of search boxes out, and puts in the new set
-        // based on the locus HlaLoci passed to it.
+    fun getKirLocusNames(): List<String> {
+        val locusNames = ArrayList<String>()
+        KirLoci.values().forEach {
+            locusNames.add(it.toString())
+        }
+        return locusNames
+    }
 
-//            find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesKir
-//                .removeFromParent()
-//            find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesKir = GfeSearchViewSearchBoxesKir(loci)
-//            find(GfeSearchViewParent::class).root.center.add(find(GfeSearchViewParent::class).gfeSearchViewSearchBoxesKir)
+    override fun getCurrentLocusNamesList(ctx: LociStateContextGfeSearch) = getKirLocusNames()
 
+    // I know it's not spelled locuses, but loci is already used.
+    override fun updateLocuses(ctx: LociStateContextGfeSearch) {
+        val locusNames = getKirLocusNames()
     }
 
     override fun createNewSearchBoxes(ctx: LociStateContextGfeSearch): View {

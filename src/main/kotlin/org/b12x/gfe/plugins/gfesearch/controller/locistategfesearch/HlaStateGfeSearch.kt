@@ -5,6 +5,7 @@ import org.b12x.gfe.core.controller.loci.KirLoci
 import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.core.controller.version.VersionList
 import org.b12x.gfe.core.view.ComboBoxLocus
+import org.b12x.gfe.plugins.gfesearch.view.GfeSearchChoiceBoxLocus
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchChoiceBoxVersion
 import org.b12x.gfe.plugins.gfesearch.view.searchboxes.GfeSearchViewSearchBoxesHla
 import tornadofx.*
@@ -43,7 +44,7 @@ class HlaStateGfeSearch : LociStateGfeSearch {
         PrefsGfeSearch.currentGfeSearchLocusHla = newLocus
     }
 
-    override fun getCurrentLocusNamesList(ctx: LociStateContextGfeSearch): List<String> {
+    fun getHlaLocusNames(): List<String> {
         val locusNames = ArrayList<String>()
         HlaLoci.values().forEach {
             locusNames.add(it.toString())
@@ -51,8 +52,13 @@ class HlaStateGfeSearch : LociStateGfeSearch {
         return locusNames
     }
 
-    override fun updateLocus(ctx: LociStateContextGfeSearch, comboBoxLocus: ComboBoxLocus, loci: LociEnum) {
-//        TODO("Not yet implemented")
+    override fun getCurrentLocusNamesList(ctx: LociStateContextGfeSearch) = getHlaLocusNames()
+
+    // I know it's not spelled locuses, but loci is already used.
+    override fun updateLocuses(ctx: LociStateContextGfeSearch) {
+        val locusNames = getHlaLocusNames()
+        find(GfeSearchChoiceBoxLocus::class)
+
     }
 
     override fun createNewSearchBoxes(ctx: LociStateContextGfeSearch): View {
@@ -61,14 +67,3 @@ class HlaStateGfeSearch : LociStateGfeSearch {
         return GfeSearchViewSearchBoxesHla(currentLocus)
     }
 }
-
-//var test = when (whichTab) {
-//    "GfeSearch" -> Prefs.currentGfeSearchLociGroup = this.value
-//            "NameSearch" -> Prefs.currentNameSearchLociGroup = this.value
-//            "Comparison" -> Prefs.currentComparisonLociGroup = this.value
-//            "Options" -> Prefs.currentOptionsLociGroup = this.value
-//            "Debug" -> Prefs.currentDebugLociGroup = this.value
-//    else -> {
-//        Prefs.currentGfeSearchLociGroup = this.value
-//    }
-//}

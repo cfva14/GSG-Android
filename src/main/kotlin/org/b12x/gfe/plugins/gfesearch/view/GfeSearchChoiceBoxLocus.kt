@@ -1,6 +1,8 @@
 package org.b12x.gfe.plugins.gfesearch.view
 
 import javafx.beans.property.SimpleStringProperty
+import javafx.collections.FXCollections
+import javafx.collections.ObservableList
 import org.b12x.gfe.core.controller.loci.LociEnum
 import tornadofx.*
 
@@ -11,20 +13,23 @@ class GfeSearchChoiceBoxLocus : View() {
     val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
 
     var locusNames : List<String> = stateContext.getCurrentLocusNamesList()
+    var locusObservableList: ObservableList<String> = FXCollections.observableArrayList(locusNames)
 
-    var currentLocus: SimpleStringProperty by property(
-        SimpleStringProperty(stateContext.getCurrentLocus().toString())
-    )
+    val currentLocusProperty = SimpleStringProperty(stateContext.getCurrentLocus().toString()) // No default needed
+    var currentLocus: String by currentLocusProperty
 
-    var choiceBoxLocus = choicebox<String>(currentLocus, locusNames) {
+    var choiceBoxLocus = choicebox<String>(currentLocusProperty, locusObservableList) {
         action {
-            stateContext.setCurrentLocus(this.value)
+            if (this.value != null) {
+                stateContext.setCurrentLocus(this.value)
+                currentLocus = this.value
+            }
             GfeSearchLayoutData.resetArraysHard()
             swapSearchBoxes(GfeSearchLayoutData.selectedLocus)
         }
     }
 
-    override val root = vbox {
+    override val root = hbox {
         add(choiceBoxLocus)
     }
 

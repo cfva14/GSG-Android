@@ -14,7 +14,8 @@ import tornadofx.Stylesheet.Companion.empty
 class GfeSearchChoiceBoxVersion : View("My View") {
 
     val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
-    var versionList: VersionList = VersionList(stateContext.getLoci())
+
+    val versionList: VersionList = VersionList(stateContext.getLoci())
     var versions: List<String> = versionList.allVersionNames
     var versionsObservableList: ObservableList<String> = FXCollections.observableArrayList(versions)
 
