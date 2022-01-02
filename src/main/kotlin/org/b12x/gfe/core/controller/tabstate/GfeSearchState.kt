@@ -1,8 +1,16 @@
 package org.b12x.gfe.core.controller.tabstate
 
-class GfeSearchState: TabState {
+class GfeSearchState : TabState {
 
-    // TODO: Move lociState to GfeSearchLociState
-    // Basically this defines which preferences we're using for now.
-    // More will be added I'm sure.
+    /* What tab */
+    override fun getTab(ctx: TabStateContext) = "GFE"
+
+    /* Version */
+    override fun getCurrentVersion(ctx: TabStateContext): String {
+        return "version"
+    }
+
+    // setting up so the core can identify which tab the version
+    // request is coming from.
+    // I can't remember why I care.
 }

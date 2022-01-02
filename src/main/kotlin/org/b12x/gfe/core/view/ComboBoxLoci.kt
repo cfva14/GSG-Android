@@ -7,6 +7,6 @@ import org.b12x.gfe.core.controller.loci.LociEnum
 //import org.b12x.gfe.utilities.Loci
 
 interface ComboBoxLoci {
-    var currentLoci: SimpleStringProperty
-    val comboBoxLoci: ChoiceBox<String>
+    var currentLoci: String
+    val choiceBoxLoci: ChoiceBox<String>
 }

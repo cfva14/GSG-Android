@@ -1,5 +1,9 @@
 package org.b12x.gfe.core.controller.version
 
+import org.b12x.gfe.core.model.parsers.ParserVersionData
+import org.b12x.gfe.utilities.DirectoryManagement
+import org.b12x.gfe.utilities.FileManagement
+
 class VersionList(loci: String) {
     private val localVersions = LocalVersions(loci)
     private val onlineVersionNames = getOnlineVersionList()
@@ -8,6 +12,11 @@ class VersionList(loci: String) {
 
     private fun getOnlineVersionList(): ArrayList<String> {
         val versionList = ArrayList<String>()
+        val directoryManagement = DirectoryManagement()
+//        val versionFileLocation = FileManagement.createFile(
+//            directoryManagement.setLociLocation(loci),
+//            "onlineVersions",
+//            "txt")
 //        val versionsFile = localVersions.returnOnlineVersionFile()
 //        versionsFile.forEachLine {
 //            versionList.add(it.name)
@@ -21,7 +30,7 @@ class VersionList(loci: String) {
         localVersions.versionsList.forEach {
             localVersionNames.add(it.name)
         }
-        // onlineVersionNames.union(localVersionNames)
+         onlineVersionNames.union(localVersionNames)
         return localVersionNames
     }
 
