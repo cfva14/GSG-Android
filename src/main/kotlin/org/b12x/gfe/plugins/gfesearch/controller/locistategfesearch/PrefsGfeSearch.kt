@@ -53,6 +53,4 @@ object PrefsGfeSearch {
     ) { _, _, new ->
         prefs.put("currentGfeSearchVersionKir", new)
     }
-
-
 }

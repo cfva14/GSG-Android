@@ -10,9 +10,7 @@ class LociStateContextGfeSearch {
         currentState = when (PrefsGfeSearch.currentGfeSearchLociGroup) {
             "HLA" -> HlaStateGfeSearch()
             "KIR" -> KirStateGfeSearch()
-            else -> {
-                HlaStateGfeSearch()
-            }
+            else -> HlaStateGfeSearch()
         }
     }
 
@@ -20,9 +18,7 @@ class LociStateContextGfeSearch {
         currentState = when (loci) {
             "HLA" -> HlaStateGfeSearch()
             "KIR" -> KirStateGfeSearch()
-            else -> {
-                HlaStateGfeSearch()
-            }
+            else -> HlaStateGfeSearch()
         }
     }
 

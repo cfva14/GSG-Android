@@ -10,9 +10,7 @@ class TabStateContext {
             "GFE" -> GfeSearchState()
             "NAME" -> NameSearchState()
             "COMP" -> ComparisonState()
-            else -> {
-                GfeSearchState()
-            }
+            else -> GfeSearchState()
         }
     }
 
@@ -21,9 +19,7 @@ class TabStateContext {
             "GFE" -> GfeSearchState()
             "NAME" -> NameSearchState()
             "COMP" -> ComparisonState()
-            else -> {
-                GfeSearchState()
-            }
+            else -> GfeSearchState()
         }
         println("Current Tab State: ${currentState.toString()}")
     }

@@ -34,7 +34,7 @@ class HlaStateGfeSearch : LociStateGfeSearch {
     }
 
     /* Locus */
-    override fun getCurrentLocus(ctx: LociStateContextGfeSearch)
+    override fun getCurrentLocus(ctx: LociStateContextGfeSearch): HlaLoci
         = HlaLoci.values().find { it.fullName == PrefsGfeSearch.currentGfeSearchLocusHla } ?: HlaLoci.A
 
     override fun setCurrentLocus(ctx: LociStateContextGfeSearch, newLocus: String) {

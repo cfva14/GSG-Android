@@ -37,7 +37,7 @@ class KirStateGfeSearch: LociStateGfeSearch {
 
     /* Locus */
 
-    override fun getCurrentLocus(ctx: LociStateContextGfeSearch) =
+    override fun getCurrentLocus(ctx: LociStateContextGfeSearch): KirLoci =
         KirLoci.values().find { it.fullName == PrefsGfeSearch.currentGfeSearchLocusKir } ?: KirLoci.KIR2DL1
 
     override fun setCurrentLocus(ctx: LociStateContextGfeSearch, newLocus: String) {

@@ -23,7 +23,7 @@ class LocalVersions(loci: String) {
      *
      * @return a list of versions available locally
      */
-    fun createVersions(): ArrayList<Version> {//ArrayList<String> {
+    fun createVersions(): ArrayList<Version> {
 
         val versions = ArrayList<Version>()
         // if the folder doesn't exist, there's nothing to add.
@@ -44,7 +44,6 @@ class LocalVersions(loci: String) {
 
     /**
      * Gets all available locus names for a specific version
-     * Gets all files for a specific version of genes in the user's GSG data directory.
      *
      * @return a list of locus names
      */
@@ -89,7 +88,6 @@ class LocalVersions(loci: String) {
                 dataDownload.makeRequest(dataType = "version", dataUrl = ParserVersionData.DB_VERSIONS)
             }
         }
-
         return File(onlineVersionsFile)
     }
 }

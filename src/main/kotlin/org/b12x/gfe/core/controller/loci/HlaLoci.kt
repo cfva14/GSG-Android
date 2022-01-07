@@ -13,7 +13,5 @@ enum class HlaLoci(override val fullName: String, override val exons: Int) : Loc
     DRB4("HLA-DRB4", 6),
     DRB5("HLA-DRB5", 6);
 
-    override fun toString(): String {
-        return fullName
-    }
+    override fun toString() = fullName
 }

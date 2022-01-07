@@ -6,6 +6,8 @@ import java.nio.file.Paths
 
 object FileManagement {
 
+    //make an extension function on files to create them
+
     val directoryManagement = DirectoryManagement()
 
     /**

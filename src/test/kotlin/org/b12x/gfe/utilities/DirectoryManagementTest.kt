@@ -7,7 +7,7 @@ import java.io.File
 class DirectoryManagementTest {
 
     val directoryManagement = DirectoryManagement()
-    val fileManagement = FileManagement()
+//    val fileManagement = FileManagement()
     val GSG_DATA = "/Documents/GSG/GSGData"
     val NESTED_DIRECTORIES = "/Documents/GSG/GSGData/TEST2/3.31.0/"
     val VERSION = "3.31.0"

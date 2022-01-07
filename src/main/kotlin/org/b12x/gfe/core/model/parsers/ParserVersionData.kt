@@ -25,6 +25,7 @@ object ParserVersionData {
         val stringBuilder: StringBuilder = StringBuilder(body)
         val parser: Parser = Parser.default()
 
+        // fixes incorrectly formatted json
         val parsedObject = parser.parse(stringBuilder) as JsonArray<String>
         println("Versions: $parsedObject")
         parsedObject.forEach {

@@ -6,19 +6,20 @@ import javafx.scene.control.CheckBox
 import javafx.scene.control.TextField
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import org.b12x.gfe.core.controller.loci.KirLoci
 import org.b12x.gfe.core.controller.loci.LociEnum
 import org.b12x.gfe.plugins.gfesearch.view.GfeSearchLayoutData
 import tornadofx.*
-import tornadofx.Stylesheet.Companion.root
 
-class GfeSearchViewSearchBoxesKir(loci: LociEnum) : View("Gfe Search Boxes"), GfeSearchViewSearchBoxes {
+class GfeSearchViewSearchBoxesKir(loci: LociEnum): View("KIR GFE Search Boxes"), GfeSearchViewSearchBoxes {
 
     private val stateContext = GfeSearchLayoutData.lociStateContextGfeSearch
 
     val gfeSearchBoxShared = GfeSearchBoxShared()
     val selectAllCheckBox: CheckBox = gfeSearchBoxShared.selectAllCheckBox
+    val currentKirLocus = stateContext.getCurrentLocus() as KirLoci
 
-    val completedSearchBox = completedSearchBoxGenerator(stateContext.getCurrentLocus().exons)
+    val completedSearchBox = completedSearchBoxGenerator(currentKirLocus.exons)
 
     override val root = vbox {
         label {
@@ -46,6 +47,7 @@ class GfeSearchViewSearchBoxesKir(loci: LociEnum) : View("Gfe Search Boxes"), Gf
         completedSearchBox.add(Group(individualSearchBoxAssembler("5' UTR")))
 
         for (i in 1 until numberOfBoxes) {
+            if (currentKirLocus.skippedExons.any{it == i} ) { continue }
             completedSearchBox.add(Group(individualSearchBoxAssembler("Exon $i")))
             completedSearchBox.add(Group(individualSearchBoxAssembler("Intron $i")))
         }
