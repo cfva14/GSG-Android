@@ -20,5 +20,4 @@ enum class KirLoci(override val fullName: String, override val exons: Int, val s
     KIR2DP1("KIR2DP1", 9, emptyList());
 
     override fun toString() = fullName
-    fun skippedExons() = skippedExons
 }
