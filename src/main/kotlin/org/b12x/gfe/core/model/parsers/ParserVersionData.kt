@@ -26,12 +26,12 @@ object ParserVersionData {
         val parser: Parser = Parser.default()
 
         // fixes incorrectly formatted json
-        val parsedObject = parser.parse(stringBuilder) as JsonArray<String>
+        val parsedObject = parser.parse(stringBuilder) //as JsonArray<String>
         println("Versions: $parsedObject")
-        parsedObject.forEach {
-            addVersion(loci, it)
-            println("A version: $it")
-        }
+//        parsedObject.forEach {
+//            addVersion(loci, it)
+//            println("A version: $it")
+//        }
     }
 
     /**
